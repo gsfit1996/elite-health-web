@@ -4,17 +4,9 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
-import Cal, { getCalApi } from "@calcom/embed-react";
-import { useEffect } from "react";
+import Script from "next/script";
 
 export default function ResetPage() {
-    useEffect(() => {
-        (async function () {
-            const cal = await getCalApi({ "namespace": "founder-performance-audit-15min" });
-            cal("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
-        })();
-    }, []);
-
     return (
         <Section>
             <Container>
@@ -68,13 +60,13 @@ export default function ResetPage() {
                         </div>
                     </div>
 
-                    <div className="bg-muted/10 rounded-2xl border border-border p-4 flex items-center justify-center min-h-[500px] overflow-hidden">
-                        <Cal
-                            namespace="founder-performance-audit-15min"
-                            calLink="elitehealthos/founder-performance-audit-15min"
-                            style={{ width: "100%", height: "100%", minHeight: "500px" }}
-                            config={{ "layout": "month_view" }}
+                    <div className="bg-muted/10 rounded-2xl border border-border p-4 flex items-center justify-center min-h-[700px] overflow-hidden">
+                        <div
+                            className="calendly-inline-widget w-full"
+                            data-url="https://calendly.com/elitelevelcoaching-gareth/15-min-founder-performance-reset"
+                            style={{ minWidth: '320px', height: '700px' }}
                         />
+                        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
                     </div>
                 </div>
             </Container>
