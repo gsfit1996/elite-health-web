@@ -45,20 +45,20 @@ export default function ResourcesPage() {
 
                     <h2 className="text-2xl font-bold font-heading mb-8">Latest Guides</h2>
                     <div className="grid gap-6">
-                        {[1, 2, 3].map((i) => (
-                            <Card key={i} className="p-6 flex flex-col md:flex-row gap-6 items-start md:items-center group cursor-pointer hover:bg-muted/30">
+                        <Link href="/resources/executive-biomarker-priority-list" className="block">
+                            <Card className="p-6 flex flex-col md:flex-row gap-6 items-start md:items-center group cursor-pointer hover:bg-muted/30">
                                 <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                                     <FileText className="h-6 w-6 text-primary" />
                                 </div>
                                 <div className="flex-1">
                                     <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">The Executive Biomarker Priority List</h3>
-                                    <p className="text-muted-foreground">What to test, optimal ranges, and action plans for high performers.</p>
+                                    <p className="text-muted-foreground">What to test, target ranges, and action priorities for high performers.</p>
                                 </div>
                                 <div className="text-primary font-medium flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                                     Read Guide <ArrowRight className="h-4 w-4" />
                                 </div>
                             </Card>
-                        ))}
+                        </Link>
                     </div>
                 </Container>
             </Section>
