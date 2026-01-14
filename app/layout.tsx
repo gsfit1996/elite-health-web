@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { MobileActionBar } from "@/components/layout/mobile-action-bar";
 import { PageTransition } from "@/components/layout/page-transition";
+import { CalendlyBadge } from "@/components/layout/calendly-badge";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,6 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+      </head>
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground font-sans min-h-screen flex flex-col relative overflow-x-hidden`}
       >
@@ -61,6 +65,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileActionBar />
+        <CalendlyBadge />
       </body>
     </html>
   );
