@@ -78,7 +78,7 @@ export default function AboutPage() {
         <div className="flex flex-col">
             <Section className="pb-10 pt-32 md:pt-48">
                 <Container>
-                    <div className="max-w-4xl mx-auto text-center space-y-6">
+                    <div className="max-w-4xl mx-auto text-center space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <Badge variant="secondary" className="px-4 py-1.5 text-sm">
                             About Elite Health OS
                         </Badge>

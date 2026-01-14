@@ -11,7 +11,7 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
             <section
                 ref={ref}
                 className={cn(
-                    "py-16 md:py-24",
+                    "py-20 md:py-28 relative",
                     !fullWidth && "container mx-auto",
                     className
                 )}

@@ -11,8 +11,8 @@ export default function ToolsPage() {
         <div className="pt-24">
             <Section>
                 <Container>
-                    <h1 className="text-4xl font-bold font-heading mb-6 text-center">Free Tools</h1>
-                    <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16">
+                    <h1 className="text-4xl font-bold font-heading mb-6 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">Free Tools</h1>
+                    <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
                         High-impact diagnostics and planners built for founders who want fast clarity.
                     </p>
 

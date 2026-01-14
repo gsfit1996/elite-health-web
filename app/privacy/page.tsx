@@ -67,7 +67,7 @@ export default function PrivacyPage() {
         <div className="flex flex-col">
             <Section className="pb-8 pt-32 md:pt-48">
                 <Container>
-                    <div className="max-w-3xl mx-auto text-center space-y-5">
+                    <div className="max-w-3xl mx-auto text-center space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <Badge variant="secondary" className="px-4 py-1.5 text-sm">
                             Privacy Policy
                         </Badge>

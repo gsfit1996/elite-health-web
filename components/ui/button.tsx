@@ -15,10 +15,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant = "primary", size = "default", asChild = false, loading, children, ...props }, ref) => {
         const Comp = asChild ? Slot : "button";
 
-        const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+        const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
 
         const variants = {
-            primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20",
+            primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_12px_30px_rgba(46,92,255,0.35)] hover:shadow-[0_16px_40px_rgba(46,92,255,0.45)]",
             secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
             outline: "border border-border bg-background hover:bg-muted hover:text-muted-foreground",
             ghost: "hover:bg-muted hover:text-accent-foreground",
