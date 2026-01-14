@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { MobileActionBar } from "@/components/layout/mobile-action-bar";
@@ -36,6 +37,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileActionBar />
+        <Analytics />
       </body>
     </html>
   );
