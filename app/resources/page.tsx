@@ -14,6 +14,23 @@ export default function ResourcesPage() {
         { title: "Biomarkers", icon: <Brain className="h-6 w-6" />, desc: "What to test, what to do" },
         { title: "Training", icon: <div className="h-6 w-6 bg-primary/20 rounded-full" />, desc: "Joint-smart strength" }
     ];
+    const guides = [
+        {
+            title: "The Executive Biomarker Priority List",
+            desc: "What to test, target ranges, and action priorities for high performers.",
+            href: "/resources/executive-biomarker-priority-list",
+        },
+        {
+            title: "The 3-Rule Consistency System",
+            desc: "A simple operating system that keeps progress steady even in chaos.",
+            href: "/resources/three-rule-consistency-system",
+        },
+        {
+            title: "Joint-Smart Strength Template",
+            desc: "A founder-friendly strength plan that protects joints and energy.",
+            href: "/resources/joint-smart-strength-template",
+        },
+    ];
 
     return (
         <div className="pt-24">
@@ -45,20 +62,24 @@ export default function ResourcesPage() {
 
                     <h2 className="text-2xl font-bold font-heading mb-8">Latest Guides</h2>
                     <div className="grid gap-6">
-                        <Link href="/resources/executive-biomarker-priority-list" className="block">
-                            <Card className="p-6 flex flex-col md:flex-row gap-6 items-start md:items-center group cursor-pointer hover:bg-muted/30">
-                                <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                                    <FileText className="h-6 w-6 text-primary" />
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">The Executive Biomarker Priority List</h3>
-                                    <p className="text-muted-foreground">What to test, target ranges, and action priorities for high performers.</p>
-                                </div>
-                                <div className="text-primary font-medium flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    Read Guide <ArrowRight className="h-4 w-4" />
-                                </div>
-                            </Card>
-                        </Link>
+                        {guides.map((guide) => (
+                            <Link key={guide.href} href={guide.href} className="block">
+                                <Card className="p-6 flex flex-col md:flex-row gap-6 items-start md:items-center group cursor-pointer hover:bg-muted/30">
+                                    <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                                        <FileText className="h-6 w-6 text-primary" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                                            {guide.title}
+                                        </h3>
+                                        <p className="text-muted-foreground">{guide.desc}</p>
+                                    </div>
+                                    <div className="text-primary font-medium flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                                        Read Guide <ArrowRight className="h-4 w-4" />
+                                    </div>
+                                </Card>
+                            </Link>
+                        ))}
                     </div>
                 </Container>
             </Section>
