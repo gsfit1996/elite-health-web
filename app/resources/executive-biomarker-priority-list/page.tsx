@@ -100,7 +100,7 @@ export default function ExecutiveBiomarkerPriorityListPage() {
             <Section className="bg-muted/10">
                 <Container className="max-w-4xl">
                     <div className="flex flex-wrap items-center gap-4 mb-6">
-                        <Badge variant="outline">Guide</Badge>
+                        <Badge variant="outline">Protocol</Badge>
                         <Link href="/resources" className="text-sm text-muted-foreground flex items-center gap-2 hover:text-foreground">
                             <ArrowLeft className="h-4 w-4" /> Back to Resources
                         </Link>
