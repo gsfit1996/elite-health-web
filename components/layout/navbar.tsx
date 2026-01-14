@@ -34,16 +34,16 @@ export function Navbar() {
                             Program
                         </Link>
                         <Link
-                            href="/about"
+                            href="/how-it-works"
                             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
-                            About
+                            How it works
                         </Link>
                         <Link
-                            href="/blog"
+                            href="/tools"
                             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
-                            Blog
+                            Tools
                         </Link>
                     </nav>
 
@@ -81,18 +81,18 @@ export function Navbar() {
                                 Program
                             </Link>
                             <Link
-                                href="/about"
+                                href="/how-it-works"
                                 className="block py-2 border-b border-border/50 text-foreground/80 hover:text-primary"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                About
+                                How it works
                             </Link>
                             <Link
-                                href="/blog"
+                                href="/tools"
                                 className="block py-2 border-b border-border/50 text-foreground/80 hover:text-primary"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                Blog
+                                Tools
                             </Link>
                         </nav>
 
