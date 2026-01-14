@@ -1,50 +1,120 @@
-"use client";
-
-import { Container } from "@/components/ui/container";
-import { Section } from "@/components/ui/section";
+import type { Metadata } from "next";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
+import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
+import { Card } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 
+export const metadata: Metadata = {
+    title: "About Elite Health OS | Performance System for Founders",
+    description: "Elite Health OS builds high-performance health systems for founders and executives who cannot rely on perfect weeks.",
+    alternates: {
+        canonical: "https://www.elitehealth.io/about",
+    },
+    openGraph: {
+        title: "About Elite Health OS",
+        description: "A performance system for founders who need consistency, not perfection.",
+        url: "https://www.elitehealth.io/about",
+        siteName: "Elite Health OS",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "About Elite Health OS",
+        description: "A performance system for founders who need consistency, not perfection.",
+    },
+};
+
+const values = [
+    { title: "Radical Truth", desc: "We deal in signals and outcomes, not excuses." },
+    { title: "Execution First", desc: "If it is not repeatable in a founder schedule, it does not ship." },
+    { title: "Minimal Friction", desc: "We remove decisions so you can win even when the week breaks." },
+    { title: "Precision Feedback", desc: "We use biomarkers and performance data to course-correct fast." },
+];
+
+const pillars = [
+    {
+        title: "Diagnose",
+        desc: "Find the single constraint that is breaking your consistency.",
+    },
+    {
+        title: "Design",
+        desc: "Build a plan around your calendar, travel load, and sleep reality.",
+    },
+    {
+        title: "Execute",
+        desc: "Install rules and defaults that run when willpower fades.",
+    },
+];
+
+const audience = [
+    "Founders and executives running high-stakes calendars.",
+    "Leaders who want stable energy without obsessing over tracking.",
+    "Operators who value leverage and repeatability over hacks.",
+];
+
+const notFor = [
+    "People looking for quick fixes without behavior change.",
+    "Anyone who wants a bodybuilding prep approach.",
+    "Those unwilling to protect sleep and recovery basics.",
+];
+
 export default function AboutPage() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        name: "About Elite Health OS",
+        url: "https://www.elitehealth.io/about",
+        about: {
+            "@type": "Organization",
+            name: "Elite Health OS",
+            url: "https://www.elitehealth.io",
+        },
+    };
+
     return (
         <div className="flex flex-col">
-            <Section className="pb-0 pt-32 md:pt-48">
+            <Section className="pb-10 pt-32 md:pt-48">
                 <Container>
-                    <div className="max-w-4xl mx-auto text-center mb-16">
-                        <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm">
-                            About Us
+                    <div className="max-w-4xl mx-auto text-center space-y-6">
+                        <Badge variant="secondary" className="px-4 py-1.5 text-sm">
+                            About Elite Health OS
                         </Badge>
-                        <h1 className="text-4xl md:text-6xl font-bold font-heading mb-6">
-                            Built from Necessity, Not Textbooks.
+                        <h1 className="text-4xl md:text-6xl font-bold font-heading">
+                            A performance system built for real founder constraints.
                         </h1>
+                        <p className="text-lg text-muted-foreground">
+                            Elite Health OS turns inconsistent health into an operating system. No perfect weeks. No
+                            guilt. Just reliable energy, measurable progress, and rules that survive chaos.
+                        </p>
                     </div>
                 </Container>
             </Section>
 
             <Section>
                 <Container>
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div className="relative aspect-square w-full max-w-md mx-auto md:mr-auto rounded-2xl overflow-hidden bg-muted">
-                            {/* Placeholder for Founder Image */}
-                            <div className="flex items-center justify-center h-full text-muted-foreground bg-secondary/20">
-                                Founder Photo
-                            </div>
-                        </div>
+                    <div className="grid gap-10 lg:grid-cols-2">
                         <div className="space-y-6">
-                            <h2 className="text-3xl font-bold font-heading">The Origin Story</h2>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                Elite Health OS wasn't created in a lab. It was built in the trenches of high-pressure leadership.
+                            <h2 className="text-3xl font-bold font-heading">Why we exist</h2>
+                            <p className="text-muted-foreground leading-relaxed">
+                                Traditional fitness advice assumes stable schedules, perfect sleep, and endless time. That
+                                does not exist for founders. We built a system that adapts to travel, stress, and broken
+                                weeks while still moving the needle.
                             </p>
                             <p className="text-muted-foreground leading-relaxed">
-                                I realized that the "fitness industry" advice—eat less, track everything, sleep 8 hours perfectly—is incompatible with the reality of building a company.
-                                Founders need a system that adapts to travel, stress, and broken sleep, not one that shames you for it.
+                                Our focus is consistency. When the plan fits your calendar, you get leaner, stronger, and
+                                sharper without burning out.
                             </p>
-                            <p className="text-muted-foreground leading-relaxed">
-                                Our mission is to help leaders achieve peak performance while balancing the infinite demands of family and work.
-                            </p>
+                        </div>
+                        <div className="space-y-4">
+                            {pillars.map((pillar) => (
+                                <Card key={pillar.title} className="p-5 bg-muted/10 border-border/60">
+                                    <h3 className="text-lg font-semibold text-foreground mb-2">{pillar.title}</h3>
+                                    <p className="text-sm text-muted-foreground">{pillar.desc}</p>
+                                </Card>
+                            ))}
                         </div>
                     </div>
                 </Container>
@@ -52,24 +122,43 @@ export default function AboutPage() {
 
             <Section className="bg-muted/5">
                 <Container>
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold font-heading mb-4">Our Culture</h2>
+                    <div className="grid gap-10 lg:grid-cols-2">
+                        <div className="space-y-4">
+                            <h2 className="text-3xl font-bold font-heading">Who this is for</h2>
+                            <ul className="space-y-2 text-muted-foreground">
+                                {audience.map((item) => (
+                                    <li key={item}>- {item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="space-y-4">
+                            <h2 className="text-3xl font-bold font-heading">Who this is not for</h2>
+                            <ul className="space-y-2 text-muted-foreground">
+                                {notFor.map((item) => (
+                                    <li key={item}>- {item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </Container>
+            </Section>
+
+            <Section>
+                <Container>
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold font-heading mb-4">Operating principles</h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto">
-                            We operate with the same high standards we expect from our clients.
+                            We run the same playbook we install for clients: reduce friction, measure what matters, and
+                            build repeatable wins.
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { title: "Radical Truth", desc: "We don't sugarcoat reality. Data doesn't lie, and neither do we." },
-                            { title: "Radical Transparency", desc: "Open books, open feedback, open communication." },
-                            { title: "Extreme Ownership", desc: "We take full responsibility for outcomes. No excuses." },
-                            { title: "Meritocracy", desc: "Best ideas win. Performance matters more than tenure." }
-                        ].map((value, i) => (
-                            <div key={i} className="bg-background border border-border p-6 rounded-xl">
+                        {values.map((value) => (
+                            <Card key={value.title} className="p-6 bg-background border-border/60">
                                 <h3 className="font-bold text-lg mb-2">{value.title}</h3>
                                 <p className="text-sm text-muted-foreground">{value.desc}</p>
-                            </div>
+                            </Card>
                         ))}
                     </div>
                 </Container>
@@ -77,7 +166,7 @@ export default function AboutPage() {
 
             <Section>
                 <Container className="text-center">
-                    <h2 className="text-3xl font-bold font-heading mb-8">Join the movement.</h2>
+                    <h2 className="text-3xl font-bold font-heading mb-6">Ready for a plan that fits your calendar?</h2>
                     <Button size="lg" className="h-14 px-8 text-lg" asChild>
                         <Link href="/reset">
                             Book Your Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
@@ -85,6 +174,11 @@ export default function AboutPage() {
                     </Button>
                 </Container>
             </Section>
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
         </div>
     );
 }
