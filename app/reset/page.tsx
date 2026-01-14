@@ -12,7 +12,7 @@ export default function ResetPage() {
             <Container>
                 <div className="grid lg:grid-cols-2 gap-16">
                     <div>
-                        <Badge variant="outline" className="mb-4">15-Minute Reset</Badge>
+                        <Badge variant="outline" className="mb-4">15-Minute Reset v2.0</Badge>
                         <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">
                             Book a <span className="text-primary">Consistency Audit</span>.
                         </h1>
