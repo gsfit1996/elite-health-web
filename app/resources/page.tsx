@@ -36,7 +36,7 @@ export default function ResourcesPage() {
         <div className="pt-24">
             <Section className="bg-muted/10">
                 <Container className="text-center">
-                    <Badge variant="outline" className="mb-4">Library</Badge>
+                    <Badge variant="outline" className="mb-4">Protocols</Badge>
                     <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">
                         Resources Hub
                     </h1>

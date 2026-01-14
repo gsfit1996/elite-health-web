@@ -40,6 +40,12 @@ export function Navbar() {
                             How it works
                         </Link>
                         <Link
+                            href="/resources"
+                            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                        >
+                            Protocols
+                        </Link>
+                        <Link
                             href="/tools"
                             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
@@ -86,6 +92,13 @@ export function Navbar() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 How it works
+                            </Link>
+                            <Link
+                                href="/resources"
+                                className="block py-2 border-b border-border/50 text-foreground/80 hover:text-primary"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Protocols
                             </Link>
                             <Link
                                 href="/tools"
