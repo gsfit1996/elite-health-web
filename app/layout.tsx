@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { MobileActionBar } from "@/components/layout/mobile-action-bar";
 import { PageTransition } from "@/components/layout/page-transition";
 import { ChunkRecovery } from "@/components/layout/chunk-recovery";
+import { BookingNavigationOverride } from "@/components/layout/booking-navigation-override";
 import "./globals.css";
 
 const inter = Inter({
@@ -71,6 +72,7 @@ export default function RootLayout({
         <Footer />
         <MobileActionBar />
         <ChunkRecovery />
+        <BookingNavigationOverride />
       </body>
     </html>
   );
