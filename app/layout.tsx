@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { MobileActionBar } from "@/components/layout/mobile-action-bar";
 import { PageTransition } from "@/components/layout/page-transition";
+import { ChunkRecovery } from "@/components/layout/chunk-recovery";
 import "./globals.css";
 
 const inter = Inter({
@@ -69,6 +70,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileActionBar />
+        <ChunkRecovery />
       </body>
     </html>
   );

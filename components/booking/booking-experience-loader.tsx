@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { BookingErrorBoundary } from "./booking-error-boundary";
 
 const BookingExperience = dynamic(
     () => import("./booking-experience").then((mod) => mod.BookingExperience),
@@ -11,7 +12,11 @@ const BookingExperience = dynamic(
 );
 
 export function BookingExperienceLoader() {
-    return <BookingExperience />;
+    return (
+        <BookingErrorBoundary>
+            <BookingExperience />
+        </BookingErrorBoundary>
+    );
 }
 
 function BookingExperienceSkeleton() {
