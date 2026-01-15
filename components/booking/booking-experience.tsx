@@ -33,7 +33,13 @@ declare global {
 
 let calendlyScriptPromise: Promise<void> | null = null;
 
+const canUseDOM = () => typeof window !== "undefined" && typeof document !== "undefined";
+
 const addLinkTag = (rel: "preconnect" | "dns-prefetch", href: string) => {
+    if (!canUseDOM() || !document.head) {
+        return;
+    }
+
     if (document.querySelector(`link[rel="${rel}"][href="${href}"]`)) {
         return;
     }
@@ -57,6 +63,10 @@ const warmCalendlyConnections = () => {
 };
 
 const ensureCalendlyStyles = () => {
+    if (!canUseDOM() || !document.head) {
+        return;
+    }
+
     const existing = document.querySelector<HTMLLinkElement>("link[data-calendly-style]");
     if (existing) {
         return;
@@ -70,6 +80,10 @@ const ensureCalendlyStyles = () => {
 };
 
 const ensureCalendlyScript = () => {
+    if (!canUseDOM() || !document.body) {
+        return Promise.reject(new Error("DOM not ready"));
+    }
+
     if (window.Calendly?.initPopupWidget) {
         return Promise.resolve();
     }
@@ -106,9 +120,19 @@ const ensureCalendlyScript = () => {
 
 const waitForCalendlyOverlay = (timeoutMs: number) => {
     return new Promise<boolean>((resolve) => {
+        if (!canUseDOM()) {
+            resolve(false);
+            return;
+        }
+
         const existing = document.querySelector(CALENDLY_OVERLAY_SELECTOR);
         if (existing) {
             resolve(true);
+            return;
+        }
+
+        if (typeof MutationObserver === "undefined" || !document.body) {
+            window.setTimeout(() => resolve(false), timeoutMs);
             return;
         }
 
@@ -136,8 +160,23 @@ const waitForCalendlyOverlay = (timeoutMs: number) => {
 };
 
 const buildCalendlyPayload = () => {
-    const params = new URLSearchParams(window.location.search);
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (!canUseDOM()) {
+        return { url: CALENDLY_URL } as const;
+    }
+
+    let params: URLSearchParams;
+    try {
+        params = new URLSearchParams(window.location.search);
+    } catch (error) {
+        params = new URLSearchParams();
+    }
+
+    let timezone: string | undefined;
+    try {
+        timezone = Intl?.DateTimeFormat?.().resolvedOptions().timeZone;
+    } catch (error) {
+        timezone = undefined;
+    }
 
     const prefill: Record<string, string> = {};
     const name = params.get("name");
@@ -167,7 +206,12 @@ const buildCalendlyPayload = () => {
         }
     });
 
-    const url = new URL(CALENDLY_URL);
+    let url: URL;
+    try {
+        url = new URL(CALENDLY_URL);
+    } catch (error) {
+        url = new URL(CALENDLY_URL, window.location.origin);
+    }
     [
         "utm_source",
         "utm_medium",
@@ -202,6 +246,10 @@ export function BookingExperience() {
     const [fallbackUrl, setFallbackUrl] = useState(CALENDLY_URL);
 
     useEffect(() => {
+        if (!canUseDOM() || !document.body || typeof MutationObserver === "undefined") {
+            return;
+        }
+
         const updateState = () => {
             const isOpen = Boolean(document.querySelector(CALENDLY_OVERLAY_SELECTOR));
             setIsCalendlyOpen(isOpen);
