@@ -78,7 +78,7 @@ export default function SystemPage() {
                     <h2 className="text-3xl font-bold font-heading mb-6">Install the OS.</h2>
                     <Button size="lg" asChild>
                         <Link href="/reset">
-                            Book a Reset <ArrowRight className="ml-2 h-4 w-4" />
+                            Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                 </Container>
@@ -86,3 +86,4 @@ export default function SystemPage() {
         </div>
     );
 }
+

@@ -88,7 +88,7 @@ export default function ProgramPage() {
                     <h2 className="text-3xl font-bold font-heading mb-8">Ready to install the OS?</h2>
                     <Button size="lg" className="h-14 px-8 text-lg" asChild>
                         <Link href="/reset">
-                            Schedule Your Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
+                            Schedule Your 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                         </Link>
                     </Button>
                 </Container>
@@ -96,3 +96,4 @@ export default function ProgramPage() {
         </div>
     );
 }
+

@@ -140,7 +140,7 @@ export default function TravelDayNutritionProtocolPage() {
                                 href="/reset"
                                 className="inline-flex items-center gap-2 text-primary font-semibold hover:translate-x-1 transition-transform"
                             >
-                                Book a Consistency Audit <ArrowRight className="h-4 w-4" />
+                                Book 15-Min Audit <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
                     </div>
@@ -149,3 +149,4 @@ export default function TravelDayNutritionProtocolPage() {
         </div>
     );
 }
+

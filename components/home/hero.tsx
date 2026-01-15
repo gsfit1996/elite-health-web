@@ -51,7 +51,7 @@ export function Hero() {
                     >
                         <Button size="lg" className="h-14 px-8 text-lg" asChild>
                             <Link href="/reset">
-                                Book a Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
+                                Book 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
                         <Button variant="secondary" size="lg" className="h-14 px-8 text-lg" asChild>
@@ -94,3 +94,4 @@ export function Hero() {
         </section>
     );
 }
+

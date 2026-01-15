@@ -169,7 +169,7 @@ export default function AboutPage() {
                     <h2 className="text-3xl font-bold font-heading mb-6">Ready for a plan that fits your calendar?</h2>
                     <Button size="lg" className="h-14 px-8 text-lg" asChild>
                         <Link href="/reset">
-                            Book Your Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
+                            Book Your 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                         </Link>
                     </Button>
                 </Container>
@@ -182,3 +182,4 @@ export default function AboutPage() {
         </div>
     );
 }
+

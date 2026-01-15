@@ -111,7 +111,7 @@ export function WeekendGuardrails() {
                         </Button>
                         <Button asChild className="w-full" variant="outline">
                             <Link href="/reset">
-                                Need accountability? Book a Reset
+                                Need accountability? Book 15-Min Audit
                             </Link>
                         </Button>
                         <Button
@@ -127,3 +127,4 @@ export function WeekendGuardrails() {
         </ToolCard>
     );
 }
+

@@ -79,7 +79,7 @@ export default function HowItWorksPage() {
                         </p>
                         <Button size="lg" asChild className="h-14 px-8 text-lg">
                             <Link href="/reset">
-                                Book a 15-min Reset <ArrowRight className="ml-2 h-5 w-5" />
+                                Book 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
                     </div>
@@ -88,3 +88,4 @@ export default function HowItWorksPage() {
         </div>
     );
 }
+

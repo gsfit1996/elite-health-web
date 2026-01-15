@@ -3,11 +3,16 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 export function MobileActionBar() {
     const [isVisible, setIsVisible] = useState(false);
+    const pathname = usePathname();
+
+    if (pathname === "/reset") {
+        return null;
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -36,10 +41,10 @@ export function MobileActionBar() {
                     <div className="bg-background/80 backdrop-blur-xl border border-primary/20 p-2 rounded-2xl shadow-2xl flex items-center justify-between gap-3 shadow-primary/10">
                         <div className="pl-4">
                             <span className="text-xs font-bold uppercase text-primary tracking-wider">Limited Spots</span>
-                            <p className="text-sm font-bold text-foreground leading-none">Strategy Call (15m)</p>
+                            <p className="text-sm font-bold text-foreground leading-none">15-Min Audit</p>
                         </div>
                         <Button size="default" className="shadow-lg shadow-primary/20" asChild>
-                            <Link href="/reset">Book Now</Link>
+                            <Link href="/reset">Book 15-Min Audit</Link>
                         </Button>
                     </div>
                 </motion.div>
@@ -47,3 +52,4 @@ export function MobileActionBar() {
         </AnimatePresence>
     );
 }
+

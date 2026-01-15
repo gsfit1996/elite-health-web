@@ -319,7 +319,7 @@ export function CrashDiagnostic() {
                     <div className="space-y-3">
                         <Button asChild className="w-full h-14 text-lg">
                             <Link href="/reset">
-                                Fix This Permanently (Book Reset)
+                                Fix This Permanently (Book 15-Min Audit)
                             </Link>
                         </Button>
                         <Button
@@ -338,3 +338,4 @@ export function CrashDiagnostic() {
         </ToolCard>
     );
 }
+

@@ -67,7 +67,7 @@ const faqs: FAQItem[] = [
     },
     {
         question: "What is the first step?",
-        answer: "Book a strategy call. We review your schedule, goals, and constraints and decide if the system is a fit.",
+        answer: "Book 15-Min Audit. We review your schedule, goals, and constraints and decide if the system is a fit.",
     },
 ];
 
@@ -129,11 +129,11 @@ export default function FAQPage() {
                         <Card className="p-6">
                             <h3 className="text-xl font-semibold text-foreground mb-2">Next step</h3>
                             <p className="text-sm text-muted-foreground mb-4">
-                                Book a strategy call to map your bottleneck and next 90-day plan.
+                                Book 15-Min Audit to map your bottleneck and next 90-day plan.
                             </p>
                             <Button asChild className="h-11">
                                 <Link href="/reset">
-                                    Book a Strategy Call <ArrowRight className="ml-2 h-4 w-4" />
+                                    Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
                         </Card>
@@ -148,3 +148,4 @@ export default function FAQPage() {
         </div>
     );
 }
+

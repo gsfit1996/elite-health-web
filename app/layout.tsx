@@ -4,17 +4,18 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { MobileActionBar } from "@/components/layout/mobile-action-bar";
 import { PageTransition } from "@/components/layout/page-transition";
-import { CalendlyBadge } from "@/components/layout/calendly-badge";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <link rel="dns-prefetch" href="https://assets.calendly.com" />
+        <link rel="dns-prefetch" href="https://calendly.com" />
+        <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://calendly.com" crossOrigin="anonymous" />
       </head>
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground font-sans min-h-screen flex flex-col relative overflow-x-hidden`}
@@ -65,7 +69,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileActionBar />
-        <CalendlyBadge />
       </body>
     </html>
   );

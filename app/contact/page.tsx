@@ -8,14 +8,14 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Contact Elite Health OS | Book a Strategy Call",
-    description: "Get in touch with Elite Health OS. Book a strategy call or learn how our performance system fits your calendar.",
+    title: "Contact Elite Health OS | Book 15-Min Audit",
+    description: "Get in touch with Elite Health OS. Book 15-Min Audit or learn how our performance system fits your calendar.",
     alternates: {
         canonical: "https://www.elitehealth.io/contact",
     },
     openGraph: {
         title: "Contact Elite Health OS",
-        description: "Book a strategy call or learn how our system fits your calendar.",
+        description: "Book 15-Min Audit or learn how our system fits your calendar.",
         url: "https://www.elitehealth.io/contact",
         siteName: "Elite Health OS",
         type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Contact Elite Health OS",
-        description: "Book a strategy call or learn how our system fits your calendar.",
+        description: "Book 15-Min Audit or learn how our system fits your calendar.",
     },
 };
 
@@ -83,7 +83,7 @@ export default function ContactPage() {
                     <div className="grid gap-8 lg:grid-cols-2">
                         <Card className="p-6 bg-muted/10 border-border/60 space-y-6">
                             <div>
-                                <h2 className="text-2xl font-bold font-heading mb-2">Book a strategy call</h2>
+                                <h2 className="text-2xl font-bold font-heading mb-2">Book 15-Min Audit</h2>
                                 <p className="text-muted-foreground">
                                     Share your schedule, current bottleneck, and the outcome you want most. We will tell
                                     you if Elite Health OS is the right fit.
@@ -91,7 +91,7 @@ export default function ContactPage() {
                             </div>
                             <Button asChild className="h-12">
                                 <Link href="/reset">
-                                    Book a Strategy Call <ArrowRight className="ml-2 h-4 w-4" />
+                                    Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
                         </Card>
@@ -131,3 +131,4 @@ export default function ContactPage() {
         </div>
     );
 }
+

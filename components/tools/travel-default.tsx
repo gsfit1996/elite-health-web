@@ -121,7 +121,7 @@ export function TravelDefaultDay() {
                     <div className="space-y-3 pt-2">
                         <Button asChild className="w-full h-14 text-lg">
                             <Link href="/reset">
-                                Customize This (Book Reset)
+                                Customize This (Book 15-Min Audit)
                             </Link>
                         </Button>
                         <Button
@@ -137,3 +137,4 @@ export function TravelDefaultDay() {
         </ToolCard>
     );
 }
+

@@ -11,7 +11,7 @@ export function CTABlock() {
         <Section className="bg-primary/5 py-24">
             <Container className="text-center max-w-3xl">
                 <h2 className="text-4xl md:text-5xl font-bold font-heading mb-6">
-                    If you want the details, <br />book the Reset.
+                    If you want the details, <br />book the 15-Min Audit.
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-4 text-left max-w-xl mx-auto mb-10">
@@ -32,7 +32,7 @@ export function CTABlock() {
 
                 <Button size="lg" className="h-14 px-10 text-lg w-full md:w-auto" asChild>
                     <Link href="/reset">
-                        Book a 15-min Reset <ArrowRight className="ml-2 h-5 w-5" />
+                        Book 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                 </Button>
                 <p className="mt-4 text-sm text-muted-foreground">
@@ -42,3 +42,4 @@ export function CTABlock() {
         </Section>
     );
 }
+

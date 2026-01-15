@@ -85,7 +85,7 @@ export function Timeline() {
                 <div className="text-center mt-16">
                     <Button size="lg" asChild>
                         <Link href="/reset">
-                            Book a 15-min Reset <ArrowRight className="ml-2 h-4 w-4" />
+                            Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                     <p className="mt-4 text-sm text-muted-foreground">
@@ -96,3 +96,4 @@ export function Timeline() {
         </Section>
     );
 }
+
