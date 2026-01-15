@@ -1,8 +1,9 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
-import { BookingExperienceLoader } from "@/components/booking/booking-experience-loader";
-import { Check } from "lucide-react";
+import { CalendarCheck, Check } from "lucide-react";
+
+const CALENDLY_URL = "https://calendly.com/elitelevelcoaching-gareth/15-min-founder-performance-reset";
 
 export default function ResetPage() {
     return (
@@ -60,7 +61,31 @@ export default function ResetPage() {
                         </div>
                     </div>
 
-                    <BookingExperienceLoader />
+                    <div className="bg-muted/10 rounded-2xl border border-border p-6 md:p-8 flex items-center justify-center min-h-[520px]">
+                        <div className="w-full max-w-md space-y-6 text-center">
+                            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+                                <CalendarCheck className="h-5 w-5" />
+                            </div>
+                            <div>
+                                <p className="text-xs uppercase tracking-[0.2em] text-primary/80">15-Min Performance Audit</p>
+                                <h3 className="text-2xl font-semibold text-foreground">Schedule your audit</h3>
+                                <p className="mt-2 text-sm text-muted-foreground">
+                                    Book instantly via Calendly. Opens in a new tab so you can pick a time fast.
+                                </p>
+                            </div>
+                            <a
+                                href={CALENDLY_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex h-12 w-full items-center justify-center rounded-md bg-primary px-4 text-base font-medium text-primary-foreground shadow-[0_12px_30px_rgba(46,92,255,0.35)] hover:bg-primary/90"
+                            >
+                                Book 15-Min Audit
+                            </a>
+                            <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                                Opens instantly
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </Container>
         </Section>
