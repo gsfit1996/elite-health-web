@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 const BOOKING_PATH = "/reset";
-const BOOKING_URL = "https://www.elitehealth.io/reset";
+const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
 
 const isBookingHref = (href: string | null) => {
     if (!href) return false;

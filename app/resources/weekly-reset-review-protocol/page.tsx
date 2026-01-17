@@ -184,7 +184,7 @@ export default function WeeklyResetReviewProtocolPage() {
                                 We set your scorecard, build the calendar anchors, and remove the biggest friction point.
                             </p>
                             <Link
-                                href="/reset"
+                                href="https://calendar.app.google/5w7EofmxxhwkdaN1A"
                                 className="inline-flex items-center gap-2 text-primary font-semibold hover:translate-x-1 transition-transform"
                             >
                                 Book 15-Min Audit <ArrowRight className="h-4 w-4" />

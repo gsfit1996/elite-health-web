@@ -238,7 +238,7 @@ export function DayBlueprintBuilder() {
 
                     <div className="space-y-3 pt-2">
                         <Button asChild className="w-full h-14 text-lg">
-                            <Link href="/reset">
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                                 Build My Full Schedule
                             </Link>
                         </Button>

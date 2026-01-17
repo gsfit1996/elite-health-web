@@ -77,7 +77,7 @@ export default function SystemPage() {
                 <Container className="text-center">
                     <h2 className="text-3xl font-bold font-heading mb-6">Install the OS.</h2>
                     <Button size="lg" asChild>
-                        <Link href="/reset">
+                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                             Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>

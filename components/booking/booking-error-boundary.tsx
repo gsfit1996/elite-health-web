@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const FALLBACK_URL = "https://calendly.com/elitelevelcoaching-gareth/15-min-founder-performance-reset";
+const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
 
 type ErrorBoundaryProps = {
     children: ReactNode;
@@ -46,7 +46,7 @@ class BookingErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                             </p>
                         </div>
                         <Button asChild className="h-12 px-6">
-                            <Link href={FALLBACK_URL} target="_blank" rel="noopener noreferrer">
+                            <Link href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                                 Book 15-Min Audit
                                 <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>

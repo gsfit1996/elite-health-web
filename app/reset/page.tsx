@@ -3,7 +3,9 @@ import { Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
 import { CalendarCheck, Check } from "lucide-react";
 
-const CALENDLY_URL = "https://calendly.com/elitelevelcoaching-gareth/15-min-founder-performance-reset";
+const SCHEDULING_IFRAME_URL =
+    "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hR5pTh3SP6S6yUcVH1i5gMpY-VSuvs40CKxaw6mtlfNoBl_Wp5L5M8zNBOgF5J3g0341drxWd?gv=true";
+const BOOKING_PAGE_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
 
 export default function ResetPage() {
     return (
@@ -62,26 +64,39 @@ export default function ResetPage() {
                     </div>
 
                     <div className="bg-muted/10 rounded-2xl border border-border p-6 md:p-8 flex items-center justify-center min-h-[520px]">
-                        <div className="w-full max-w-md space-y-6 text-center">
+                        <div className="w-full space-y-6">
                             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
                                 <CalendarCheck className="h-5 w-5" />
                             </div>
-                            <div>
+                            <div className="text-center">
                                 <p className="text-xs uppercase tracking-[0.2em] text-primary/80">15-Min Performance Audit</p>
                                 <h3 className="text-2xl font-semibold text-foreground">Schedule your audit</h3>
                                 <p className="mt-2 text-sm text-muted-foreground">
-                                    Book instantly via Calendly. Opens in a new tab so you can pick a time fast.
+                                    Book instantly via Google Calendar. If the embed does not load, open the booking page in a new tab.
                                 </p>
                             </div>
+                            <div className="overflow-hidden rounded-xl border border-border/60 bg-background/70 shadow-sm md:rounded-2xl">
+                                <div className="p-2 md:p-0">
+                                    <iframe
+                                        src={SCHEDULING_IFRAME_URL}
+                                        style={{ border: 0 }}
+                                        width="100%"
+                                        height="600"
+                                        frameBorder={0}
+                                        title="Book 15-Min Performance Audit"
+                                        className="block w-full rounded-lg md:rounded-none"
+                                    />
+                                </div>
+                            </div>
                             <a
-                                href={CALENDLY_URL}
+                                href={BOOKING_PAGE_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex h-12 w-full items-center justify-center rounded-md bg-primary px-4 text-base font-medium text-primary-foreground shadow-[0_12px_30px_rgba(46,92,255,0.35)] hover:bg-primary/90"
+                                className="inline-flex h-12 w-full items-center justify-center rounded-md border border-primary/40 bg-background px-4 text-base font-medium text-primary hover:bg-primary/10"
                             >
-                                Book 15-Min Audit
+                                Open booking page
                             </a>
-                            <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                            <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground text-center">
                                 Opens instantly
                             </p>
                         </div>

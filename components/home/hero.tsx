@@ -50,12 +50,12 @@ export function Hero() {
                         transition={{ duration: 0.5, delay: 0.3 }}
                     >
                         <Button size="lg" className="h-14 px-8 text-lg" asChild>
-                            <Link href="/reset">
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                                 Book 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
                         <Button variant="secondary" size="lg" className="h-14 px-8 text-lg" asChild>
-                            <Link href="/reset">
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                                 Start your 90-day transformation
                             </Link>
                         </Button>

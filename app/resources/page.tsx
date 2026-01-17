@@ -179,7 +179,7 @@ export default function ResourcesPage() {
                                     </Link>
                                 </Button>
                                 <Button asChild variant="ghost" className="h-11 px-6 text-muted-foreground">
-                                    <Link href="/reset">
+                                    <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                                         Build My Plan
                                     </Link>
                                 </Button>

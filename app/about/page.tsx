@@ -168,7 +168,7 @@ export default function AboutPage() {
                 <Container className="text-center">
                     <h2 className="text-3xl font-bold font-heading mb-6">Ready for a plan that fits your calendar?</h2>
                     <Button size="lg" className="h-14 px-8 text-lg" asChild>
-                        <Link href="/reset">
+                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                             Book Your 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                         </Link>
                     </Button>

@@ -33,10 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="dns-prefetch" href="https://assets.calendly.com" />
-        <link rel="dns-prefetch" href="https://calendly.com" />
-        <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://calendly.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://calendar.google.com" />
+        <link rel="dns-prefetch" href="https://calendar.app.google" />
+        <link rel="preconnect" href="https://calendar.google.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://calendar.app.google" crossOrigin="anonymous" />
       </head>
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground font-sans min-h-screen flex flex-col relative overflow-x-hidden`}

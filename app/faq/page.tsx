@@ -132,7 +132,7 @@ export default function FAQPage() {
                                 Book 15-Min Audit to map your bottleneck and next 90-day plan.
                             </p>
                             <Button asChild className="h-11">
-                                <Link href="/reset">
+                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                                     Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>

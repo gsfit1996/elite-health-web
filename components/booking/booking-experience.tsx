@@ -1,326 +1,199 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { ArrowRight, CalendarCheck, ExternalLink, Loader2 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowRight, CalendarCheck, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
-const CALENDLY_URL = "https://calendly.com/elitelevelcoaching-gareth/15-min-founder-performance-reset";
-const CALENDLY_SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
-const CALENDLY_CSS_SRC = "https://assets.calendly.com/assets/external/widget.css";
-const CALENDLY_OVERLAY_SELECTOR = ".calendly-overlay, .calendly-popup";
+const SCHEDULING_URL =
+    "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hR5pTh3SP6S6yUcVH1i5gMpY-VSuvs40CKxaw6mtlfNoBl_Wp5L5M8zNBOgF5J3g0341drxWd?gv=true";
+const BOOKING_PAGE_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
+const SCHEDULING_SCRIPT_SRC = "https://calendar.google.com/calendar/scheduling-button-script.js";
+const SCHEDULING_CSS_SRC = "https://calendar.google.com/calendar/scheduling-button-script.css";
+const SCHEDULING_BUTTON_LABEL = "Book 15-Min Audit";
+const SCHEDULING_BUTTON_COLOR = "#039BE5";
 
-type CalendlyPopupOptions = {
+type SchedulingButtonLoadOptions = {
     url: string;
-    prefill?: Record<string, string>;
-    utm?: Record<string, string>;
-    pageSettings?: {
-        primaryColor?: string;
-        textColor?: string;
-        backgroundColor?: string;
-        hideEventTypeDetails?: boolean;
-        hideLandingPageDetails?: boolean;
-    };
+    color?: string;
+    label?: string;
+    target?: Element | null;
 };
 
 declare global {
     interface Window {
-        Calendly?: {
-            initPopupWidget: (options: CalendlyPopupOptions) => void;
+        calendar?: {
+            schedulingButton?: {
+                load: (options: SchedulingButtonLoadOptions) => void;
+            };
         };
     }
 }
 
-let calendlyScriptPromise: Promise<void> | null = null;
+let schedulingScriptPromise: Promise<void> | null = null;
 
 const canUseDOM = () => typeof window !== "undefined" && typeof document !== "undefined";
 
-const addLinkTag = (rel: "preconnect" | "dns-prefetch", href: string) => {
+const ensureSchedulingStyles = () => {
     if (!canUseDOM() || !document.head) {
         return;
     }
 
-    if (document.querySelector(`link[rel="${rel}"][href="${href}"]`)) {
-        return;
-    }
-
-    const link = document.createElement("link");
-    link.rel = rel;
-    link.href = href;
-    if (rel === "preconnect") {
-        link.crossOrigin = "anonymous";
-    }
-    document.head.appendChild(link);
-};
-
-const warmCalendlyConnections = () => {
-    addLinkTag("dns-prefetch", "https://assets.calendly.com");
-    addLinkTag("dns-prefetch", "https://calendly.com");
-    addLinkTag("dns-prefetch", "https://js.stripe.com");
-    addLinkTag("preconnect", "https://assets.calendly.com");
-    addLinkTag("preconnect", "https://calendly.com");
-    addLinkTag("preconnect", "https://js.stripe.com");
-};
-
-const ensureCalendlyStyles = () => {
-    if (!canUseDOM() || !document.head) {
-        return;
-    }
-
-    const existing = document.querySelector<HTMLLinkElement>("link[data-calendly-style]");
+    const existing = document.querySelector<HTMLLinkElement>("link[data-scheduling-style]");
     if (existing) {
         return;
     }
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = CALENDLY_CSS_SRC;
-    link.dataset.calendlyStyle = "true";
+    link.href = SCHEDULING_CSS_SRC;
+    link.dataset.schedulingStyle = "true";
     document.head.appendChild(link);
 };
 
-const ensureCalendlyScript = () => {
+const ensureSchedulingScript = () => {
     if (!canUseDOM() || !document.body) {
         return Promise.reject(new Error("DOM not ready"));
     }
 
-    if (window.Calendly?.initPopupWidget) {
+    if (window.calendar?.schedulingButton?.load) {
         return Promise.resolve();
     }
 
-    if (calendlyScriptPromise) {
-        return calendlyScriptPromise;
+    if (schedulingScriptPromise) {
+        return schedulingScriptPromise;
     }
 
-    calendlyScriptPromise = new Promise((resolve, reject) => {
-        const existing = document.querySelector<HTMLScriptElement>("script[data-calendly-script]");
+    schedulingScriptPromise = new Promise((resolve, reject) => {
+        const existing = document.querySelector<HTMLScriptElement>("script[data-scheduling-script]");
         if (existing) {
-            if (window.Calendly?.initPopupWidget) {
+            if (window.calendar?.schedulingButton?.load) {
                 resolve();
                 return;
             }
 
             existing.addEventListener("load", () => resolve());
-            existing.addEventListener("error", () => reject(new Error("Calendly script failed to load")));
+            existing.addEventListener("error", () => reject(new Error("Scheduling script failed to load")));
             return;
         }
 
         const script = document.createElement("script");
-        script.src = CALENDLY_SCRIPT_SRC;
+        script.src = SCHEDULING_SCRIPT_SRC;
         script.async = true;
         script.defer = true;
-        script.dataset.calendlyScript = "true";
+        script.dataset.schedulingScript = "true";
         script.onload = () => resolve();
-        script.onerror = () => reject(new Error("Calendly script failed to load"));
+        script.onerror = () => reject(new Error("Scheduling script failed to load"));
         document.body.appendChild(script);
     });
 
-    return calendlyScriptPromise;
+    return schedulingScriptPromise;
 };
 
-const waitForCalendlyOverlay = (timeoutMs: number) => {
-    return new Promise<boolean>((resolve) => {
-        if (!canUseDOM()) {
-            resolve(false);
-            return;
-        }
+const renderSchedulingButton = (target: HTMLElement) => {
+    if (!window.calendar?.schedulingButton?.load) {
+        return;
+    }
 
-        const existing = document.querySelector(CALENDLY_OVERLAY_SELECTOR);
-        if (existing) {
-            resolve(true);
-            return;
-        }
-
-        if (typeof MutationObserver === "undefined" || !document.body) {
-            window.setTimeout(() => resolve(false), timeoutMs);
-            return;
-        }
-
-        let resolved = false;
-        const observer = new MutationObserver(() => {
-            if (document.querySelector(CALENDLY_OVERLAY_SELECTOR)) {
-                if (!resolved) {
-                    resolved = true;
-                    observer.disconnect();
-                    resolve(true);
-                }
-            }
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        window.setTimeout(() => {
-            if (!resolved) {
-                resolved = true;
-                observer.disconnect();
-                resolve(false);
-            }
-        }, timeoutMs);
+    target.innerHTML = "";
+    window.calendar.schedulingButton.load({
+        url: SCHEDULING_URL,
+        color: SCHEDULING_BUTTON_COLOR,
+        label: SCHEDULING_BUTTON_LABEL,
+        target,
     });
-};
-
-const buildCalendlyPayload = () => {
-    if (!canUseDOM()) {
-        return { url: CALENDLY_URL } as const;
-    }
-
-    let params: URLSearchParams;
-    try {
-        params = new URLSearchParams(window.location.search);
-    } catch (error) {
-        params = new URLSearchParams();
-    }
-
-    let timezone: string | undefined;
-    try {
-        timezone = Intl?.DateTimeFormat?.().resolvedOptions().timeZone;
-    } catch (error) {
-        timezone = undefined;
-    }
-
-    const prefill: Record<string, string> = {};
-    const name = params.get("name");
-    const email = params.get("email");
-    const firstName = params.get("first_name") || params.get("firstName");
-    const lastName = params.get("last_name") || params.get("lastName");
-
-    if (name) prefill.name = name;
-    if (email) prefill.email = email;
-    if (firstName) prefill.firstName = firstName;
-    if (lastName) prefill.lastName = lastName;
-    if (timezone) prefill.timezone = timezone;
-
-    const utm: Record<string, string> = {};
-    const utmMap: Record<string, string> = {
-        utm_source: "utmSource",
-        utm_medium: "utmMedium",
-        utm_campaign: "utmCampaign",
-        utm_content: "utmContent",
-        utm_term: "utmTerm",
-    };
-
-    Object.entries(utmMap).forEach(([param, key]) => {
-        const value = params.get(param);
-        if (value) {
-            utm[key] = value;
-        }
-    });
-
-    let url: URL;
-    try {
-        url = new URL(CALENDLY_URL);
-    } catch (error) {
-        url = new URL(CALENDLY_URL, window.location.origin);
-    }
-    [
-        "utm_source",
-        "utm_medium",
-        "utm_campaign",
-        "utm_content",
-        "utm_term",
-        "name",
-        "email",
-        "first_name",
-        "last_name",
-    ].forEach((key) => {
-        const value = params.get(key);
-        if (value) {
-            url.searchParams.set(key, value);
-        }
-    });
-
-    if (timezone) {
-        url.searchParams.set("timezone", timezone);
-    }
-
-    return {
-        url: url.toString(),
-        prefill: Object.keys(prefill).length ? prefill : undefined,
-        utm: Object.keys(utm).length ? utm : undefined,
-    };
 };
 
 export function BookingExperience() {
-    const [status, setStatus] = useState<"idle" | "loading" | "fallback">("idle");
-    const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
-    const [fallbackUrl, setFallbackUrl] = useState(CALENDLY_URL);
+    const [status, setStatus] = useState<"loading" | "ready" | "fallback">("loading");
+    const hiddenButtonRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        if (!canUseDOM() || !document.body || typeof MutationObserver === "undefined") {
+        if (!canUseDOM()) {
             return;
         }
 
-        const updateState = () => {
-            const isOpen = Boolean(document.querySelector(CALENDLY_OVERLAY_SELECTOR));
-            setIsCalendlyOpen(isOpen);
-            if (isOpen) {
-                setStatus("idle");
+        let canceled = false;
+        let cleanup = () => {};
+
+        const renderButton = () => {
+            if (canceled) {
+                return;
+            }
+
+            const target = hiddenButtonRef.current;
+            if (!target || !window.calendar?.schedulingButton?.load) {
+                setStatus("fallback");
+                return;
+            }
+
+            renderSchedulingButton(target);
+            setStatus("ready");
+        };
+
+        const init = async () => {
+            try {
+                ensureSchedulingStyles();
+                await ensureSchedulingScript();
+
+                if (canceled) {
+                    return;
+                }
+
+                if (document.readyState === "complete") {
+                    renderButton();
+                } else {
+                    window.addEventListener("load", renderButton, { once: true });
+                    cleanup = () => window.removeEventListener("load", renderButton);
+                }
+            } catch (error) {
+                if (!canceled) {
+                    setStatus("fallback");
+                }
             }
         };
 
-        updateState();
+        init();
 
-        const observer = new MutationObserver(updateState);
-        observer.observe(document.body, { childList: true, subtree: true });
-        return () => observer.disconnect();
+        return () => {
+            canceled = true;
+            cleanup();
+        };
     }, []);
 
-    const openCalendly = useCallback(async () => {
+    const openInNewTab = useCallback(() => {
+        window.open(BOOKING_PAGE_URL, "_blank", "noopener,noreferrer");
+    }, []);
+
+    const openSchedulingPopup = useCallback(() => {
         if (status === "loading") {
             return;
         }
 
-        setStatus("loading");
-        warmCalendlyConnections();
-
-        const payload = buildCalendlyPayload();
-        setFallbackUrl(payload.url);
-
-        try {
-            ensureCalendlyStyles();
-            await ensureCalendlyScript();
-
-            if (!window.Calendly?.initPopupWidget) {
-                throw new Error("Calendly not available");
-            }
-
-            window.Calendly.initPopupWidget({
-                url: payload.url,
-                prefill: payload.prefill,
-                utm: payload.utm,
-                pageSettings: {
-                    primaryColor: "2e5cff",
-                    textColor: "f3f4f6",
-                    backgroundColor: "050507",
-                },
-            });
-
-            const opened = await waitForCalendlyOverlay(2500);
-            if (opened) {
-                setStatus("idle");
-            } else {
-                setStatus("fallback");
-            }
-        } catch (error) {
-            setStatus("fallback");
+        if (status === "fallback") {
+            openInNewTab();
+            return;
         }
-    }, [status]);
 
-    const openInNewTab = useCallback(() => {
-        window.open(fallbackUrl, "_blank", "noopener,noreferrer");
-    }, [fallbackUrl]);
+        const button = hiddenButtonRef.current?.querySelector("button");
+        if (button) {
+            button.click();
+            return;
+        }
 
-    const closeModal = useCallback(() => {
-        setStatus("idle");
-    }, []);
+        setStatus("fallback");
+        openInNewTab();
+    }, [status, openInNewTab]);
 
     return (
         <>
             <div className="relative overflow-hidden rounded-2xl border border-border bg-muted/15 p-6 md:p-8 min-h-[520px]">
-                <div className="absolute inset-0 opacity-70" style={{
-                    backgroundImage:
-                        "radial-gradient(circle at top, rgba(46, 92, 255, 0.25), transparent 60%), linear-gradient(135deg, rgba(15, 17, 21, 0.8), rgba(5, 5, 7, 0.95))",
-                }} />
+                <div
+                    className="absolute inset-0 opacity-70"
+                    style={{
+                        backgroundImage:
+                            "radial-gradient(circle at top, rgba(46, 92, 255, 0.25), transparent 60%), linear-gradient(135deg, rgba(15, 17, 21, 0.8), rgba(5, 5, 7, 0.95))",
+                    }}
+                />
                 <div className="relative z-10 space-y-6">
                     <div className="flex items-center gap-4">
                         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary shadow-[0_10px_24px_rgba(46,92,255,0.25)]">
@@ -337,13 +210,31 @@ export function BookingExperience() {
                     </p>
 
                     <div className="rounded-2xl border border-primary/20 bg-background/70 p-4 md:p-5 shadow-[0_16px_30px_rgba(0,0,0,0.25)]">
-                        <Button onClick={openCalendly} className="w-full h-12 md:h-14 text-base">
-                            Book 15-Min Audit
-                            <ArrowRight className="ml-2 h-4 w-4" />
+                        <div ref={hiddenButtonRef} className="sr-only" aria-hidden="true" />
+                        <Button
+                            onClick={openSchedulingPopup}
+                            className="w-full h-12 md:h-14 text-base"
+                            disabled={status === "loading"}
+                        >
+                            {status === "loading" ? "Loading calendar..." : SCHEDULING_BUTTON_LABEL}
+                            {status === "loading" ? (
+                                <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                            ) : (
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                            )}
                         </Button>
                         <p className="mt-3 text-center text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
                             Takes 30 seconds
                         </p>
+                        {status === "fallback" && (
+                            <button
+                                type="button"
+                                onClick={openInNewTab}
+                                className="mt-3 w-full text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground/80"
+                            >
+                                Open booking page
+                            </button>
+                        )}
                     </div>
 
                     <div className="grid gap-3 text-sm text-muted-foreground">
@@ -357,82 +248,34 @@ export function BookingExperience() {
                         </div>
                         <div className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 px-4 py-3">
                             <span>Private, secure booking</span>
-                            <span className="text-primary">Calendly</span>
+                            <span className="text-primary">Google Calendar</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div
-                className={cn(
-                    "fixed bottom-4 left-4 right-4 z-40 md:hidden transition-all",
-                    status !== "idle" || isCalendlyOpen
-                        ? "opacity-0 pointer-events-none translate-y-4"
-                        : "opacity-100"
-                )}
+                className="fixed bottom-4 left-4 right-4 z-40 md:hidden"
                 style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
             >
                 <div className="rounded-2xl border border-border bg-background/90 backdrop-blur-xl p-3 shadow-2xl">
-                    <Button onClick={openCalendly} className="w-full h-12 text-base">
-                        Book 15-Min Audit
-                        <ArrowRight className="ml-2 h-4 w-4" />
+                    <Button
+                        onClick={openSchedulingPopup}
+                        className="w-full h-12 text-base"
+                        disabled={status === "loading"}
+                    >
+                        {status === "loading" ? "Loading calendar..." : SCHEDULING_BUTTON_LABEL}
+                        {status === "loading" ? (
+                            <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                        ) : (
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                        )}
                     </Button>
                     <p className="mt-2 text-center text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
                         Takes 30 seconds
                     </p>
                 </div>
             </div>
-
-            {status !== "idle" && (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm px-4">
-                    <div className="w-full max-w-md rounded-2xl border border-border bg-background/95 p-6 shadow-2xl">
-                        <div className="flex items-center gap-3">
-                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                                <CalendarCheck className="h-5 w-5" />
-                            </div>
-                            <div>
-                                <p className="text-sm font-semibold text-foreground">Loading calendar...</p>
-                                <p className="text-xs text-muted-foreground">Secure booking via Calendly</p>
-                            </div>
-                        </div>
-
-                        <div className="mt-6 space-y-3">
-                            <div className="h-12 rounded-xl bg-muted/60 animate-pulse" />
-                            <div className="h-10 rounded-xl bg-muted/50 animate-pulse" />
-                            <div className="h-10 rounded-xl bg-muted/40 animate-pulse" />
-                        </div>
-
-                        {status === "loading" && (
-                            <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
-                                <Loader2 className="h-4 w-4 animate-spin" />
-                                Loading calendar...
-                            </div>
-                        )}
-
-                        {status === "fallback" && (
-                            <div className="mt-6 space-y-3">
-                                <p className="text-sm text-muted-foreground">
-                                    Still loading? Open the calendar in a new tab for the fastest experience.
-                                </p>
-                                <Button onClick={openInNewTab} className="w-full h-11">
-                                    Open in a new tab
-                                    <ExternalLink className="ml-2 h-4 w-4" />
-                                </Button>
-                                <Button variant="outline" onClick={openCalendly} className="w-full h-11">
-                                    Try again
-                                </Button>
-                                <button
-                                    type="button"
-                                    onClick={closeModal}
-                                    className="w-full text-xs uppercase tracking-[0.2em] text-muted-foreground"
-                                >
-                                    Close
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
         </>
     );
 }

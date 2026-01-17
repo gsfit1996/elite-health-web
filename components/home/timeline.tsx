@@ -84,7 +84,7 @@ export function Timeline() {
 
                 <div className="text-center mt-16">
                     <Button size="lg" asChild>
-                        <Link href="/reset">
+                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                             Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>

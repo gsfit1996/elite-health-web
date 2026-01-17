@@ -31,7 +31,7 @@ export function CTABlock() {
                 </div>
 
                 <Button size="lg" className="h-14 px-10 text-lg w-full md:w-auto" asChild>
-                    <Link href="/reset">
+                    <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                         Book 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                 </Button>

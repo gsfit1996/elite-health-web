@@ -87,7 +87,7 @@ export default function ProgramPage() {
                 <Container className="text-center">
                     <h2 className="text-3xl font-bold font-heading mb-8">Ready to install the OS?</h2>
                     <Button size="lg" className="h-14 px-8 text-lg" asChild>
-                        <Link href="/reset">
+                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                             Schedule Your 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
                         </Link>
                     </Button>
