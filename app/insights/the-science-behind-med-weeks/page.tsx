@@ -93,7 +93,7 @@ export default function ScienceBehindMedWeeksPage() {
                             </p>
                             <div className="flex flex-wrap gap-3">
                                 <Button asChild>
-                                    <Link href="/program">
+                                    <Link href="/how-it-works">
                                         Explore the program <ArrowRight className="ml-2 h-4 w-4" />
                                     </Link>
                                 </Button>

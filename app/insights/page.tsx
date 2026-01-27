@@ -68,7 +68,7 @@ export default function InsightsPage() {
 
                     <div className="mt-12 flex flex-wrap justify-center gap-3">
                         <Button asChild className="h-11 px-6">
-                            <Link href="/program">
+                            <Link href="/how-it-works">
                                 Explore the full program <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>

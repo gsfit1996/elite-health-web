@@ -28,12 +28,6 @@ export function Navbar() {
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center gap-8">
                         <Link
-                            href="/program"
-                            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                        >
-                            Program
-                        </Link>
-                        <Link
                             href="/how-it-works"
                             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
@@ -85,13 +79,6 @@ export function Navbar() {
                         className="fixed inset-0 top-0 z-40 bg-background/95 backdrop-blur-xl md:hidden pt-24 px-6 flex flex-col h-screen"
                     >
                         <nav className="flex flex-col gap-6 text-2xl font-medium">
-                            <Link
-                                href="/program"
-                                className="block py-2 border-b border-border/50 text-foreground/80 hover:text-primary"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Program
-                            </Link>
                             <Link
                                 href="/how-it-works"
                                 className="block py-2 border-b border-border/50 text-foreground/80 hover:text-primary"
