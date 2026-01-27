@@ -134,7 +134,7 @@ export default function ClientResultsPage() {
                     <div className="grid gap-8 lg:grid-cols-2">
                         {cases.map((item) => (
                             <div key={item.id} className="rounded-2xl border border-border/60 bg-background/70 p-6 space-y-6 shadow-[0_18px_45px_rgba(2,6,23,0.35)]">
-                                <div className="overflow-hidden rounded-xl border border-border/60 bg-muted/20 aspect-[3/4]">
+                                <div className="mx-auto w-full max-w-[420px] md:max-w-[460px] overflow-hidden rounded-xl border border-border/60 bg-muted/20 aspect-[2/3]">
                                     <Image
                                         src={item.beforeImage}
                                         alt={`${item.displayName} transformation`}
@@ -157,6 +157,9 @@ export default function ClientResultsPage() {
                                             <p key={paragraph}>{paragraph}</p>
                                         ))}
                                     </div>
+                                    {item.callout && (
+                                        <p className="text-xs text-muted-foreground italic">{item.callout}</p>
+                                    )}
                                 </div>
 
                                 <div className="space-y-3">
