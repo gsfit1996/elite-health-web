@@ -3,7 +3,7 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
-import { BarChart3, CheckSquare, Gauge, Plane, RotateCcw } from "lucide-react";
+import { CheckSquare, Gauge, LineChart, Plane, RotateCcw } from "lucide-react";
 
 export function Mechanisms() {
     const mechanisms = [
@@ -30,7 +30,7 @@ export function Mechanisms() {
         {
             title: "Performance Reviews",
             desc: "Measure and adjust like a business operating rhythm.",
-            icon: <BarChart3 className="h-6 w-6 text-primary" />,
+            icon: <LineChart className="h-6 w-6 text-primary" />,
         },
     ];
 
