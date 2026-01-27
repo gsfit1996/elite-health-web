@@ -47,75 +47,76 @@ const testimonials = [
         name: "James O'Neill",
         role: "SaaS Founder",
         quote:
-            "Dropped 8.1kg in 10 weeks without tracking calories. Waist -9cm, strength stayed up, and my 6pm energy went from 4/10 -> 8/10. Bloods improved too: hs-CRP 2.4 -> 0.9, fasting insulin 12.1 -> 6.4.",
+            "I honestly thought I'd have to track everything. Didn't. Dropped 8.1kg in 10 weeks, waist -9cm, and I'm not falling asleep at 6pm anymore (4/10 -> 8/10 energy). Bloods moved too: hs-CRP 2.4 -> 0.9, fasting insulin 12.1 -> 6.4.",
     },
     {
         name: "Mark Donnelly",
         role: "Finance Director",
         quote:
-            "I travel weekly and still leaned out. Body fat -6% in 12 weeks, BP 142/92 -> 124/78. The biggest win: I stopped crashing after lunch and got my focus back for afternoon meetings.",
+            "Weekly travel used to wreck me. Still leaned out about -6% body fat in 12 weeks and my blood pressure came down. The best part is I don't get that horrible post-lunch crash anymore.",
     },
     {
         name: "Daniel Byrne",
         role: "Managing Director (Construction)",
         quote:
-            "Elite Health OS gave me a system I could actually follow. Triglycerides 2.0 -> 1.1 mmol/L, HDL 0.95 -> 1.23, and my resting heart rate 74 -> 58. I'm calmer under pressure and sleeping through the night again.",
+            "This was the first plan I could stick to without overthinking it. I've lost 11kg, Body fat dropped 11% and my resting HR went from 74 to 58. I'm sleeping properly again and I'm way less reactive at work.",
     },
     {
         name: "Tom Gallagher",
         role: "COO (Logistics)",
         quote:
-            "I was stuck at 98kg for years. In 90 days I hit 89.5kg, waist -10cm, and I'm training 3x/week for 20 minutes. Bloodwork was the shocker: ALT 62 -> 28, fasting glucose 5.8 -> 5.1 mmol/L.",
+            "I'd been stuck at 98kg for years. In 90 days I hit 89.5kg and my waist was -10cm. Training is realistic: 3x/week for 20 mins. Bloodwork surprised me most, my lipids had been out of whack for over a decade, and now there much healthier - said the Doc",
     },
     {
         name: "Richard Keane",
         role: "Tech Founder",
         quote:
-            "My brain felt foggy all day. Within 6 weeks my focus was back. Sleep efficiency improved, and my morning energy went from 5/10 -> 8/10. Labs: Vitamin D 21 -> 43 ng/mL, hs-CRP 1.8 -> 0.7.",
+            "My head was foggy all day and I thought that was just 'normal' stress. Within 6 weeks I was sharper again. Morning energy went 5/10 to 8/10 and my sleep improved a lot. Overall, my focus, energy, and the way I feel is far better than prior to working with Gareth",
     },
     {
         name: "Andrew Walsh",
         role: "Sales Director",
         quote:
-            "No fluff, just execution. In 8 weeks I lost 6.4kg, got visible abs for the first time in years, and my average steps went 4k -> 9k/day without thinking about it. The plan fits busy weeks.",
+            "Straight talking, no fluff. I dropped 6.4kg in 8 weeks, and for the first time in ages I looked athletic again. It just fits around a busy schedule.",
     },
     {
         name: "Ciaran O'Rourke",
         role: "CEO",
         quote:
-            "I didn't want a bodybuilding plan - just performance. My HRV increased ~20%, resting HR dropped, and I stopped needing caffeine to function. Also leaned out: waist -7cm in 9 weeks.",
+            "I didn't want 'get shredded' coaching, I wanted performance. My HRV jumped roughly 20%, resting HR came down, and I stopped needing caffeine just to stay functional. Also leaned out: waist -7cm in 9 weeks.",
     },
     {
         name: "Peter Hughes",
         role: "Director (Legal)",
         quote:
-            "I was borderline pre-diabetic and worried. In 12 weeks: HbA1c 5.9 -> 5.4%, fasting insulin 14.8 -> 7.2, and I dropped 7.8kg. Energy is stable all day and my cravings disappeared.",
+            "I was genuinely worried about blood sugar and where it was heading. After 12 weeks, I'm feeling sharper, more energised, and blood work results came back last week LDL is down, HbA1c 5.9 to 5.4, insulin 14.8 to 7.2, and -7.8kg. I don't get cravings at night which used to be a problem.",
     },
     {
         name: "Owen Murphy",
         role: "Founder (Agency)",
         quote:
-            "I used to eat like an idiot during deadlines. The travel + chaos rules fixed that. LDL-C 3.6 -> 2.7 mmol/L, trigs 1.9 -> 1.0, and I'm down 5.5kg with better strength.",
+            "My worst habit was deadline weeks, takeaway + snacks + 'I'll fix it Monday'. The travel/chaos rules changed that. Triglyceride levels dropped, surprisingly testosterone levels have increased by over 50% in the space of 5 months and I'm down 5.5kg while getting stronger.",
     },
     {
         name: "Shane Kelly",
         role: "Operations Director",
         quote:
-            "I'm 43 with kids - time is tight. Elite Health OS gave me a repeatable routine. In 90 days: body fat -5%, BP 138/88 -> 122/76, and I'm finally consistent with training again.",
+            "I'm 43 with kids. Time is the constraint. This finally made consistency easy. In 90 days: 5% body fat down, BP went 138/88 to 122/76, and I'm training regularly again without it taking over my life.",
     },
     {
         name: "Conor McMahon",
         role: "Executive Partner",
         quote:
-            "Biggest benefit was mental clarity. I went from wired-and-tired to calm focus. Sleep latency improved, my afternoon slump vanished, and my labs moved: ApoB 106 -> 86 mg/dL.",
+            "The biggest change wasn't the physique, it was my head. I went from wired-and-tired to calm focus. My afternoon slump disappeared, sleep improved - finally feel clear",
     },
     {
         name: "Matthew Nolan",
         role: "Founder (E-commerce)",
         quote:
-            "I wanted measurable change. I got it: waist -11cm, 8.9kg down, and I'm not obsessed with food. Bloods: ALT 48 -> 25, hs-CRP 2.1 -> 0.8, and testosterone improved (total T 14.2 -> 18.6 nmol/L).",
+            "I wanted it to be measurable, not vibes. Got exactly that: waist -11cm, -8.9kg, and I'm not obsessing over food. Bloods improved C-reactive protein 2.1 to 0.8, and testosterone came up (14.2 -> 18.6 nmol/L).",
     },
 ];
+
 
 const whyThisWorks = [
     {
