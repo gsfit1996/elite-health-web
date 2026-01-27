@@ -79,8 +79,6 @@ export default function AboutPage() {
                         <div className="grid gap-4 sm:grid-cols-2">
                             {[
                                 { src: "/about/gareth-portrait.jpg", alt: "Gareth Small outdoors portrait" },
-                                { src: "/about/gareth-working.jpg", alt: "Gareth Small working at a desk" },
-                                { src: "/about/gareth-physique.jpg", alt: "Gareth Small physique photo" },
                                 { src: "/about/gareth-powerlifting.jpg", alt: "Gareth Small competing in powerlifting" },
                             ].map((image, index) => (
                                 <div
