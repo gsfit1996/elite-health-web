@@ -28,8 +28,8 @@ const clientResultsData: ClientCase[] = [
         ],
         outcomeSummary:
             "Determined, he joined Elite Health OS - 60 days later, 20lbs+ of body fat shed and 4 inches off his waist. He reclaimed his fit identity.",
-        beforeImage: "/case-results/caseA-before.jpg",
-        afterImage: "/case-results/caseA-before.jpg",
+        beforeImage: "/case-results/caseE-before.jpg",
+        afterImage: "/case-results/caseE-before.jpg",
         category: "fatLoss",
     },
     {
@@ -47,8 +47,8 @@ const clientResultsData: ClientCase[] = [
         ],
         outcomeSummary:
             "After 60 days, he shed 17lbs, boosted his energy, and sharpened his focus. Now, he conquers trails with renewed vigor.",
-        beforeImage: "/case-results/caseB-before.jpg",
-        afterImage: "/case-results/caseB-before.jpg",
+        beforeImage: "/case-results/caseA-before.jpg",
+        afterImage: "/case-results/caseA-before.jpg",
         category: "strength",
     },
     {
@@ -66,8 +66,8 @@ const clientResultsData: ClientCase[] = [
         ],
         outcomeSummary:
             "He joined Elite Health OS - after 13 weeks, 52lbs lost and stamina renewed. Now, he's back dominating the fairways with confidence.",
-        beforeImage: "/case-results/caseC-before.jpg",
-        afterImage: "/case-results/caseC-before.jpg",
+        beforeImage: "/case-results/caseD-before.jpg",
+        afterImage: "/case-results/caseD-before.jpg",
         category: "fatLoss",
     },
     {
@@ -85,8 +85,8 @@ const clientResultsData: ClientCase[] = [
         ],
         outcomeSummary:
             "He joined Elite Health OS - 10 weeks later, 22lbs shed and energy restored. Now, he's back creating memories and showing up for his family.",
-        beforeImage: "/case-results/caseD-before.jpg",
-        afterImage: "/case-results/caseD-before.jpg",
+        beforeImage: "/case-results/caseB-before.jpg",
+        afterImage: "/case-results/caseB-before.jpg",
         category: "energy",
     },
     {
@@ -104,8 +104,8 @@ const clientResultsData: ClientCase[] = [
         ],
         outcomeSummary:
             "In 120 days, he shed 70lbs+, boosted his energy, and improved focus and mental clarity - leading to two job promotions within four months.",
-        beforeImage: "/case-results/caseE-before.jpg",
-        afterImage: "/case-results/caseE-before.jpg",
+        beforeImage: "/case-results/caseC-before.jpg",
+        afterImage: "/case-results/caseC-before.jpg",
         category: "burnout",
     },
     {
