@@ -81,7 +81,7 @@ export default function ClientResultsPage() {
 
     return (
         <div className="pt-24">
-            <Section className="relative overflow-hidden">
+            <Section fullWidth className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
                 <Container className="relative z-10">
                     <div className="max-w-3xl space-y-6">
@@ -109,7 +109,7 @@ export default function ClientResultsPage() {
                 </Container>
             </Section>
 
-            <Section>
+            <Section fullWidth>
                 <Container>
                     <div className="mb-6 space-y-2">
                         <p className="text-sm font-semibold text-foreground">Filter by outcome</p>
@@ -133,14 +133,15 @@ export default function ClientResultsPage() {
 
                     <div className="grid gap-8 lg:grid-cols-2">
                         {cases.map((item) => (
-                            <div key={item.id} className="rounded-2xl border border-border bg-muted/10 p-6 space-y-6">
-                                <div className="overflow-hidden rounded-xl border border-border">
+                            <div key={item.id} className="rounded-2xl border border-border/60 bg-background/70 p-6 space-y-6 shadow-[0_18px_45px_rgba(2,6,23,0.35)]">
+                                <div className="overflow-hidden rounded-xl border border-border/60 bg-muted/20 aspect-[3/4]">
                                     <Image
                                         src={item.beforeImage}
                                         alt={`${item.displayName} transformation`}
-                                        width={960}
-                                        height={720}
-                                        className="h-64 w-full object-cover"
+                                        width={900}
+                                        height={1200}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
+                                        className="h-full w-full object-cover object-top"
                                     />
                                 </div>
 
@@ -170,7 +171,7 @@ export default function ClientResultsPage() {
                                     </ul>
                                 </div>
 
-                                <div className="rounded-xl border border-border bg-background/60 p-4">
+                                <div className="rounded-xl border border-border/60 bg-background/80 p-4">
                                     <p className="text-sm font-semibold text-foreground mb-2">Outcome line</p>
                                     <p className="text-sm text-muted-foreground font-semibold">{item.outcomeSummary}</p>
                                 </div>
@@ -184,11 +185,11 @@ export default function ClientResultsPage() {
                 </Container>
             </Section>
 
-            <Section className="bg-muted/10">
+            <Section fullWidth className="bg-muted/10">
                 <Container>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                         {stats.map((stat) => (
-                            <div key={stat.label} className="rounded-2xl border border-border bg-background/70 p-5">
+                            <div key={stat.label} className="rounded-2xl border border-border/60 bg-background/80 p-5">
                                 <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
                                 <p className="text-xl font-bold text-foreground mt-2">{stat.value}</p>
                             </div>
@@ -197,14 +198,14 @@ export default function ClientResultsPage() {
                 </Container>
             </Section>
 
-            <Section>
+            <Section fullWidth>
                 <Container>
                     <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-12 items-start">
                         <div className="space-y-6">
                             <h2 className="text-3xl md:text-4xl font-bold font-heading">Why this works</h2>
                             <div className="space-y-4">
                                 {whyThisWorks.map((item) => (
-                                    <div key={item.title} className="rounded-2xl border border-border bg-muted/10 p-5 space-y-2">
+                                    <div key={item.title} className="rounded-2xl border border-border/60 bg-background/70 p-5 space-y-2">
                                         <div className="flex items-start gap-3">
                                             <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
                                                 <Check className="h-4 w-4 text-primary" />
@@ -218,7 +219,7 @@ export default function ClientResultsPage() {
                                 ))}
                             </div>
                         </div>
-                        <div className="rounded-2xl border border-border bg-muted/20 p-6">
+                        <div className="rounded-2xl border border-border/60 bg-background/80 p-6">
                             <h3 className="text-xl font-bold text-foreground mb-3">Ready for your OS plan?</h3>
                             <p className="text-muted-foreground mb-5">
                                 Book a 15-minute Performance Audit. You’ll leave with your first bottleneck to fix and a clear path forward.
@@ -231,12 +232,12 @@ export default function ClientResultsPage() {
                 </Container>
             </Section>
 
-            <Section className="bg-muted/10">
+            <Section fullWidth className="bg-muted/10">
                 <Container>
                     <h2 className="text-3xl md:text-4xl font-bold font-heading mb-8">FAQ</h2>
                     <div className="grid md:grid-cols-2 gap-6">
                         {faqs.map((faq) => (
-                            <div key={faq.question} className="rounded-2xl border border-border bg-background/70 p-6 space-y-3">
+                            <div key={faq.question} className="rounded-2xl border border-border/60 bg-background/80 p-6 space-y-3">
                                 <p className="text-lg font-semibold text-foreground">{faq.question}</p>
                                 <p className="text-sm text-muted-foreground">{faq.answer}</p>
                             </div>
@@ -245,9 +246,9 @@ export default function ClientResultsPage() {
                 </Container>
             </Section>
 
-            <Section>
+            <Section fullWidth>
                 <Container className="max-w-3xl text-center">
-                    <div className="rounded-3xl border border-primary/20 bg-primary/5 p-10 space-y-5">
+                    <div className="rounded-3xl border border-primary/20 bg-primary/5 p-10 space-y-5 shadow-[0_20px_50px_rgba(2,6,23,0.35)]">
                         <h2 className="text-3xl md:text-4xl font-bold font-heading">
                             Want results like this—without sacrificing your business or family life?
                         </h2>
