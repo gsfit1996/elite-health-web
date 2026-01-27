@@ -111,20 +111,19 @@ const clientResultsData: ClientCase[] = [
     {
         id: "seamus",
         displayName: "Seamus",
-        headline: "Seamus Rebuilt His Health in 4+ Months",
-        role: "Dad of three - Business owner - High-stress weeks",
+        headline: "Seamus Got A Health Wake-Up Call",
+        role: "Dad of three girls - Business owner - Husband",
         challenge:
-            "Seamus got a serious wake-up call with his health.\n\nAs a dad of three girls, a business owner, and a husband, his weeks were full-on. Stress was high, time was tight, and his health kept slipping - until a hospital visit made it clear something had to change.\n\nIn just over 4 months with the Elite Health program, Seamus built a leaner, more muscular physique and dramatically improved his energy, focus, and overall health.\n\nAt the 6-month mark, his follow-up bloods showed major improvements - enough to genuinely surprise his doctor.\n\nBefore joining, Seamus was stuck with:\n\nX Generic programs that didn't fit his real life\n\nX Starting and stopping, with no lasting progress\n\nX Feeling \"too busy\" for health (when what he actually needed was a plan that adapts week to week)\n\nSeamus' transformation wasn't just physical - it was a full lifestyle reset that gave him more energy, more confidence, and more capacity for his family.\n\nNow, he's active, present, and in control again.",
+            "Seamus was juggling family life, running a business, and carrying constant pressure. Stress was high, time was tight, and his health kept slipping - until a hospital visit made it clear something had to change.",
         changes: [
-            "Weekly plan that adapted to real life, not perfect weeks",
-            "Nutrition structure that drove fat loss without obsession",
-            "Strength training to build a leaner, more muscular frame",
-            "Accountability and fast adjustments to keep momentum",
+            "Weekly plan that adapted to his schedule (not a rigid one-size-fits-all program)",
+            "Nutrition structure designed for busy weeks to drive fat loss and energy",
+            "Efficient strength training to build a lean, muscular physique",
+            "Accountability + weekly adjustments to keep progress consistent",
         ],
         outcomeSummary:
-            "In just over 4 months, Seamus rebuilt his health and energy. Six-month bloods showed major improvements and surprised his doctor.",
-        callout:
-            "If you want results like this without tracking macros or living in the gym, book a 15-minute Performance Audit.",
+            "In just over four months, Seamus built a leaner, more muscular body and dramatically improved his energy, focus, and overall health. At the six-month mark, his follow-up bloods showed major improvements - enough to surprise his doctor.",
+        callout: "Book Your 15-Minute Performance Audit",
         beforeImage: "/case-results/caseF-before.jpg",
         afterImage: "/case-results/caseF-before.jpg",
         category: "burnout",
