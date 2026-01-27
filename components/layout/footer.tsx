@@ -28,7 +28,6 @@ export function Footer() {
                                     Client Results
                                 </Link>
                             </li>
-                            <li><Link href="/system" className="hover:text-foreground">The System</Link></li>
                         </ul>
                     </div>
 
