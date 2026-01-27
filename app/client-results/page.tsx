@@ -21,43 +21,51 @@ const filters = [
 ] as const;
 
 const stats = [
-    { label: "Average timeline", value: "10-16 weeks" },
-    { label: "Primary focus", value: "Energy + waist" },
-    { label: "Support cadence", value: "Weekly reviews" },
-    { label: "Execution style", value: "Founder-grade defaults" },
+    { label: "Clients coached", value: "180+" },
+    { label: "Training sessions", value: "3× / week" },
+    { label: "Macros", value: "Zero macros" },
+    { label: "Coaching cadence", value: "Weekly" },
 ];
 
 const whyThisWorks = [
-    "We diagnose the single constraint breaking consistency before adding complexity.",
-    "We install defaults and guardrails so progress survives travel and chaos.",
-    "We use weekly performance reviews to correct course fast.",
-    "We optimize the minimum-effective dose so time stays protected.",
+    {
+        title: "Pillar 1 — Nutrition (Fat loss + energy without misery)",
+        description: "We build a nutrition system you can follow on busy weeks—so you drop fat, keep strength, and don’t rebound.",
+    },
+    {
+        title: "Pillar 2 — Training (15–30 minutes, built for results)",
+        description: "Strength and conditioning programmed around your schedule, joints, and lifestyle—minimum time, maximum return.",
+    },
+    {
+        title: "Pillar 3 — Bloodwork + Longevity (optional but powerful)",
+        description: "If needed, we use the essential markers to identify what’s holding you back (energy, recovery, body comp) and build a smarter protocol.",
+    },
+    {
+        title: "Pillar 4 — Accountability + Coaching",
+        description: "Weekly reviews, fast adjustments, and support that removes guesswork and keeps you consistent when motivation dips.",
+    },
 ];
 
 const faqs = [
     {
-        question: "I have no time. Will this still work?",
-        answer: "Yes. The system is built around defaults and minimum-effective actions. You get progress without perfect weeks.",
+        question: "What happens on the 15-minute audit?",
+        answer: "We diagnose what’s blocking your results, map a simple plan, and decide if Elite Health OS fits. No hard sell.",
     },
     {
-        question: "What if travel or weekends break my routine?",
-        answer: "We install travel and weekend guardrails so the plan holds even when your calendar explodes.",
+        question: "Do I need to track calories/macros?",
+        answer: "No. We use a structure that works without obsessive tracking.",
     },
     {
-        question: "How is this different from a typical program?",
-        answer: "Most plans add tasks. We remove friction, automate decisions, and review like a business operating rhythm.",
+        question: "How much time do I need to train?",
+        answer: "3 sessions per week, 15–30 minutes.",
     },
     {
-        question: "What results should I expect?",
-        answer: "Most clients see a visible waist change, stable energy, and consistent training momentum in 90 days.",
+        question: "What if I travel or have chaotic weeks?",
+        answer: "That’s the point. We build travel rules, fallback workouts, and guardrails so you stay consistent.",
     },
     {
-        question: "What is the minimum commitment?",
-        answer: "We ask for 90 days to install the OS and lock in measurable outcomes.",
-    },
-    {
-        question: "What happens on the audit call?",
-        answer: "We diagnose constraints, review metrics, and map a 90-day plan. No hard sell.",
+        question: "Are results guaranteed?",
+        answer: "Results vary by consistency and starting point. You’ll leave the audit knowing exactly what you need to do to get momentum.",
     },
 ];
 
@@ -79,23 +87,35 @@ export default function ClientResultsPage() {
                     <div className="max-w-3xl space-y-6">
                         <Badge variant="outline">Client Results</Badge>
                         <h1 className="text-4xl md:text-6xl font-bold font-heading">
-                            Real founder outcomes, anonymized.
+                            Client Results: Proof the Elite Health OS Works In Real Life
                         </h1>
                         <p className="text-lg text-muted-foreground">
-                            Each case study shows the constraint, the protocol changes, and the outcome. These are the results of installing the Elite Health OS.
+                            Real transformations from busy men balancing work, travel, family and high pressure—without calorie counting or living in the gym.
                         </p>
-                        <Button asChild className="h-12 px-6 text-base">
-                            <Link href={BOOKING_URL}>
-                                Book a 15-minute audit <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                        </Button>
+                        <p className="text-sm text-muted-foreground">
+                            Photos and stories below are from real clients. Results vary based on consistency and starting point.
+                        </p>
+                        <div className="space-y-3">
+                            <Button asChild className="h-12 px-6 text-base">
+                                <Link href={BOOKING_URL}>
+                                    Book Your 15-Minute Performance Audit <ArrowRight className="ml-2 h-4 w-4" />
+                                </Link>
+                            </Button>
+                            <p className="text-sm text-muted-foreground">
+                                No hard sell. In 15 minutes you’ll know (1) what’s blocking your results and (2) whether Elite Health OS is the right fit.
+                            </p>
+                        </div>
                     </div>
                 </Container>
             </Section>
 
             <Section>
                 <Container>
-                    <div className="flex flex-wrap items-center gap-3 mb-8">
+                    <div className="mb-6 space-y-2">
+                        <p className="text-sm font-semibold text-foreground">Filter by outcome</p>
+                        <p className="text-sm text-muted-foreground">Pick the transformation most relevant to you.</p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3 mb-10">
                         {filters.map((filter) => (
                             <button
                                 key={filter.value}
@@ -114,41 +134,28 @@ export default function ClientResultsPage() {
                     <div className="grid gap-8 lg:grid-cols-2">
                         {cases.map((item) => (
                             <div key={item.id} className="rounded-2xl border border-border bg-muted/10 p-6 space-y-6">
-                                <div className="grid sm:grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <p className="text-xs uppercase tracking-wide text-muted-foreground">Before</p>
-                                        <div className="overflow-hidden rounded-xl border border-border">
-                                            <Image
-                                                src={item.beforeImage}
-                                                alt={`${item.displayName} before`}
-                                                width={640}
-                                                height={640}
-                                                className="h-56 w-full object-cover"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <p className="text-xs uppercase tracking-wide text-muted-foreground">After</p>
-                                        <div className="overflow-hidden rounded-xl border border-border">
-                                            <Image
-                                                src={item.afterImage}
-                                                alt={`${item.displayName} after`}
-                                                width={640}
-                                                height={640}
-                                                className="h-56 w-full object-cover"
-                                            />
-                                        </div>
-                                    </div>
+                                <div className="overflow-hidden rounded-xl border border-border">
+                                    <Image
+                                        src={item.beforeImage}
+                                        alt={`${item.displayName} transformation`}
+                                        width={960}
+                                        height={720}
+                                        className="h-64 w-full object-cover"
+                                    />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <h3 className="text-2xl font-bold text-foreground">{item.displayName}</h3>
+                                    <h3 className="text-2xl font-bold text-foreground">{item.headline}</h3>
                                     <p className="text-sm text-muted-foreground">{item.role}</p>
                                 </div>
 
                                 <div className="space-y-3">
                                     <p className="text-sm font-semibold text-foreground">Constraint</p>
-                                    <p className="text-sm text-muted-foreground">{item.challenge}</p>
+                                    <div className="space-y-3 text-sm text-muted-foreground">
+                                        {item.challenge.split("\n\n").map((paragraph) => (
+                                            <p key={paragraph}>{paragraph}</p>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 <div className="space-y-3">
@@ -164,12 +171,12 @@ export default function ClientResultsPage() {
                                 </div>
 
                                 <div className="rounded-xl border border-border bg-background/60 p-4">
-                                    <p className="text-sm font-semibold text-foreground mb-2">Outcome summary</p>
-                                    <p className="text-sm text-muted-foreground">{item.outcomeSummary}</p>
+                                    <p className="text-sm font-semibold text-foreground mb-2">Outcome line</p>
+                                    <p className="text-sm text-muted-foreground font-semibold">{item.outcomeSummary}</p>
                                 </div>
 
                                 <Link href={BOOKING_URL} className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80">
-                                    Book a 15-minute audit <ArrowRight className="h-4 w-4" />
+                                    Book Your 15-Minute Performance Audit <ArrowRight className="h-4 w-4" />
                                 </Link>
                             </div>
                         ))}
@@ -179,7 +186,7 @@ export default function ClientResultsPage() {
 
             <Section className="bg-muted/10">
                 <Container>
-                    <div className="grid gap-6 md:grid-cols-4">
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                         {stats.map((stat) => (
                             <div key={stat.label} className="rounded-2xl border border-border bg-background/70 p-5">
                                 <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
@@ -195,13 +202,18 @@ export default function ClientResultsPage() {
                     <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-12 items-start">
                         <div className="space-y-6">
                             <h2 className="text-3xl md:text-4xl font-bold font-heading">Why this works</h2>
-                            <div className="space-y-3">
+                            <div className="space-y-4">
                                 {whyThisWorks.map((item) => (
-                                    <div key={item} className="flex items-start gap-3">
-                                        <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
-                                            <Check className="h-4 w-4 text-primary" />
+                                    <div key={item.title} className="rounded-2xl border border-border bg-muted/10 p-5 space-y-2">
+                                        <div className="flex items-start gap-3">
+                                            <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
+                                                <Check className="h-4 w-4 text-primary" />
+                                            </div>
+                                            <div>
+                                                <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                                                <p className="text-sm text-muted-foreground">{item.description}</p>
+                                            </div>
                                         </div>
-                                        <p className="text-muted-foreground">{item}</p>
                                     </div>
                                 ))}
                             </div>
@@ -209,10 +221,10 @@ export default function ClientResultsPage() {
                         <div className="rounded-2xl border border-border bg-muted/20 p-6">
                             <h3 className="text-xl font-bold text-foreground mb-3">Ready for your OS plan?</h3>
                             <p className="text-muted-foreground mb-5">
-                                Book a 15-minute audit to map your 90-day roadmap and confirm fit.
+                                Book a 15-minute Performance Audit. You’ll leave with your first bottleneck to fix and a clear path forward.
                             </p>
                             <Button asChild className="w-full h-12">
-                                <Link href={BOOKING_URL}>Book 15-minute audit</Link>
+                                <Link href={BOOKING_URL}>Book Your 15-Minute Performance Audit</Link>
                             </Button>
                         </div>
                     </div>
@@ -236,17 +248,19 @@ export default function ClientResultsPage() {
             <Section>
                 <Container className="max-w-3xl text-center">
                     <div className="rounded-3xl border border-primary/20 bg-primary/5 p-10 space-y-5">
-                        <h2 className="text-3xl md:text-4xl font-bold font-heading">Install your Elite Health OS</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold font-heading">
+                            Want results like this—without sacrificing your business or family life?
+                        </h2>
                         <p className="text-muted-foreground">
-                            We diagnose constraints, install guardrails, and give you a 90-day plan you can execute immediately.
+                            Book a 15-minute Performance Audit. You’ll leave with your first bottleneck to fix and a clear path forward.
                         </p>
                         <Button asChild className="h-12 px-6 text-base">
                             <Link href={BOOKING_URL}>
-                                Book a 15-minute audit <ArrowRight className="ml-2 h-4 w-4" />
+                                Book Your 15-Minute Performance Audit <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
                         <p className="text-xs text-muted-foreground">
-                            Results vary. Case studies are anonymized and reflect individual outcomes.
+                            Results vary. All transformations shown required consistency and adherence.
                         </p>
                     </div>
                 </Container>

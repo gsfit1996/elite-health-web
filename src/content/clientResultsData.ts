@@ -1,6 +1,7 @@
 export interface ClientCase {
     id: string;
     displayName: string;
+    headline: string;
     role: string;
     challenge: string;
     changes: string[];
@@ -12,84 +13,99 @@ export interface ClientCase {
 
 const clientResultsData: ClientCase[] = [
     {
-        id: "caseA",
-        displayName: "Case A",
-        role: "Busy executive",
-        challenge: "High stress and plummeting energy led to significant weight gain and mental fog.",
+        id: "karl",
+        displayName: "Karl",
+        headline: "Karl Shed 20lbs+ in 8 Weeks 🔥",
+        role: "Busy dad • High-demand job • GAA/gym background",
+        challenge:
+            "Ever feel like life's snatched control of your fitness?\n\nKarl was once the “fitness guy” his mates turned to—GAA, gym, discipline. But after kids, sleepless nights, junk food and a high-demand job, his routine slipped away.\n\nThe wake-up call hit hard at the pub with a jab: “I’d ask Karl, but I don’t want his gut.” That stung.",
         changes: [
-            "Implemented protein-first anchors at each meal",
-            "Followed MED-week training sessions",
-            "Applied energy and recovery guardrails during work travel",
-            "Used weekly performance reviews to adjust quickly",
+            "Protein-first meals that fit office days (no macro tracking)",
+            "3× weekly strength sessions (15–30 minutes)",
+            "Weekend guardrails for pubs/takeaways/social events",
+            "Weekly check-ins + adjustments to keep momentum",
         ],
-        outcomeSummary: "Lost over 70 lb in about 4 months and regained peak energy, mental clarity, and career momentum.",
+        outcomeSummary:
+            "Determined, he joined Elite Health OS—60 days later, 20lbs+ of body fat shed and 4 inches off his waist. He reclaimed his fit identity.",
         beforeImage: "/case-results/caseA-before.jpg",
-        afterImage: "/case-results/caseA-after.jpg",
+        afterImage: "/case-results/caseA-before.jpg",
         category: "fatLoss",
     },
     {
-        id: "caseB",
-        displayName: "Case B",
-        role: "Driven executive and parent",
-        challenge: "Long workdays drained energy and left little quality time for family.",
+        id: "kieran",
+        displayName: "Kieran",
+        headline: "Kieran Shed 17lbs in 8 Weeks 🔥",
+        role: "CEO • Trekking/fitness • Long work hours + pressure",
+        challenge:
+            "Kieran’s routine unravelled under relentless work hours and mounting pressure—driving him toward frequent fast food.\n\nA pivotal moment hit during a trek when he was breathless and lagging behind.\n\nHe decided to level up.",
         changes: [
-            "Adopted protein-first nutrition with no macro tracking",
-            "Integrated short, joint-smart workouts during busy weeks",
-            "Introduced travel-proof and weekend guardrails",
-            "Used weekly scorecards to stay accountable",
+            "Simple nutrition structure built around a CEO schedule",
+            "Strength + conditioning plan that supported trekking and energy",
+            "Recovery + stress systems for high-pressure weeks",
+            "Weekly accountability to stay consistent",
         ],
-        outcomeSummary: "Lost about 22 lb in 10 weeks and reclaimed evening energy for family time.",
+        outcomeSummary:
+            "After 60 days, he shed 17lbs, boosted his energy, and sharpened his focus. Now, he conquers trails with renewed vigour.",
         beforeImage: "/case-results/caseB-before.jpg",
-        afterImage: "/case-results/caseB-after.jpg",
-        category: "energy",
-    },
-    {
-        id: "caseC",
-        displayName: "Case C",
-        role: "Founder, growth-stage company",
-        challenge: "Strength stalled and travel weeks wiped out training consistency.",
-        changes: [
-            "Installed two minimum-effective strength sessions",
-            "Built a hotel-gym template for travel weeks",
-            "Used recovery anchors to prevent burnout",
-            "Set weekly performance reviews to stay on track",
-        ],
-        outcomeSummary: "Added measurable strength while keeping travel weeks steady and repeatable.",
-        beforeImage: "/case-results/caseC-before.jpg",
-        afterImage: "/case-results/caseC-after.jpg",
+        afterImage: "/case-results/caseB-before.jpg",
         category: "strength",
     },
     {
-        id: "caseD",
-        displayName: "Case D",
-        role: "High-stress executive",
-        challenge: "Late-night work and cortisol spikes wrecked sleep and recovery.",
+        id: "mark",
+        displayName: "Mark",
+        headline: "Mark Shed 52lbs in 13 Weeks 🔥",
+        role: "Director • Back-to-back meetings • Golf to unwind",
+        challenge:
+            "Mark thrived on leading his team with energy and hitting the golf course to unwind.\n\nBut back-to-back meetings and late nights fuelled quick meals and silent weight gain.\n\nA reality check came during a game when he struggled to finish a round—and that sparked the shift.",
         changes: [
-            "Added a fixed wake-time anchor and caffeine cutoff",
-            "Installed evening shutdown cues and light control",
-            "Built low-load recovery blocks into the calendar",
-            "Simplified dinner structure to reduce late-night crashes",
+            "Nutrition system to drop fat without obsession or tracking",
+            "Minimum-effective training to keep muscle while cutting",
+            "Daily movement targets that worked around meetings",
+            "Weekly coaching to fix what wasn’t working fast",
         ],
-        outcomeSummary: "Energy stabilized, sleep improved, and stress no longer dictated performance.",
-        beforeImage: "/case-results/caseD-before.jpg",
-        afterImage: "/case-results/caseD-after.jpg",
-        category: "burnout",
+        outcomeSummary:
+            "He joined Elite Health OS—after 13 weeks, 52lbs lost and stamina renewed. Now, he’s back dominating the fairways with confidence.",
+        beforeImage: "/case-results/caseC-before.jpg",
+        afterImage: "/case-results/caseC-before.jpg",
+        category: "fatLoss",
     },
     {
-        id: "caseE",
-        displayName: "Case E",
-        role: "Operator, finance",
-        challenge: "Waistline and biomarkers trended the wrong way during peak workload.",
+        id: "john",
+        displayName: "John",
+        headline: "John Shed 22lbs in 10 Weeks 🔥",
+        role: "Driven executive • Family time matters • Workload heavy",
+        challenge:
+            "John cherished weekend family time—but brutal workweeks drained his mental energy and consistency.\n\nA heart-wrenching moment came when he realised he was burnt out, missing family moments, and slipping further away from the version of himself he respected.\n\nThat was his line in the sand.",
         changes: [
-            "Installed protein-first meal architecture",
-            "Used MED-week standards during peak workload",
-            "Added glucose stability and recovery guardrails",
-            "Tracked weekly scorecards to lock momentum",
+            "Automatic meal structure for workdays (simple + repeatable)",
+            "Short workouts that didn’t steal evenings or weekends",
+            "Recovery protocols to restore “6pm energy”",
+            "Weekly accountability to stay locked in",
         ],
-        outcomeSummary: "Dropped visible fat, improved energy, and reversed key biomarker trends.",
+        outcomeSummary:
+            "He joined Elite Health OS—10 weeks later, 22lbs shed and energy restored. Now, he’s back creating memories and showing up for his family.",
+        beforeImage: "/case-results/caseD-before.jpg",
+        afterImage: "/case-results/caseD-before.jpg",
+        category: "energy",
+    },
+    {
+        id: "ryan",
+        displayName: "Ryan",
+        headline: "Ryan Shed 70lbs+ in 120 Days 🔥",
+        role: "High-stress lifestyle • Energy crashed • Performance slipped",
+        challenge:
+            "Before partnering with us, Ryan was overwhelmed with stress—his physical health and energy levels were plummeting.",
+        changes: [
+            "Structured nutrition + training system that removed decision fatigue",
+            "Stress and recovery systems to stabilise energy and focus",
+            "Weekly targets + coaching adjustments",
+            "Consistency framework built for real life (not perfect life)",
+        ],
+        outcomeSummary:
+            "In 120 days, he shed 70lbs+, boosted his energy, and improved focus and mental clarity—leading to two job promotions within four months.",
         beforeImage: "/case-results/caseE-before.jpg",
-        afterImage: "/case-results/caseE-after.jpg",
-        category: "fatLoss",
+        afterImage: "/case-results/caseE-before.jpg",
+        category: "burnout",
     },
 ];
 
