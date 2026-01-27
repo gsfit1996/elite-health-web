@@ -111,11 +111,7 @@ export function ProofStack() {
 
                 <div className="mt-12 flex justify-center">
                     <Button size="lg" variant="secondary" asChild>
-                        <Link
-                            href="https://elite-health-performance-3jmem15.gamma.site/elite-health-client-results"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <Link href="/client-results">
                             View Client Results
                         </Link>
                     </Button>

@@ -22,10 +22,8 @@ export function Footer() {
                             <li><Link href="/how-it-works" className="hover:text-foreground">How it works</Link></li>
                             <li>
                                 <Link
-                                    href="https://elite-health-performance-3jmem15.gamma.site/elite-health-client-results"
+                                    href="/client-results"
                                     className="hover:text-foreground"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
                                 >
                                     Client Results
                                 </Link>

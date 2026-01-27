@@ -98,12 +98,8 @@ export default function ResultsPage() {
                         </motion.p>
                         <div className="mt-6">
                             <Button asChild variant="secondary">
-                                <Link
-                                    href="https://elite-health-performance-3jmem15.gamma.site/elite-health-client-results"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    View the full client results
+                                <Link href="/client-results">
+                                    View full client results
                                 </Link>
                             </Button>
                         </div>
