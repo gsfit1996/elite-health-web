@@ -3,7 +3,7 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
-import { CheckSquare, Gauge, LineChart, Plane, RotateCcw } from "lucide-react";
+import { SquareCheck, Gauge, LineChart, Plane, RotateCcw } from "lucide-react";
 
 export function Mechanisms() {
     const mechanisms = [
@@ -25,7 +25,7 @@ export function Mechanisms() {
         {
             title: "Default Decisions",
             desc: "Pre-made defaults reduce decision fatigue and protect results.",
-            icon: <CheckSquare className="h-6 w-6 text-primary" />,
+            icon: <SquareCheck className="h-6 w-6 text-primary" />,
         },
         {
             title: "Performance Reviews",
