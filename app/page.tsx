@@ -7,7 +7,6 @@ import { Mechanisms } from "@/components/home/mechanisms";
 import { Timeline } from "@/components/home/timeline";
 import { ProofStack } from "@/components/home/proof-stack";
 import { AboutGareth } from "@/components/home/about-gareth";
-import { LeadMagnet } from "@/components/home/lead-magnet";
 import { FAQ } from "@/components/home/faq";
 import { CTABlock } from "@/components/home/cta-block";
 
@@ -23,7 +22,6 @@ export default function Home() {
       <Timeline />
       <ProofStack />
       <AboutGareth />
-      <LeadMagnet />
       <FAQ />
       <CTABlock />
     </div>
