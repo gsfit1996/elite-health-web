@@ -60,6 +60,14 @@ export default function ProgramPage() {
                                     </div>
                                 </li>
                             </ul>
+                            <div className="mt-6">
+                                <Link
+                                    href="https://calendar.app.google/5w7EofmxxhwkdaN1A"
+                                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80"
+                                >
+                                    Book a 15-minute audit to install these mechanisms <ArrowRight className="h-4 w-4" />
+                                </Link>
+                            </div>
                         </div>
                         <div className="bg-muted/10 rounded-2xl p-8 border border-muted">
                             <h3 className="text-xl font-bold mb-6">Which Archetype Are You?</h3>

@@ -153,7 +153,7 @@ export function LoadRecoveryPlanner() {
     return (
         <ToolCard
             title="Executive Load & Recovery Planner"
-            description="Translate your weekly load into a recovery plan you can execute."
+            description="Translate your weekly load into a personalized recovery plan you can execute this week."
             icon={Gauge}
         >
             {step === "input" ? (
@@ -261,6 +261,9 @@ export function LoadRecoveryPlanner() {
                     <Button onClick={() => setStep("result")} className="w-full h-12 text-base">
                         Build My Recovery Plan <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
+                    <p className="text-xs text-muted-foreground text-center">
+                        Your inputs create a personalized plan. We do not spam or sell your data.
+                    </p>
                 </div>
             ) : (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-4">
@@ -319,10 +322,26 @@ export function LoadRecoveryPlanner() {
                         </div>
                     </Card>
 
+                    <Card className="p-5 bg-muted/10 border-border space-y-2">
+                        <p className="text-sm font-semibold">Results summary</p>
+                        <p className="text-sm text-muted-foreground">
+                            Load score: <span className="font-semibold text-foreground">{plan.loadScore}/100</span> ({plan.tier.label})
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                            Recovery target: <span className="font-semibold text-foreground">{plan.tier.recovery}</span>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                            Training focus: <span className="font-semibold text-foreground">{plan.tier.training}</span>
+                        </p>
+                    </Card>
+
                     <div className="space-y-3 pt-2">
+                        <p className="text-sm text-muted-foreground text-center">
+                            Want help prioritizing this plan? Discuss it in a 15-minute audit. No hard sell.
+                        </p>
                         <Button asChild className="w-full h-14 text-lg">
                             <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
-                                Build My Weekly Plan
+                                Discuss My Recovery Plan (15-Min Audit)
                             </Link>
                         </Button>
                         <Button

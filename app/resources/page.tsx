@@ -20,19 +20,19 @@ export default function ResourcesPage() {
             items: [
                 {
                     title: "The 3-Rule Consistency System",
-                    desc: "A simple operating system that keeps progress steady even in chaos.",
+                    desc: "Keep moving forward even during chaos.",
                     href: "/resources/three-rule-consistency-system",
                     tags: ["Execution OS", "3 rules"],
                 },
                 {
                     title: "Weekly Reset Review Protocol",
-                    desc: "A 25-minute review that locks priorities and removes friction.",
+                    desc: "Lock priorities, remove friction and start Monday with clarity.",
                     href: "/resources/weekly-reset-review-protocol",
                     tags: ["25-min review", "Weekly"],
                 },
                 {
                     title: "Default Day Design Protocol",
-                    desc: "Build a repeatable day template that protects health and output.",
+                    desc: "Create a repeatable day template that protects health and output.",
                     href: "/resources/default-day-design-protocol",
                     tags: ["Calendar", "Day template"],
                 },
@@ -47,19 +47,19 @@ export default function ResourcesPage() {
             items: [
                 {
                     title: "Protein-First Meal Architecture",
-                    desc: "A meal framework that stabilizes appetite and recovery.",
+                    desc: "Control appetite and accelerate recovery.",
                     href: "/resources/protein-first-meal-architecture",
                     tags: ["Meal structure", "Satiety"],
                 },
                 {
                     title: "Travel Day Nutrition Protocol",
-                    desc: "Stay consistent through airports, hotels, and client dinners.",
+                    desc: "Stay consistent through airports, hotels and client dinners.",
                     href: "/resources/travel-day-nutrition-protocol",
                     tags: ["Travel", "Airport"],
                 },
                 {
                     title: "Late Dinner Damage Control",
-                    desc: "Minimize the impact of late meals without wrecking tomorrow.",
+                    desc: "Minimize the impact of late meals without sabotaging tomorrow.",
                     href: "/resources/late-dinner-damage-control",
                     tags: ["Late meals", "24h reset"],
                 },
@@ -74,19 +74,19 @@ export default function ResourcesPage() {
             items: [
                 {
                     title: "The Executive Biomarker Priority List",
-                    desc: "What to test, target ranges, and action priorities for high performers.",
+                    desc: "Know which labs to run, target ranges, and how to interpret them.",
                     href: "/resources/executive-biomarker-priority-list",
                     tags: ["Lab list", "Targets"],
                 },
                 {
                     title: "Glucose Stability Protocol",
-                    desc: "Reduce spikes and improve insulin sensitivity fast.",
+                    desc: "Reduce blood-sugar spikes and improve insulin sensitivity.",
                     href: "/resources/glucose-stability-protocol",
                     tags: ["Spikes", "Insulin"],
                 },
                 {
                     title: "Inflammation Control Protocol",
-                    desc: "Lower hs-CRP and speed up recovery with focused levers.",
+                    desc: "Lower hs-CRP and speed up recovery.",
                     href: "/resources/inflammation-control-protocol",
                     tags: ["hs-CRP", "Recovery"],
                 },
@@ -101,19 +101,19 @@ export default function ResourcesPage() {
             items: [
                 {
                     title: "Joint-Smart Strength Template",
-                    desc: "A founder-friendly strength plan that protects joints and energy.",
+                    desc: "Build strength without joint flare-ups.",
                     href: "/resources/joint-smart-strength-template",
                     tags: ["Joint-friendly", "3x week"],
                 },
                 {
                     title: "Hotel Gym Strength Protocol",
-                    desc: "A 30-minute travel session that keeps strength moving.",
+                    desc: "30-minute sessions to keep strength moving on the road.",
                     href: "/resources/hotel-gym-strength-protocol",
                     tags: ["30-min", "Travel"],
                 },
                 {
                     title: "Deskbound Mobility Reset Protocol",
-                    desc: "Short mobility blocks that undo long hours at a desk.",
+                    desc: "Undo the damage of long hours at a desk.",
                     href: "/resources/deskbound-mobility-reset-protocol",
                     tags: ["Desk reset", "15-min"],
                 },
@@ -150,7 +150,7 @@ export default function ResourcesPage() {
                                     Protocols Hub
                                 </h1>
                                 <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
-                                    Actionable, founder-grade protocols to protect energy, performance, and body composition.
+                                    A free library of founder-grade protocols you can execute immediately. Updated regularly to keep your playbooks current.
                                 </p>
                             </motion.div>
 
@@ -162,13 +162,13 @@ export default function ResourcesPage() {
                                 </div>
                                 <div className="rounded-2xl border border-border/60 bg-muted/10 p-4">
                                     <p className="text-xs uppercase tracking-wide text-muted-foreground">Format</p>
-                                    <p className="text-2xl font-bold text-foreground">Step-by-step</p>
-                                    <p className="text-xs text-muted-foreground">Built for execution</p>
+                                    <p className="text-2xl font-bold text-foreground">Same-day</p>
+                                    <p className="text-xs text-muted-foreground">Ready to execute</p>
                                 </div>
                                 <div className="rounded-2xl border border-border/60 bg-muted/10 p-4">
-                                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Outcome</p>
-                                    <p className="text-2xl font-bold text-foreground">Fewer stalls</p>
-                                    <p className="text-xs text-muted-foreground">Higher consistency</p>
+                                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Library</p>
+                                    <p className="text-2xl font-bold text-foreground">Free</p>
+                                    <p className="text-xs text-muted-foreground">Updated regularly</p>
                                 </div>
                             </motion.div>
 
@@ -227,10 +227,10 @@ export default function ResourcesPage() {
                         <div className="space-y-2">
                             <h2 className="text-3xl md:text-4xl font-bold font-heading">Protocol Library</h2>
                             <p className="text-muted-foreground max-w-2xl">
-                                Choose a domain and run the protocol. Each one is designed to be applied the same day.
+                                Choose a domain and run the protocol. Each one is designed for immediate execution.
                             </p>
                         </div>
-                        <p className="text-sm text-muted-foreground">Updated weekly</p>
+                        <p className="text-sm text-muted-foreground">Updated regularly</p>
                     </div>
 
                     <div className="space-y-16">
@@ -306,6 +306,29 @@ export default function ResourcesPage() {
                                 </motion.div>
                             </motion.div>
                         ))}
+                    </div>
+                </Container>
+            </Section>
+
+            <Section className="bg-muted/20">
+                <Container>
+                    <div className="mx-auto max-w-3xl text-center space-y-6">
+                        <h2 className="text-3xl md:text-4xl font-bold font-heading">Ready to go beyond the protocols?</h2>
+                        <p className="text-lg text-muted-foreground">
+                            Sample a protocol, then install the full operating system for your body and calendar.
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-3">
+                            <Button asChild className="h-11 px-6">
+                                <Link href="/program">
+                                    Explore the full program <ArrowRight className="ml-2 h-4 w-4" />
+                                </Link>
+                            </Button>
+                            <Button asChild variant="ghost" className="h-11 px-6 text-muted-foreground">
+                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                                    Book a 15-minute audit
+                                </Link>
+                            </Button>
+                        </div>
                     </div>
                 </Container>
             </Section>

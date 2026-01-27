@@ -3,7 +3,8 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
-import { SquareCheck, Gauge, LineChart, Plane, RotateCcw } from "lucide-react";
+import { ArrowRight, SquareCheck, Gauge, LineChart, Plane, RotateCcw } from "lucide-react";
+import Link from "next/link";
 
 export function Mechanisms() {
     const mechanisms = [
@@ -75,6 +76,15 @@ export function Mechanisms() {
                             </div>
                         </motion.div>
                     ))}
+                </div>
+
+                <div className="mt-10 text-center">
+                    <Link
+                        href="https://calendar.app.google/5w7EofmxxhwkdaN1A"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80"
+                    >
+                        Install these mechanisms with a 15-minute audit <ArrowRight className="h-4 w-4" />
+                    </Link>
                 </div>
             </Container>
         </Section>

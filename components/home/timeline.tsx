@@ -50,6 +50,13 @@ export function Timeline() {
                     <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
                         What you will have running in 30 days.
                     </h2>
+                    <p className="text-sm text-muted-foreground">
+                        Want this aligned to your calendar?{" "}
+                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A" className="font-semibold text-primary hover:text-primary/80">
+                            Book a 15-minute audit
+                        </Link>
+                        .
+                    </p>
                 </div>
 
                 <div className="relative max-w-4xl mx-auto pl-8 md:pl-0">

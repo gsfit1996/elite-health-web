@@ -105,13 +105,20 @@ export function DayBlueprintBuilder() {
             timeline,
             guardrails,
             fuelPlan,
+            summary: {
+                trainingWindow,
+                dinnerTiming,
+                intensity,
+                caffeineCutoff: formatTime(caffeineCutoff),
+                bedtime: formatTime(bedtime),
+            },
         };
     }, [wakeTime, firstMeeting, lastMeeting, trainingWindow, dinnerTiming, intensity]);
 
     return (
         <ToolCard
             title="Executive Day Blueprint Builder"
-            description="Generate a day plan that protects energy, focus, and recovery."
+            description="Generate a personalized day plan that protects energy, focus, and recovery."
             icon={CalendarClock}
         >
             {step === "input" ? (
@@ -193,6 +200,9 @@ export function DayBlueprintBuilder() {
                     <Button onClick={() => setStep("result")} className="w-full h-12 text-base">
                         Build My Blueprint <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
+                    <p className="text-xs text-muted-foreground text-center">
+                        Your inputs create a personalized plan. We do not spam or sell your data.
+                    </p>
                 </div>
             ) : (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-4">
@@ -236,10 +246,32 @@ export function DayBlueprintBuilder() {
                         </div>
                     </Card>
 
+                    <Card className="p-5 bg-muted/10 border-border space-y-2">
+                        <p className="text-sm font-semibold">Results summary</p>
+                        <p className="text-sm text-muted-foreground">
+                            Training window: <span className="font-semibold text-foreground">{plan.summary.trainingWindow}</span>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                            Dinner timing: <span className="font-semibold text-foreground">{plan.summary.dinnerTiming}</span>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                            Workday intensity: <span className="font-semibold text-foreground">{plan.summary.intensity}</span>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                            Caffeine cutoff: <span className="font-semibold text-foreground">{plan.summary.caffeineCutoff}</span>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                            In bed by: <span className="font-semibold text-foreground">{plan.summary.bedtime}</span>
+                        </p>
+                    </Card>
+
                     <div className="space-y-3 pt-2">
+                        <p className="text-sm text-muted-foreground text-center">
+                            Want a tighter schedule around your calendar? Discuss this blueprint in a 15-minute audit. No hard sell.
+                        </p>
                         <Button asChild className="w-full h-14 text-lg">
                             <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
-                                Build My Full Schedule
+                                Discuss My Day Blueprint (15-Min Audit)
                             </Link>
                         </Button>
                         <Button

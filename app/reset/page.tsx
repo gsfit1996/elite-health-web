@@ -6,6 +6,23 @@ import { CalendarCheck, Check } from "lucide-react";
 const SCHEDULING_IFRAME_URL =
     "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hR5pTh3SP6S6yUcVH1i5gMpY-VSuvs40CKxaw6mtlfNoBl_Wp5L5M8zNBOgF5J3g0341drxWd?gv=true";
 const BOOKING_PAGE_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
+const TESTIMONIALS = [
+    {
+        quote: "Walked away with a clear 90-day plan and the exact constraint to fix first.",
+        name: "Ethan",
+        role: "Founder",
+    },
+    {
+        quote: "No fluff. Just metrics, priorities, and the next best move for my schedule.",
+        name: "Priya",
+        role: "Managing Director",
+    },
+    {
+        quote: "Best 15 minutes I have spent on my health in years.",
+        name: "Luke",
+        role: "CEO",
+    },
+];
 
 export default function ResetPage() {
     return (
@@ -28,9 +45,9 @@ export default function ResetPage() {
                                 <h3 className="text-lg font-bold text-foreground mb-4">What we do on the call:</h3>
                                 <ul className="space-y-3">
                                     {[
-                                        "Identify the one constraint breaking your consistency",
-                                        "Set your first two non-negotiables",
-                                        "Give you the 90-day outline (and whether it's a fit)",
+                                        "Diagnose the constraint breaking your consistency",
+                                        "Review key metrics (sleep, training, recovery, schedule)",
+                                        "Map a 90-day plan and immediate next steps",
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-3 text-muted-foreground">
                                             <div className="mt-1 bg-primary/20 p-1 rounded-full">
@@ -40,6 +57,9 @@ export default function ResetPage() {
                                         </li>
                                     ))}
                                 </ul>
+                                <p className="mt-4 text-sm text-muted-foreground">
+                                    No hard sell. If we are not a fit, you still leave with clarity.
+                                </p>
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-border">
@@ -60,6 +80,19 @@ export default function ResetPage() {
                                     </ul>
                                 </div>
                             </div>
+
+                            <div className="pt-8 border-t border-border space-y-4">
+                                <h4 className="text-lg font-bold text-foreground">What founders say after the audit</h4>
+                                <div className="grid gap-4 md:grid-cols-3">
+                                    {TESTIMONIALS.map((item) => (
+                                        <div key={item.name} className="rounded-xl border border-border bg-muted/10 p-4">
+                                            <p className="text-sm text-foreground mb-3">"{item.quote}"</p>
+                                            <p className="text-xs font-semibold text-primary">{item.name}</p>
+                                            <p className="text-xs text-muted-foreground">{item.role}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -75,7 +108,7 @@ export default function ResetPage() {
                                     Book instantly via Google Calendar. If the embed does not load, open the booking page in a new tab.
                                 </p>
                             </div>
-                            <div className="overflow-hidden rounded-xl border border-border/60 bg-background/70 shadow-sm md:rounded-2xl">
+                            <div className="overflow-hidden rounded-xl border border-border/60 bg-muted/20 shadow-sm md:rounded-2xl md:bg-background/70">
                                 <div className="p-2 md:p-0">
                                     <iframe
                                         src={SCHEDULING_IFRAME_URL}

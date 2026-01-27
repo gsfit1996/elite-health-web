@@ -161,13 +161,14 @@ export function CrashDiagnostic() {
         : null;
 
     const primaryDetails = DRIVER_DETAILS[primaryKey];
+    const primaryLabel = primaryDetails.title.replace("Primary Driver: ", "");
     const severity = getSeverity(totalScore, maxTotal);
     const confidence = getConfidence(sortedDrivers[0]?.[1].score - (sortedDrivers[1]?.[1].score ?? 0));
 
     return (
         <ToolCard
             title="The 6pm Crash Diagnostic"
-            description="Identify the biological root cause of your evening fatigue."
+            description="Identify why your energy collapses at the end of the day and get a tailored action plan."
             icon={Activity}
         >
             {!isComplete ? (
@@ -314,9 +315,25 @@ export function CrashDiagnostic() {
                                 ))}
                             </div>
                         </div>
+
+                        <div className="bg-background/60 p-4 rounded-lg space-y-2">
+                            <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Results summary</p>
+                            <p className="text-sm text-muted-foreground">
+                                Primary driver: <span className="font-semibold text-foreground">{primaryLabel}</span>
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                                Severity: <span className="font-semibold text-foreground">{severity.label}</span> | Confidence: <span className="font-semibold text-foreground">{confidence}</span>
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                                Signals flagged: <span className="font-semibold text-foreground">{keySignals.length}</span>
+                            </p>
+                        </div>
                     </div>
 
                     <div className="space-y-3">
+                        <p className="text-sm text-muted-foreground text-center">
+                            Want help turning this into a 90-day plan? Discuss your results in a 15-minute audit. No hard sell.
+                        </p>
                         <Button asChild className="w-full h-14 text-lg">
                             <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                                 Fix This Permanently (Book 15-Min Audit)

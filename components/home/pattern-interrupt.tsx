@@ -24,7 +24,7 @@ export function PatternInterrupt() {
                     </motion.div>
 
                     <motion.div
-                        className="space-y-6 text-lg text-muted-foreground"
+                        className="space-y-6 text-lg text-foreground/80"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
