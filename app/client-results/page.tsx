@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
@@ -86,6 +86,21 @@ const faqs = [
 
 export default function ClientResultsPage() {
     const [selectedFilter, setSelectedFilter] = useState<(typeof filters)[number]["value"]>("all");
+    const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+
+    useEffect(() => {
+        const handleKey = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                setLightbox(null);
+            }
+        };
+
+        if (lightbox) {
+            window.addEventListener("keydown", handleKey);
+        }
+
+        return () => window.removeEventListener("keydown", handleKey);
+    }, [lightbox]);
 
     const cases = useMemo(() => {
         if (selectedFilter === "all") {
@@ -163,15 +178,23 @@ export default function ClientResultsPage() {
                     <div className="grid gap-8 lg:grid-cols-2">
                         {cases.map((item) => (
                             <div key={item.id} className="rounded-2xl border border-border/60 bg-background/70 p-6 space-y-6 shadow-[0_18px_45px_rgba(2,6,23,0.35)]">
-                                <div className="mx-auto w-full max-w-[420px] md:max-w-[460px] overflow-hidden rounded-xl border border-border/60 bg-muted/20 aspect-[2/3]">
-                                    <Image
-                                        src={item.beforeImage}
-                                        alt={`${item.displayName} transformation`}
-                                        width={900}
-                                        height={1200}
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
-                                        className="h-full w-full object-cover object-top"
-                                    />
+                                <div className="space-y-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => setLightbox({ src: item.beforeImage, alt: `${item.displayName} transformation` })}
+                                        className="mx-auto w-full max-w-[400px] md:max-w-[440px] resultsCardImage border border-border/60"
+                                    >
+                                        <Image
+                                            src={item.beforeImage}
+                                            alt={`${item.displayName} transformation`}
+                                            width={900}
+                                            height={1200}
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
+                                            className="h-full w-full"
+                                        />
+                                        <span className="sr-only">Tap to enlarge</span>
+                                    </button>
+                                    <p className="text-xs text-muted-foreground text-center">Tap to enlarge</p>
                                 </div>
 
                                 <div className="space-y-2">
@@ -285,6 +308,32 @@ export default function ClientResultsPage() {
                     </div>
                 </Container>
             </Section>
+            {lightbox && (
+                <div
+                    className="fixed inset-0 z-[60] flex items-center justify-center bg-background/80 backdrop-blur-md p-6"
+                    onClick={() => setLightbox(null)}
+                >
+                    <div className="relative max-w-3xl w-full" onClick={(event) => event.stopPropagation()}>
+                        <button
+                            type="button"
+                            onClick={() => setLightbox(null)}
+                            className="absolute -top-10 right-0 text-xs uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground"
+                        >
+                            Close
+                        </button>
+                        <div className="resultsCardImage border border-border/60 bg-muted/20">
+                            <Image
+                                src={lightbox.src}
+                                alt={lightbox.alt}
+                                width={1200}
+                                height={1500}
+                                sizes="(max-width: 768px) 90vw, 900px"
+                                className="h-full w-full"
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
