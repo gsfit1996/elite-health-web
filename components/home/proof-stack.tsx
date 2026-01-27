@@ -13,7 +13,7 @@ export function ProofStack() {
         {
             title: "Testosterone Optimization",
             metric: "750 ng/dL",
-            change: "+114%",
+            change: "+31%",
             color: "#3b82f6", // Blue
             data: [
                 { label: "Month 0", value: 350 },
