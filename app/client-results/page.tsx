@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import clientResultsData from "../../src/content/clientResultsData";
 
 const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
@@ -118,24 +118,7 @@ const testimonials = [
 ];
 
 
-const whyThisWorks = [
-    {
-        title: "Pillar 1 - Nutrition (Fat loss + energy without misery)",
-        description: "We build a nutrition system you can follow on busy weeks, so you drop fat, keep strength, and don't rebound.",
-    },
-    {
-        title: "Pillar 2 - Training (15-30 minutes, built for results)",
-        description: "Strength and conditioning programmed around your schedule, joints, and lifestyle - minimum time, maximum return.",
-    },
-    {
-        title: "Pillar 3 - Bloodwork + Longevity (optional but powerful)",
-        description: "If needed, we use the essential markers to identify what's holding you back (energy, recovery, body comp) and build a smarter protocol.",
-    },
-    {
-        title: "Pillar 4 - Accountability + Coaching",
-        description: "Weekly reviews, fast adjustments, and support that removes guesswork and keeps you consistent when motivation dips.",
-    },
-];
+
 
 const faqs = [
     {
@@ -411,39 +394,7 @@ export default function ClientResultsPage() {
                 </Container>
             </Section>
 
-            <Section fullWidth>
-                <Container>
-                    <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-12 items-start">
-                        <div className="space-y-6">
-                            <h2 className="text-3xl md:text-4xl font-bold font-heading">Why this works</h2>
-                            <div className="space-y-4">
-                                {whyThisWorks.map((item) => (
-                                    <div key={item.title} className="rounded-2xl border border-border/60 bg-background/70 p-5 space-y-2">
-                                        <div className="flex items-start gap-3">
-                                            <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
-                                                <Check className="h-4 w-4 text-primary" />
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                                                <p className="text-sm text-muted-foreground">{item.description}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="rounded-2xl border border-border/60 bg-background/80 p-6">
-                            <h3 className="text-xl font-bold text-foreground mb-3">Ready for your OS plan?</h3>
-                            <p className="text-muted-foreground mb-5">
-                                Book a 15-minute Performance Audit. You'll leave with your first bottleneck to fix and a clear path forward.
-                            </p>
-                            <Button asChild className="w-full h-12">
-                                <Link href={BOOKING_URL}>Book Your 15-Minute Performance Audit</Link>
-                            </Button>
-                        </div>
-                    </div>
-                </Container>
-            </Section>
+            
 
             <Section fullWidth className="bg-muted/10">
                 <Container>
