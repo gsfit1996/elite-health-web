@@ -21,10 +21,25 @@ const filters = [
 ] as const;
 
 const stats = [
-    { label: "Clients coached", value: "180+" },
-    { label: "Training sessions", value: "3× / week" },
-    { label: "Macros", value: "Zero macros" },
-    { label: "Coaching cadence", value: "Weekly" },
+    {
+        label: "Clients supported (10+ years)",
+        value: "752",
+    },
+    {
+        label: "90-day client success rate",
+        value: "82%",
+        subtext: "Achieved their agreed goal in 90 days",
+    },
+    {
+        label: "Average body fat reduction (90 days)",
+        value: "8%",
+        subtext: "Average decrease in body fat % over 90 days",
+    },
+    {
+        label: "Average testosterone increase",
+        value: "+31%",
+        subtext: "Via bloodwork optimisation protocols",
+    },
 ];
 
 const whyThisWorks = [
@@ -105,6 +120,20 @@ export default function ClientResultsPage() {
                                 No hard sell. In 15 minutes you’ll know (1) what’s blocking your results and (2) whether Elite Health OS is the right fit.
                             </p>
                         </div>
+                        <div className="grid gap-4 pt-6 md:grid-cols-2">
+                            {stats.map((stat) => (
+                                <div
+                                    key={stat.label}
+                                    className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/15 via-background/70 to-background/90 p-5 shadow-[0_20px_50px_rgba(37,99,235,0.15)]"
+                                >
+                                    <p className="text-xs uppercase tracking-wide text-primary/70">{stat.label}</p>
+                                    <p className="text-2xl font-bold text-foreground mt-2">{stat.value}</p>
+                                    {stat.subtext && (
+                                        <p className="text-xs text-muted-foreground mt-2">{stat.subtext}</p>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </Container>
             </Section>
@@ -182,19 +211,6 @@ export default function ClientResultsPage() {
                                 <Link href={BOOKING_URL} className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80">
                                     Book Your 15-Minute Performance Audit <ArrowRight className="h-4 w-4" />
                                 </Link>
-                            </div>
-                        ))}
-                    </div>
-                </Container>
-            </Section>
-
-            <Section fullWidth className="bg-muted/10">
-                <Container>
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                        {stats.map((stat) => (
-                            <div key={stat.label} className="rounded-2xl border border-border/60 bg-background/80 p-5">
-                                <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
-                                <p className="text-xl font-bold text-foreground mt-2">{stat.value}</p>
                             </div>
                         ))}
                     </div>
