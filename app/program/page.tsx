@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 export default function ProgramPage() {
     return (
@@ -18,10 +17,10 @@ export default function ProgramPage() {
                             The System
                         </Badge>
                         <h1 className="text-4xl md:text-6xl font-bold font-heading mb-6">
-                            A High-Performance Operating System for Your Body
+                            Install Your Elite Health Operating System.
                         </h1>
                         <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                            Stop relying on motivation. We install a "Never Miss Twice" system that automates your health, energy, and physique.
+                            Stop relying on motivation. We install an operating system that adapts to your calendar and keeps health momentum automatic.
                         </p>
                     </div>
                 </Container>
@@ -39,7 +38,7 @@ export default function ProgramPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg">MED Week Standards</h3>
-                                        <p className="text-muted-foreground">Minimum Effective Dose protocols for busy weeks. Maintain progress even when work explodes.</p>
+                                        <p className="text-muted-foreground">Stay on track during chaotic weeks without punishing workouts.</p>
                                     </div>
                                 </li>
                                 <li className="flex gap-4">
@@ -48,7 +47,7 @@ export default function ProgramPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg">"Never Miss Twice" Rule</h3>
-                                        <p className="text-muted-foreground">A psychological contract that prevents one bad meal from becoming a bad month.</p>
+                                        <p className="text-muted-foreground">Bounce back after disruptions and avoid downward spirals.</p>
                                     </div>
                                 </li>
                                 <li className="flex gap-4">
@@ -57,7 +56,7 @@ export default function ProgramPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg">Weekend & Travel Guardrails</h3>
-                                        <p className="text-muted-foreground">Specific protocols for airports, hotels, and social dinners so you don't decline.</p>
+                                        <p className="text-muted-foreground">Navigate airports, hotels, and dinners without gaining weight.</p>
                                     </div>
                                 </li>
                             </ul>
@@ -67,15 +66,21 @@ export default function ProgramPage() {
                             <div className="space-y-6">
                                 <div className="p-4 bg-background rounded-lg border border-border">
                                     <h4 className="font-bold text-primary mb-1">The Lean-Down Optimiser</h4>
-                                    <p className="text-sm text-muted-foreground">You exercise but can't shift the last 5-10kg around the waist.</p>
+                                    <p className="text-sm text-muted-foreground">
+                                        You train consistently but the last 5-10 kg around the waist will not move. You need precision, not more effort.
+                                    </p>
                                 </div>
                                 <div className="p-4 bg-background rounded-lg border border-border">
                                     <h4 className="font-bold text-primary mb-1">The High-Stress Rebuilder</h4>
-                                    <p className="text-sm text-muted-foreground">Work stress has eroded your energy and sleep. You need recovery first.</p>
+                                    <p className="text-sm text-muted-foreground">
+                                        Work stress has eroded your energy and sleep. Recovery must come first to rebuild performance.
+                                    </p>
                                 </div>
                                 <div className="p-4 bg-background rounded-lg border border-border">
                                     <h4 className="font-bold text-primary mb-1">The Big Reset</h4>
-                                    <p className="text-sm text-muted-foreground">It's time for a complete overhaul. 15kg+ to lose, health markers in danger.</p>
+                                    <p className="text-sm text-muted-foreground">
+                                        It is time for a complete overhaul - 15 kg or more to lose and biomarkers trending the wrong way.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +90,10 @@ export default function ProgramPage() {
 
             <Section className="bg-muted/5">
                 <Container className="text-center">
-                    <h2 className="text-3xl font-bold font-heading mb-8">Ready to install the OS?</h2>
+                    <h2 className="text-3xl font-bold font-heading mb-4">Ready to install the OS?</h2>
+                    <p className="text-lg text-muted-foreground mb-8">
+                        When you are ready, book your 15-minute audit. We will diagnose your consistency breaks, outline your 90-day roadmap, and determine if we are the right fit.
+                    </p>
                     <Button size="lg" className="h-14 px-8 text-lg" asChild>
                         <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
                             Schedule Your 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />

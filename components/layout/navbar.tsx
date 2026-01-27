@@ -40,6 +40,14 @@ export function Navbar() {
                             How it works
                         </Link>
                         <Link
+                            href="https://elite-health-performance-3jmem15.gamma.site/elite-health-client-results"
+                            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Client Results
+                        </Link>
+                        <Link
                             href="/resources"
                             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
@@ -92,6 +100,15 @@ export function Navbar() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 How it works
+                            </Link>
+                            <Link
+                                href="https://elite-health-performance-3jmem15.gamma.site/elite-health-client-results"
+                                className="block py-2 border-b border-border/50 text-foreground/80 hover:text-primary"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Client Results
                             </Link>
                             <Link
                                 href="/resources"

@@ -28,7 +28,7 @@ export default function HowItWorksPage() {
                             transition={{ delay: 0.1 }}
                             className="text-xl text-muted-foreground"
                         >
-                            Most health advice is generic. We build a personalized Operating System based on your biology, your schedule, and your specific goals.
+                            Most health advice is generic. We build a personalised Operating System around your biology, your schedule, and your goals.
                         </motion.p>
                     </div>
 
@@ -37,17 +37,17 @@ export default function HowItWorksPage() {
                             {
                                 icon: <Search className="w-8 h-8 text-primary" />,
                                 title: "1. Biological Audit",
-                                description: "We start with comprehensive blood work and wearable data analysis to find your metabolic bottlenecks."
+                                description: "Collect and analyse your blood work, wearables, and lifestyle data to find the bottlenecks."
                             },
                             {
                                 icon: <Target className="w-8 h-8 text-primary" />,
                                 title: "2. Protocol Design",
-                                description: "A custom 90-day roadmap covering nutrition, supplementation, and training tailored to your constraints."
+                                description: "Design protocols that remove decision fatigue and protect progress with a custom 90-day plan."
                             },
                             {
                                 icon: <Activity className="w-8 h-8 text-primary" />,
                                 title: "3. Continuous Optimization",
-                                description: "Weekly data reviews and adjustments to ensure you never plateau and results stay permanent."
+                                description: "Review metrics weekly and adjust protocols to ensure momentum and measurable progress."
                             }
                         ].map((item, i) => (
                             <motion.div
@@ -75,7 +75,7 @@ export default function HowItWorksPage() {
                     <div className="bg-primary/5 border border-primary/20 rounded-3xl p-12 text-center max-w-4xl mx-auto">
                         <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6">Ready to install the OS?</h2>
                         <p className="text-xl text-muted-foreground mb-8">
-                            Take the first step towards radical health optimization today.
+                            Schedule your 15-minute audit and leave with a personalised 90-day roadmap - no fluff, no pressure. Just clarity.
                         </p>
                         <Button size="lg" asChild className="h-14 px-8 text-lg">
                             <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">

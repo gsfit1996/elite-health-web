@@ -16,8 +16,9 @@ export function PatternInterrupt() {
                         viewport={{ once: true }}
                     >
                         <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6 leading-tight">
-                            Your problem isn’t discipline. <br />
-                            <span className="text-primary">It’s decision bandwidth.</span>
+                            Your bottleneck is not willpower.
+                            <br />
+                            <span className="text-primary">It is bandwidth.</span>
                         </h2>
                         <div className="h-1 w-20 bg-primary mb-8 rounded-full" />
                     </motion.div>
@@ -30,15 +31,15 @@ export function PatternInterrupt() {
                         viewport={{ once: true }}
                     >
                         <p>
-                            You’re disciplined in business. So it’s confusing when your body doesn’t match your standards.
+                            As a founder or executive, you already work hard. Diets and workout plans fail because they demand more decisions and time.
                         </p>
                         <p className="font-medium text-foreground">
-                            The failure mode isn’t knowledge. It’s friction.
+                            Elite Health OS installs defaults, guardrails, and reviews so your health improves on autopilot.
                         </p>
                         <ul className="space-y-4 mt-4 list-disc pl-5">
-                            <li>Meetings run late → training gets skipped → “restart Monday”</li>
-                            <li>Evenings hit → couch crash → autopilot food</li>
-                            <li>Weekends arrive → structure disappears → progress stalls</li>
+                            <li>Meetings run late - training gets skipped - momentum stalls.</li>
+                            <li>Travel hits - defaults disappear - progress resets.</li>
+                            <li>Weekends arrive - structure fades - Monday feels heavier.</li>
                         </ul>
                         <p className="font-semibold text-foreground pt-4">
                             If your plan depends on perfect weeks, it will fail.

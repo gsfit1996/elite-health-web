@@ -3,6 +3,8 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { ProofChart } from "@/components/ui/proof-chart";
 import { motion } from "framer-motion";
 
@@ -105,6 +107,18 @@ export function ProofStack() {
                             </div>
                         </motion.div>
                     ))}
+                </div>
+
+                <div className="mt-12 flex justify-center">
+                    <Button size="lg" variant="secondary" asChild>
+                        <Link
+                            href="https://elite-health-performance-3jmem15.gamma.site/elite-health-client-results"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View Client Results
+                        </Link>
+                    </Button>
                 </div>
             </Container>
         </Section>

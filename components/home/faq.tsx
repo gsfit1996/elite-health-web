@@ -8,11 +8,11 @@ import { FAQAccordion } from "@/components/ui/faq-accordion";
 export function FAQ() {
     const faqs = [
         {
-            question: "I do not have time. Will this still work?",
-            answer: "Yes. The system is built around reducing decisions and installing defaults, so you can stay consistent even when your week explodes.",
+            question: "I don't have time. Will this still work?",
+            answer: "Yes. The system reduces decisions and installs defaults, so you stay consistent even when your week explodes.",
         },
         {
-            question: "Travel and weekends are my weak points. How do you handle that?",
+            question: "What if travel or weekends are my weak points?",
             answer: "We build travel defaults and weekend guardrails so your schedule stops dictating your results.",
         },
         {

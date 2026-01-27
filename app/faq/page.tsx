@@ -30,44 +30,24 @@ export const metadata: Metadata = {
 
 const faqs: FAQItem[] = [
     {
-        question: "Who is Elite Health OS for?",
-        answer: "Founders and executives who want stable energy, better body composition, and a system that survives chaotic weeks.",
+        question: "I don't have time. Will this still work?",
+        answer: "Yes. The system reduces decisions and installs defaults, so you stay consistent even when your week explodes.",
     },
     {
-        question: "How much time does the system require each week?",
-        answer: "Most clients average 3-4 hours per week including training, planning, and recovery. We build the plan around your calendar.",
+        question: "What if travel or weekends are my weak points?",
+        answer: "We build travel defaults and weekend guardrails so your schedule stops dictating your results.",
     },
     {
-        question: "Do I need to track calories or macros?",
+        question: "Do I need to track everything forever?",
         answer: "No. We use short tracking bursts to diagnose bottlenecks, then shift to simple standards and defaults.",
     },
     {
-        question: "How do you handle travel and unpredictable schedules?",
-        answer: "We install travel defaults, weekend guardrails, and minimum effective dose standards that keep you moving forward.",
+        question: "How is this different from a typical fitness program?",
+        answer: "Most programs demand more time and effort. We build a system that adapts to your calendar and removes friction.",
     },
     {
-        question: "What happens in the first 30-90 days?",
-        answer: "We stabilize energy, remove the primary constraint, and build a repeatable operating system that compounds results.",
-    },
-    {
-        question: "Is this medical advice?",
-        answer: "No. We provide performance education and protocols. Always consult your clinician for diagnosis or treatment.",
-    },
-    {
-        question: "Do you use biomarkers and labs?",
-        answer: "Yes. When useful, we use labs to guide decisions and validate progress with objective markers.",
-    },
-    {
-        question: "What if I already train 3-4 times per week?",
-        answer: "We focus on recovery, nutrition structure, and system design so your training actually produces results.",
-    },
-    {
-        question: "Can you work around injuries or limitations?",
-        answer: "Yes. Training is joint-smart and built to protect long-term momentum.",
-    },
-    {
-        question: "What is the first step?",
-        answer: "Book 15-Min Audit. We review your schedule, goals, and constraints and decide if the system is a fit.",
+        question: "What if an old injury flares up?",
+        answer: "Training is joint-smart and progressive. The goal is momentum without flare-ups or setbacks.",
     },
 ];
 
@@ -129,7 +109,7 @@ export default function FAQPage() {
                         <Card className="p-6">
                             <h3 className="text-xl font-semibold text-foreground mb-2">Next step</h3>
                             <p className="text-sm text-muted-foreground mb-4">
-                                Book 15-Min Audit to map your bottleneck and next 90-day plan.
+                                Schedule your 15-minute audit and leave with a personalised 90-day roadmap - no fluff, no pressure.
                             </p>
                             <Button asChild className="h-11">
                                 <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">

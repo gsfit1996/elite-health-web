@@ -30,8 +30,9 @@ export function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                     >
-                        Get leaner, stronger and energised—<br />
-                        <span className="text-primary glow-text">without perfect weeks.</span>
+                        Build an Elite Body and Unstoppable Energy
+                        <br />
+                        <span className="text-primary glow-text">without sacrificing your business.</span>
                     </motion.h1>
 
                     <motion.p
@@ -40,7 +41,8 @@ export function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        Elite Health OS is for high-performing leaders who want a visibly leaner, stronger body and reliable energy—without meal-plan complexity or perfect weeks.
+                        Elite Health OS is a personalised operating system that helps founders and executives lose excess fat, gain strength, and sustain 6 p.m. sharpness -
+                        even when travel, meetings, and chaos try to derail you.
                     </motion.p>
 
                     <motion.div
@@ -51,12 +53,12 @@ export function Hero() {
                     >
                         <Button size="lg" className="h-14 px-8 text-lg" asChild>
                             <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
-                                Book 15-Min Audit <ArrowRight className="ml-2 h-5 w-5" />
+                                Book Your 15-Min Health Audit <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
                         <Button variant="secondary" size="lg" className="h-14 px-8 text-lg" asChild>
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
-                                Start your 90-day transformation
+                            <Link href="/how-it-works">
+                                See How the System Works
                             </Link>
                         </Button>
                     </motion.div>
@@ -67,7 +69,7 @@ export function Hero() {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
                     >
-                        For busy founders & executives who can't "never miss twice".
+                        Built for founders and executives who need momentum without perfect weeks.
                     </motion.p>
                 </div>
 
@@ -78,10 +80,10 @@ export function Hero() {
                     transition={{ duration: 0.6, delay: 0.5 }}
                 >
                     {[
-                        "Anti-derailment rules",
                         "Visibly leaner waist",
                         "Consistent 6 p.m. energy",
-                        "Weekend/travel guardrails"
+                        "Guardrails for travel weeks",
+                        "Quiet confidence, less stress",
                     ].map((item, i) => (
                         <div key={i} className="flex flex-col items-center justify-center gap-2">
                             <span className="font-semibold text-foreground flex items-center gap-2">
@@ -94,4 +96,3 @@ export function Hero() {
         </section>
     );
 }
-

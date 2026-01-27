@@ -6,6 +6,8 @@ import { ProofChart } from "@/components/ui/proof-chart";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Star, ShieldCheck, Zap, TrendingUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const metrics = [
     {
@@ -94,6 +96,17 @@ export default function ResultsPage() {
                         >
                             We don't do guesswork. We track physiological markers and optimize them until you're operating at your peak potential.
                         </motion.p>
+                        <div className="mt-6">
+                            <Button asChild variant="secondary">
+                                <Link
+                                    href="https://elite-health-performance-3jmem15.gamma.site/elite-health-client-results"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View the full client results
+                                </Link>
+                            </Button>
+                        </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">

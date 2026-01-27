@@ -10,30 +10,37 @@ import { motion } from "framer-motion";
 export function Timeline() {
     const steps = [
         {
-            title: "Today — Get started",
+            title: "Today - Baseline",
             items: [
-                "Baseline + constraints audit (schedule, travel, preferences)",
-                "Scorecard set (weight/waist, steps, training, sleep anchors)",
-                "Default Day nutrition template installed"
-            ]
+                "Baseline audit and scorecards set (waist, steps, training, sleep)",
+                "Constraints mapped against travel and calendar load",
+                "Defaults installed so week one is low-friction",
+            ],
         },
         {
-            title: "Day 7 — Stabilize",
+            title: "Day 7 - Stabilize",
             items: [
-                "First adjustments based on data",
-                "MED Week plan built (for travel/chaos weeks)",
-                "Weekend guardrails deployed"
-            ]
+                "Data-driven adjustments to nutrition and training",
+                "MED Week plan built for chaos weeks",
+                "First performance review to lock in momentum",
+            ],
         },
         {
-            title: "Day 30 — Momentum",
+            title: "Day 14 - Guardrails",
+            items: [
+                "Weekend guardrails installed",
+                "Joint-smart training progression in place",
+                "Recovery anchors dialed in to protect energy",
+            ],
+        },
+        {
+            title: "Day 30 - Momentum",
             items: [
                 "Waist trend becomes predictable",
-                "Evening energy improves",
-                "Training progression feels “safe” and repeatable",
-                "You’re thinking less, executing more"
-            ]
-        }
+                "Evening energy improves and stays stable",
+                "Execution feels simple because defaults run the week",
+            ],
+        },
     ];
 
     return (
@@ -41,12 +48,11 @@ export function Timeline() {
             <Container>
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
-                        Here’s what you’ll have running in 30 days.
+                        What you will have running in 30 days.
                     </h2>
                 </div>
 
                 <div className="relative max-w-4xl mx-auto pl-8 md:pl-0">
-                    {/* Vertical Line */}
                     <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block" />
                     <div className="absolute left-0 top-0 bottom-0 w-px bg-border block md:hidden" />
 
@@ -54,13 +60,14 @@ export function Timeline() {
                         {steps.map((step, i) => (
                             <motion.div
                                 key={i}
-                                className={`flex flex-col md:flex-row items-start ${i % 2 === 0 ? 'md:flex-row-reverse' : ''} gap-8 relative`}
+                                className={`flex flex-col md:flex-row items-start ${
+                                    i % 2 === 0 ? "md:flex-row-reverse" : ""
+                                } gap-8 relative`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2 }}
                             >
-                                {/* Dot */}
                                 <div className="absolute left-[-5px] md:left-1/2 top-0 w-2.5 h-2.5 rounded-full bg-primary -translate-x-1/2 ml-px" />
 
                                 <div className="md:w-1/2 w-full pl-8 md:pl-0 md:px-12">
@@ -89,11 +96,10 @@ export function Timeline() {
                         </Link>
                     </Button>
                     <p className="mt-4 text-sm text-muted-foreground">
-                        You’ll leave with a 90-day outline and whether it’s a fit.
+                        You will leave with a 90-day outline and whether it is a fit.
                     </p>
                 </div>
             </Container>
         </Section>
     );
 }
-

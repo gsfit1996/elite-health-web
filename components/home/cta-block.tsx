@@ -11,15 +11,18 @@ export function CTABlock() {
         <Section className="bg-primary/5 py-24">
             <Container className="text-center max-w-3xl">
                 <h2 className="text-4xl md:text-5xl font-bold font-heading mb-6">
-                    If you want the details, <br />book the 15-Min Audit.
+                    Ready to protect your body like you protect your business?
                 </h2>
+                <p className="text-lg text-muted-foreground mb-10">
+                    Schedule your 15-minute audit and leave with a personalised 90-day roadmap - no fluff, no pressure. Just clarity.
+                </p>
 
                 <div className="grid md:grid-cols-2 gap-4 text-left max-w-xl mx-auto mb-10">
                     {[
-                        "A clear diagnosis of consistency breaks",
-                        "The single constraint to fix first",
-                        "A high-level 90-day roadmap",
-                        "A decision on whether we’re the right fit"
+                        "Diagnose the constraints breaking consistency",
+                        "Outline the 90-day roadmap",
+                        "Decide whether Elite Health OS is a fit",
+                        "Clear next steps you can execute immediately",
                     ].map((item, i) => (
                         <div key={i} className="flex items-center gap-3">
                             <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
@@ -36,10 +39,9 @@ export function CTABlock() {
                     </Link>
                 </Button>
                 <p className="mt-4 text-sm text-muted-foreground">
-                    No fluff. No pressure. Just clarity.
+                    No pressure. Just a clear plan.
                 </p>
             </Container>
         </Section>
     );
 }
-

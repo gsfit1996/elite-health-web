@@ -3,37 +3,51 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
+import { BarChart3, CheckSquare, Gauge, Plane, RotateCcw } from "lucide-react";
 
 export function Mechanisms() {
     const mechanisms = [
         {
             title: "MED Week Standards",
-            desc: "Your plan includes a “minimum effective dose” version for weeks that would normally derail you."
+            desc: "Protect progress when work explodes with a minimum-effective-dose plan.",
+            icon: <Gauge className="h-6 w-6 text-primary" />,
         },
         {
             title: "Never Miss Twice",
-            desc: "Missing once is reality. Missing twice becomes identity. We build rules that stop the spiral."
+            desc: "Turn slip-ups into quick rebounds before they become a spiral.",
+            icon: <RotateCcw className="h-6 w-6 text-primary" />,
         },
         {
             title: "Weekend Structure Rules",
-            desc: "We don’t “hope” weekends go well. We engineer them."
+            desc: "Engineer weekends so you do not undo the week's progress.",
+            icon: <Plane className="h-6 w-6 text-primary" />,
         },
         {
             title: "Default Decisions",
-            desc: "The plan isn’t “more choices.” It’s fewer choices—pre-made defaults that protect results."
+            desc: "Pre-made defaults reduce decision fatigue and protect results.",
+            icon: <CheckSquare className="h-6 w-6 text-primary" />,
         },
         {
             title: "Performance Reviews",
-            desc: "Progress is measured, reviewed, and adjusted—like a business operating rhythm."
-        }
+            desc: "Measure and adjust like a business operating rhythm.",
+            icon: <BarChart3 className="h-6 w-6 text-primary" />,
+        },
     ];
 
     return (
         <Section>
             <Container>
-                <h2 className="text-3xl md:text-5xl font-bold font-heading mb-16 text-center">
-                    The mechanisms behind the results.
-                </h2>
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-5xl font-bold font-heading mb-4">How it works (short version).</h2>
+                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                        Biological Audit: We analyze blood work and wearable data to find the bottlenecks. Protocol Design: You receive a custom 90-day plan covering nutrition,
+                        training, and supplementation, engineered around your calendar. Continuous Optimization: Weekly reviews ensure you never plateau.
+                    </p>
+                </div>
+
+                <h3 className="text-xl md:text-2xl font-semibold text-foreground text-center mb-10">
+                    The mechanisms that keep momentum.
+                </h3>
 
                 <div className="space-y-8 max-w-4xl mx-auto">
                     {mechanisms.map((mech, i) => (
@@ -45,11 +59,18 @@ export function Mechanisms() {
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
                         >
-                            <div className="font-heading text-4xl md:text-5xl font-bold text-muted-foreground/20 group-hover:text-primary/20 transition-colors">
-                                0{i + 1}
+                            <div className="flex items-center gap-4 md:gap-6">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
+                                    {mech.icon}
+                                </div>
+                                <div className="font-heading text-4xl md:text-5xl font-bold text-muted-foreground/20 group-hover:text-primary/20 transition-colors">
+                                    0{i + 1}
+                                </div>
                             </div>
                             <div>
-                                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{mech.title}</h3>
+                                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                                    {mech.title}
+                                </h3>
                                 <p className="text-muted-foreground leading-relaxed">{mech.desc}</p>
                             </div>
                         </motion.div>
