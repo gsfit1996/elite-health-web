@@ -112,7 +112,7 @@ export default function FAQPage() {
                                 Schedule your 15-minute audit and leave with a personalised 90-day roadmap - no fluff, no pressure.
                             </p>
                             <Button asChild className="h-11">
-                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
                                     Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>

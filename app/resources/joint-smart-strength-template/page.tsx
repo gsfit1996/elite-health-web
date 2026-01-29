@@ -164,7 +164,7 @@ export default function JointSmartStrengthTemplatePage() {
                                 We adjust the template to your equipment, injuries, and travel load.
                             </p>
                             <Link
-                                href="https://calendar.app.google/5w7EofmxxhwkdaN1A"
+                                href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site"
                                 className="inline-flex items-center gap-2 text-primary font-semibold hover:translate-x-1 transition-transform"
                             >
                                 Book 15-Min Audit <ArrowRight className="h-4 w-4" />

@@ -5,7 +5,7 @@ import { CalendarCheck, Check } from "lucide-react";
 
 const SCHEDULING_IFRAME_URL =
     "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hR5pTh3SP6S6yUcVH1i5gMpY-VSuvs40CKxaw6mtlfNoBl_Wp5L5M8zNBOgF5J3g0341drxWd?gv=true";
-const BOOKING_PAGE_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
+const BOOKING_PAGE_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site";
 const TESTIMONIALS = [
     {
         quote: "Walked away with a clear 90-day plan and the exact constraint to fix first.",

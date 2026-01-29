@@ -110,7 +110,7 @@ export function WeekendGuardrails() {
                             <Copy className="mr-2 h-4 w-4" /> Copy to Clipboard
                         </Button>
                         <Button asChild className="w-full" variant="outline">
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
                                 Need accountability? Book 15-Min Audit
                             </Link>
                         </Button>

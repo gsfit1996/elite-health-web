@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Outfit } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -37,13 +38,12 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://calendar.app.google" />
         <link rel="preconnect" href="https://calendar.google.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://calendar.app.google" crossOrigin="anonymous" />
-        <script
-          defer
+        <Script
           data-website-id="dfid_tjZ53JLzgJaNQgQ2LYR77"
           data-domain="www.elitehealth.io"
-          data-allow-localhost="true"
-          src="https://datafa.st/js/script.js">
-        </script>
+          src="https://datafa.st/js/script.js"
+          strategy="afterInteractive"
+        />
       </head>
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground font-sans min-h-screen flex flex-col relative overflow-x-hidden`}

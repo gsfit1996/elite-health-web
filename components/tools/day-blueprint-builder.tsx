@@ -270,7 +270,7 @@ export function DayBlueprintBuilder() {
                             Want a tighter schedule around your calendar? Discuss this blueprint in a 15-minute audit. No hard sell.
                         </p>
                         <Button asChild className="w-full h-14 text-lg">
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
                                 Discuss My Day Blueprint (15-Min Audit)
                             </Link>
                         </Button>

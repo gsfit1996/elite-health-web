@@ -52,7 +52,7 @@ export function Timeline() {
                     </h2>
                     <p className="text-sm text-muted-foreground">
                         Want this aligned to your calendar?{" "}
-                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A" className="font-semibold text-primary hover:text-primary/80">
+                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=timeline" className="font-semibold text-primary hover:text-primary/80">
                             Book a 15-minute audit
                         </Link>
                         .
@@ -98,7 +98,7 @@ export function Timeline() {
 
                 <div className="text-center mt-16">
                     <Button size="lg" asChild>
-                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                        <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=timeline">
                             Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>

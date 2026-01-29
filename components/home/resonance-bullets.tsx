@@ -57,7 +57,7 @@ export function ResonanceBullets() {
                     viewport={{ once: true }}
                 >
                     Unsure which describes you?{" "}
-                    <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A" className="text-primary hover:text-primary/80">
+                    <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=resonance" className="text-primary hover:text-primary/80">
                         Book a call
                     </Link>{" "}
                     and we will identify your constraints and build the right roadmap.

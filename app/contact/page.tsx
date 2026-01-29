@@ -53,7 +53,7 @@ export default function ContactPage() {
                 {
                     "@type": "ContactPoint",
                     contactType: "sales",
-                    url: "https://calendar.app.google/5w7EofmxxhwkdaN1A",
+                    url: "https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site",
                 },
             ],
         },
@@ -90,7 +90,7 @@ export default function ContactPage() {
                                 </p>
                             </div>
                             <Button asChild className="h-12">
-                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
                                     Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>

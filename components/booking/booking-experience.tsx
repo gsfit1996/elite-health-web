@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const SCHEDULING_URL =
     "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hR5pTh3SP6S6yUcVH1i5gMpY-VSuvs40CKxaw6mtlfNoBl_Wp5L5M8zNBOgF5J3g0341drxWd?gv=true";
-const BOOKING_PAGE_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
+const BOOKING_PAGE_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site";
 const SCHEDULING_SCRIPT_SRC = "https://calendar.google.com/calendar/scheduling-button-script.js";
 const SCHEDULING_CSS_SRC = "https://calendar.google.com/calendar/scheduling-button-script.css";
 const SCHEDULING_BUTTON_LABEL = "Book 15-Min Audit";

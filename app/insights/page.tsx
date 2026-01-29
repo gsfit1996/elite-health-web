@@ -73,7 +73,7 @@ export default function InsightsPage() {
                             </Link>
                         </Button>
                         <Button asChild variant="ghost" className="h-11 px-6 text-muted-foreground">
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
                                 Book a 15-minute audit
                             </Link>
                         </Button>

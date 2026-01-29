@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import clientResultsData from "../../src/content/clientResultsData";
 
-const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
+const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=client_results";
 
 const filters = [
     { label: "All", value: "all" },

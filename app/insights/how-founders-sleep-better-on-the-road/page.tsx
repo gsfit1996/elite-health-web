@@ -101,7 +101,7 @@ export default function SleepBetterOnTheRoadPage() {
                                     </Link>
                                 </Button>
                                 <Button asChild variant="ghost" className="text-muted-foreground">
-                                    <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                                    <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
                                         Book a 15-minute audit
                                     </Link>
                                 </Button>

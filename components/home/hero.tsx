@@ -52,7 +52,7 @@ export function Hero() {
                         transition={{ duration: 0.5, delay: 0.3 }}
                     >
                         <Button size="lg" className="h-14 px-8 text-lg" asChild>
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=hero">
                                 Book Your 15-Min Health Audit <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>

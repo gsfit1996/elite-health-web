@@ -335,7 +335,7 @@ export function CrashDiagnostic() {
                             Want help turning this into a 90-day plan? Discuss your results in a 15-minute audit. No hard sell.
                         </p>
                         <Button asChild className="w-full h-14 text-lg">
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
                                 Fix This Permanently (Book 15-Min Audit)
                             </Link>
                         </Button>

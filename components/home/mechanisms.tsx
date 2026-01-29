@@ -80,7 +80,7 @@ export function Mechanisms() {
 
                 <div className="mt-10 text-center">
                     <Link
-                        href="https://calendar.app.google/5w7EofmxxhwkdaN1A"
+                        href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=mechanisms"
                         className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80"
                     >
                         Install these mechanisms with a 15-minute audit <ArrowRight className="h-4 w-4" />

@@ -1,20 +1,38 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 
 const BOOKING_PATH = "/reset";
-const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
+const BOOKING_BASE_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A";
+const RESET_REDIRECT_URL = `${BOOKING_BASE_URL}?ref=reset`;
 
 const isBookingHref = (href: string | null) => {
     if (!href) return false;
-    if (href === BOOKING_PATH || href === BOOKING_URL) return true;
+    if (href === BOOKING_PATH) return true;
+    if (href.startsWith(BOOKING_BASE_URL)) return true;
 
     try {
         const resolved = new URL(href, window.location.origin);
-        return resolved.pathname === BOOKING_PATH;
+        if (resolved.pathname === BOOKING_PATH) return true;
+        return resolved.href.startsWith(BOOKING_BASE_URL);
     } catch (error) {
         return false;
     }
+};
+
+const resolveBookingTarget = (href: string | null) => {
+    if (!href) return RESET_REDIRECT_URL;
+    if (href === BOOKING_PATH) return RESET_REDIRECT_URL;
+
+    try {
+        const resolved = new URL(href, window.location.origin);
+        if (resolved.pathname === BOOKING_PATH) return RESET_REDIRECT_URL;
+        if (resolved.href.startsWith(BOOKING_BASE_URL)) return resolved.href;
+    } catch (error) {
+        return RESET_REDIRECT_URL;
+    }
+
+    return RESET_REDIRECT_URL;
 };
 
 export function BookingNavigationOverride() {
@@ -32,10 +50,11 @@ export function BookingNavigationOverride() {
             let node = event.target as HTMLElement | null;
             while (node && node !== document.body) {
                 if (node instanceof HTMLAnchorElement) {
-                    if (isBookingHref(node.getAttribute("href"))) {
+                    const href = node.getAttribute("href");
+                    if (isBookingHref(href)) {
                         event.preventDefault();
                         event.stopPropagation();
-                        window.location.assign(BOOKING_URL);
+                        window.location.assign(resolveBookingTarget(href));
                     }
                     break;
                 }

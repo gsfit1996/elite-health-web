@@ -44,7 +44,7 @@ export function MobileActionBar() {
                             <p className="text-sm font-bold text-foreground leading-none">15-Min Audit</p>
                         </div>
                         <Button size="default" className="shadow-lg shadow-primary/20" asChild>
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A">Book 15-Min Audit</Link>
+                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=mobile_bar">Book 15-Min Audit</Link>
                         </Button>
                     </div>
                 </motion.div>
