@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 
-const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=footer";
+const BOOKING_URL = "/performance-reset?ref=footer";
 
 export function Footer() {
     return (

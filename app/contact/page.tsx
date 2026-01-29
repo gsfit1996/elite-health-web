@@ -53,7 +53,7 @@ export default function ContactPage() {
                 {
                     "@type": "ContactPoint",
                     contactType: "sales",
-                    url: "https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site",
+                    url: "https://www.elitehealth.io/performance-reset",
                 },
             ],
         },
@@ -90,7 +90,7 @@ export default function ContactPage() {
                                 </p>
                             </div>
                             <Button asChild className="h-12">
-                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
+                                <Link href="/performance-reset?ref=site">
                                     Book 15-Min Audit <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>

@@ -179,7 +179,7 @@ export default function ResourcesPage() {
                                     </Link>
                                 </Button>
                                 <Button asChild variant="ghost" className="h-11 px-6 text-muted-foreground">
-                                    <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
+                                    <Link href="/performance-reset?ref=site">
                                         Build My Plan
                                     </Link>
                                 </Button>
@@ -324,7 +324,7 @@ export default function ResourcesPage() {
                                 </Link>
                             </Button>
                             <Button asChild variant="ghost" className="h-11 px-6 text-muted-foreground">
-                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
+                                <Link href="/performance-reset?ref=site">
                                     Book a 15-minute audit
                                 </Link>
                             </Button>

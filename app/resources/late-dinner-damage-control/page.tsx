@@ -114,7 +114,7 @@ export default function LateDinnerDamageControlPage() {
                                 We build meal defaults that fit your social calendar without losing momentum.
                             </p>
                             <Link
-                                href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site"
+                                href="/performance-reset?ref=site"
                                 className="inline-flex items-center gap-2 text-primary font-semibold hover:translate-x-1 transition-transform"
                             >
                                 Book 15-Min Audit <ArrowRight className="h-4 w-4" />

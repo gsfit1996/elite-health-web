@@ -47,7 +47,7 @@ export function AboutGareth() {
                             If you want a clear, personalised roadmap you can rely on - at work and at home - start with a 15-minute Performance Audit.
                         </p>
                         <Button asChild className="h-12 px-6 text-base">
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=about_home">
+                            <Link href="/performance-reset?ref=about_home">
                                 Book 15-Minute Performance Audit <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>

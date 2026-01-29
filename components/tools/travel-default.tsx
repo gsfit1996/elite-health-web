@@ -120,7 +120,7 @@ export function TravelDefaultDay() {
 
                     <div className="space-y-3 pt-2">
                         <Button asChild className="w-full h-14 text-lg">
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
+                            <Link href="/performance-reset?ref=site">
                                 Customize This (Book 15-Min Audit)
                             </Link>
                         </Button>

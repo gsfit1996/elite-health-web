@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site";
+const BOOKING_URL = "/performance-reset?ref=site";
 
 type ErrorBoundaryProps = {
     children: ReactNode;

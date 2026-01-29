@@ -55,7 +55,7 @@ export function Navbar() {
 
                     <div className="hidden md:flex items-center gap-4">
                         <Button asChild>
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=nav">Book 15-Min Audit</Link>
+                            <Link href="/performance-reset?ref=nav">Book 15-Min Audit</Link>
                         </Button>
                     </div>
 
@@ -111,7 +111,7 @@ export function Navbar() {
 
                         <div className="mt-8">
                             <Button asChild className="w-full text-lg h-14">
-                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=nav_mobile" onClick={() => setIsMobileMenuOpen(false)}>
+                                <Link href="/performance-reset?ref=nav_mobile" onClick={() => setIsMobileMenuOpen(false)}>
                                     Book 15-Min Audit
                                 </Link>
                             </Button>

@@ -71,7 +71,7 @@ export default function AboutPage() {
                                 I help high-performing founders and executives build a leaner body, steadier energy, and sharper focus - without adding time to their calendar.
                             </p>
                             <Button size="lg" className="h-12 px-6 text-base" asChild>
-                                <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
+                                <Link href="/performance-reset?ref=site">
                                     Book Your 15-Minute Performance Audit <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
@@ -179,7 +179,7 @@ export default function AboutPage() {
                             Book a 15-minute Performance Audit. You will leave with your #1 bottleneck to fix - and a clear path forward.
                         </p>
                         <Button size="lg" className="h-12 px-6 text-base" asChild>
-                            <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
+                            <Link href="/performance-reset?ref=site">
                                 Book Your 15-Minute Performance Audit <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>

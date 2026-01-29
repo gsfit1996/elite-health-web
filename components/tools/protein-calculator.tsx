@@ -136,7 +136,7 @@ export function ProteinCalculator() {
 
                             <div className="space-y-3">
                                 <Button asChild className="w-full h-14 text-lg">
-                                    <Link href="https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=site">
+                                    <Link href="/performance-reset?ref=site">
                                         Build My Full Nutrition Plan
                                     </Link>
                                 </Button>

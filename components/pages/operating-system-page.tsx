@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const BOOKING_URL = "https://calendar.app.google/5w7EofmxxhwkdaN1A?ref=how_it_works";
+const BOOKING_URL = "/performance-reset?ref=how_it_works";
 
 export function OperatingSystemPageContent() {
     return (
