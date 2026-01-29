@@ -2,6 +2,8 @@
 import { z } from "zod";
 import { sql } from "@vercel/postgres";
 
+export const runtime = "nodejs";
+
 const bodyfatRange = z.enum(["10-12%", "13-15%", "16-18%", "19-22%", "23-27%", "28%+"]);
 const goalBodyfatRange = z.enum(["10-12%", "13-15%", "16-18%", "19-22%", "23%+"]);
 const workHoursRange = z.enum(["30-40", "41-50", "51-60", "61-70", "70+"]);
@@ -33,19 +35,46 @@ const payloadSchema = z.object({
     landingPath: z.string().optional().nullable(),
 });
 
+type ErrorResponse = {
+    ok: false;
+    code: string;
+    message: string;
+    requestId?: string;
+    fieldErrors?: Record<string, string[]>;
+};
+
+const respondError = (status: number, payload: ErrorResponse) =>
+    NextResponse.json(payload, { status });
+
 export async function POST(request: Request) {
+    const requestId = crypto.randomUUID();
+
     try {
+        if (!process.env.POSTGRES_URL) {
+            console.error({
+                requestId,
+                code: "db_not_configured",
+                message: "POSTGRES_URL missing - DB not configured",
+            });
+            return respondError(500, {
+                ok: false,
+                code: "db_not_configured",
+                message: "POSTGRES_URL missing - DB not configured",
+                requestId,
+            });
+        }
+
         const json = await request.json();
         const parsed = payloadSchema.safeParse(json);
 
         if (!parsed.success) {
-            return NextResponse.json(
-                {
-                    message: "Validation failed",
-                    errors: parsed.error.flatten(),
-                },
-                { status: 400 }
-            );
+            return respondError(400, {
+                ok: false,
+                code: "validation_error",
+                message: "Validation failed",
+                fieldErrors: parsed.error.flatten().fieldErrors,
+                requestId,
+            });
         }
 
         const data = parsed.data;
@@ -106,6 +135,28 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ ok: true });
     } catch (error) {
-        return NextResponse.json({ message: "Server error" }, { status: 500 });
+        const message = error instanceof Error ? error.message : "Unknown error";
+        const stack = error instanceof Error ? error.stack : undefined;
+        let code = "server_error";
+        let userMessage = "Server error - please try again.";
+
+        if (typeof message === "string" && message.includes("performance_reset_applications")) {
+            code = "db_table_missing";
+            userMessage = "Database table missing - run migration";
+        }
+
+        console.error({
+            requestId,
+            code,
+            message,
+            stack,
+        });
+
+        return respondError(500, {
+            ok: false,
+            code,
+            message: userMessage,
+            requestId,
+        });
     }
 }

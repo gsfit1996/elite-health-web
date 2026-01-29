@@ -230,6 +230,7 @@ export function PerformanceResetFlow() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [errors, setErrors] = useState<FormErrors>({});
     const [serverError, setServerError] = useState<string | null>(null);
+    const [serverErrorId, setServerErrorId] = useState<string | null>(null);
 
     const [formData, setFormData] = useState<FormState>({
         firstName: "",
@@ -302,6 +303,41 @@ export function PerformanceResetFlow() {
         return Object.keys(nextErrors).length === 0;
     };
 
+
+    const applyFieldErrors = (fieldErrors: Record<string, string[] | undefined>) => {
+        const nextErrors: FormErrors = {};
+        const map: Record<string, keyof FormState> = {
+            firstName: "firstName",
+            lastName: "lastName",
+            email: "email",
+            phone: "phone",
+            currentBodyfatRange: "currentBodyfat",
+            goalBodyfatRange: "goalBodyfat",
+            physiqueConfidence: "physiqueConfidence",
+            energy6pm: "energy6pm",
+            stress: "stress",
+            challenges: "challenges",
+            workHoursRange: "workHours",
+            role: "role",
+            success612: "success",
+            whyNow: "whyNow",
+            consent: "consent",
+            company: "company",
+        };
+
+        Object.entries(fieldErrors).forEach(([key, messages]) => {
+            if (!messages || messages.length === 0) return;
+            const formKey = map[key];
+            if (formKey) {
+                nextErrors[formKey] = messages[0];
+            }
+        });
+
+        if (Object.keys(nextErrors).length > 0) {
+            setErrors(nextErrors);
+        }
+    };
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         if (!validate()) {
@@ -310,6 +346,7 @@ export function PerformanceResetFlow() {
 
         setStatus("loading");
         setServerError(null);
+        setServerErrorId(null);
 
         const challenges = [...formData.challenges];
         if (formData.otherChallenge.trim()) {
@@ -348,9 +385,27 @@ export function PerformanceResetFlow() {
                 body: JSON.stringify(payload),
             });
 
+            const result = await response.json().catch(() => ({}));
+
             if (!response.ok) {
-                const result = await response.json().catch(() => ({}));
-                throw new Error(result?.message || "Something went wrong. Please try again.");
+                if (response.status === 400) {
+                    if (result?.fieldErrors) {
+                        applyFieldErrors(result.fieldErrors);
+                    }
+                    setServerError(result?.message || "Please check the highlighted fields.");
+                } else if (response.status === 401) {
+                    setServerError("Unauthorized (admin auth is blocking the API).");
+                } else if (response.status >= 500) {
+                    const requestId = result?.requestId || result?.errorId;
+                    if (requestId) {
+                        setServerErrorId(String(requestId));
+                    }
+                    setServerError("Server error - please try again.");
+                } else {
+                    setServerError(result?.message || "Something went wrong. Please try again.");
+                }
+                setStatus("error");
+                return;
             }
 
             setStatus("success");
@@ -606,7 +661,10 @@ export function PerformanceResetFlow() {
 
                         {serverError && (
                             <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">
-                                {serverError}
+                                <p>{serverError}</p>
+                                {serverErrorId && (
+                                    <p className="mt-2 text-xs text-red-200/80">Error ID: {serverErrorId}</p>
+                                )}
                             </div>
                         )}
 
