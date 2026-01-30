@@ -23,10 +23,10 @@ export function PerformanceResetFlow() {
                 <p className="mt-2 text-sm text-muted-foreground">
                     Choose a slot below. The booking stays on this page.
                 </p>
-                <div className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-muted/10">
+                <div className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
                     <iframe
                         src={SCHEDULING_URL}
-                        style={{ border: 0 }}
+                        style={{ border: 0, backgroundColor: "#fff" }}
                         width="100%"
                         height="600"
                         frameBorder={0}
