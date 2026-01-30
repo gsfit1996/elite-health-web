@@ -4,6 +4,17 @@ import { sql } from "@vercel/postgres";
 
 export const runtime = "nodejs";
 
+
+const connectionString =
+    process.env.POSTGRES_URL ||
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.POSTGRES_PRISMA_URL ||
+    process.env.DATABASE_URL;
+
+if (!process.env.POSTGRES_URL && connectionString) {
+    process.env.POSTGRES_URL = connectionString;
+}
+
 const bodyfatRange = z.enum(["10-12%", "13-15%", "16-18%", "19-22%", "23-27%", "28%+"]);
 const goalBodyfatRange = z.enum(["10-12%", "13-15%", "16-18%", "19-22%", "23%+"]);
 const workHoursRange = z.enum(["30-40", "41-50", "51-60", "61-70", "70+"]);

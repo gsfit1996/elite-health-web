@@ -1,19 +1,32 @@
 ﻿"use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, ArrowLeft, Loader2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
-import Link from "next/link";
 
 const SCHEDULING_URL =
     "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hR5pTh3SP6S6yUcVH1i5gMpY-VSuvs40CKxaw6mtlfNoBl_Wp5L5M8zNBOgF5J3g0341drxWd?gv=true";
-const SCHEDULING_SCRIPT_SRC = "https://calendar.google.com/calendar/scheduling-button-script.js";
-const SCHEDULING_CSS_SRC = "https://calendar.google.com/calendar/scheduling-button-script.css";
-const SCHEDULING_BUTTON_LABEL = "Book 15-Min Performance Reset";
-const SCHEDULING_BUTTON_COLOR = "#039BE5";
+
+const bodyfatCurrentOptions = ["10-12%", "13-15%", "16-18%", "19-22%", "23-27%", "28%+"];
+const bodyfatGoalOptions = ["10-12%", "13-15%", "16-18%", "19-22%", "23%+"];
+const workHoursOptions = ["30-40", "41-50", "51-60", "61-70", "70+"];
+const challengeOptions = [
+    "Stubborn fat loss",
+    "Low 6pm energy / crash",
+    "Poor sleep",
+    "High stress / anxiety",
+    "Inconsistent nutrition",
+    "Inconsistent training",
+    "Travel disrupting routines",
+    "Low libido / hormones",
+    "High cholesterol / biomarkers",
+    "Time constraints",
+    "Other",
+];
 
 type FormState = {
     firstName: string;
@@ -37,196 +50,12 @@ type FormState = {
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
 
-type SchedulingButtonLoadOptions = {
-    url: string;
-    color?: string;
-    label?: string;
-    target?: Element | null;
-};
-
-declare global {
-    interface Window {
-        calendar?: {
-            schedulingButton?: {
-                load: (options: SchedulingButtonLoadOptions) => void;
-            };
-        };
-    }
-}
-
-let schedulingScriptPromise: Promise<void> | null = null;
-
-const bodyfatCurrentOptions = ["10-12%", "13-15%", "16-18%", "19-22%", "23-27%", "28%+"];
-const bodyfatGoalOptions = ["10-12%", "13-15%", "16-18%", "19-22%", "23%+"];
-const workHoursOptions = ["30-40", "41-50", "51-60", "61-70", "70+"];
-const challengeOptions = [
-    "Stubborn fat loss",
-    "Low 6pm energy / crash",
-    "Poor sleep",
-    "High stress / anxiety",
-    "Inconsistent nutrition",
-    "Inconsistent training",
-    "Travel disrupting routines",
-    "Low libido / hormones",
-    "High cholesterol / biomarkers",
-    "Time constraints",
-    "Other",
-];
-
-const canUseDOM = () => typeof window !== "undefined" && typeof document !== "undefined";
-
-const ensureSchedulingStyles = () => {
-    if (!canUseDOM() || !document.head) {
-        return;
-    }
-
-    const existing = document.querySelector<HTMLLinkElement>("link[data-scheduling-style]");
-    if (existing) {
-        return;
-    }
-
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = SCHEDULING_CSS_SRC;
-    link.dataset.schedulingStyle = "true";
-    document.head.appendChild(link);
-};
-
-const ensureSchedulingScript = () => {
-    if (!canUseDOM() || !document.body) {
-        return Promise.reject(new Error("DOM not ready"));
-    }
-
-    if (window.calendar?.schedulingButton?.load) {
-        return Promise.resolve();
-    }
-
-    if (schedulingScriptPromise) {
-        return schedulingScriptPromise;
-    }
-
-    schedulingScriptPromise = new Promise((resolve, reject) => {
-        const existing = document.querySelector<HTMLScriptElement>("script[data-scheduling-script]");
-        if (existing) {
-            if (window.calendar?.schedulingButton?.load) {
-                resolve();
-                return;
-            }
-
-            existing.addEventListener("load", () => resolve());
-            existing.addEventListener("error", () => reject(new Error("Scheduling script failed to load")));
-            return;
-        }
-
-        const script = document.createElement("script");
-        script.src = SCHEDULING_SCRIPT_SRC;
-        script.async = true;
-        script.defer = true;
-        script.dataset.schedulingScript = "true";
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error("Scheduling script failed to load"));
-        document.body.appendChild(script);
-    });
-
-    return schedulingScriptPromise;
-};
-
-const renderSchedulingButton = (target: HTMLElement) => {
-    if (!window.calendar?.schedulingButton?.load) {
-        return;
-    }
-
-    target.innerHTML = "";
-    window.calendar.schedulingButton.load({
-        url: SCHEDULING_URL,
-        color: SCHEDULING_BUTTON_COLOR,
-        label: SCHEDULING_BUTTON_LABEL,
-        target,
-    });
-};
-
-function CalendarSchedulingEmbed({ active }: { active: boolean }) {
-    const targetRef = useRef<HTMLDivElement | null>(null);
-    const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
-
-    useEffect(() => {
-        if (!active || !canUseDOM()) {
-            return;
-        }
-
-        let canceled = false;
-        let cleanup = () => {};
-
-        const renderButton = () => {
-            if (canceled) {
-                return;
-            }
-
-            const target = targetRef.current;
-            if (!target || !window.calendar?.schedulingButton?.load) {
-                setStatus("error");
-                return;
-            }
-
-            renderSchedulingButton(target);
-            setStatus("ready");
-        };
-
-        const init = async () => {
-            try {
-                ensureSchedulingStyles();
-                await ensureSchedulingScript();
-
-                if (canceled) {
-                    return;
-                }
-
-                if (document.readyState === "complete") {
-                    renderButton();
-                } else {
-                    window.addEventListener("load", renderButton, { once: true });
-                    cleanup = () => window.removeEventListener("load", renderButton);
-                }
-            } catch (error) {
-                if (!canceled) {
-                    setStatus("error");
-                }
-            }
-        };
-
-        init();
-
-        return () => {
-            canceled = true;
-            cleanup();
-        };
-    }, [active]);
-
-    return (
-        <div className="rounded-2xl border border-border/60 bg-background/70 p-6 text-center shadow-[0_18px_40px_rgba(15,23,42,0.35)]">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary/70">Step 2 of 2</p>
-            <h3 className="mt-3 text-2xl font-semibold text-foreground">Book your 15-minute performance reset</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-                Stay on this page and choose the time that works best. We will send confirmation details to your email.
-            </p>
-            <div className="mt-6 flex justify-center">
-                <div ref={targetRef} />
-            </div>
-            {status === "loading" && (
-                <p className="mt-4 text-xs text-muted-foreground">Loading scheduling options...</p>
-            )}
-            {status === "error" && (
-                <p className="mt-4 text-xs text-muted-foreground">
-                    Scheduling is still loading. Please refresh this page or try again in a few moments.
-                </p>
-            )}
-        </div>
-    );
-}
+const totalSteps = 13;
 
 export function PerformanceResetFlow() {
     const searchParams = useSearchParams();
     const [step, setStep] = useState<"form" | "schedule">("form");
+    const [activeIndex, setActiveIndex] = useState(0);
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [errors, setErrors] = useState<FormErrors>({});
     const [serverError, setServerError] = useState<string | null>(null);
@@ -283,7 +112,7 @@ export function PerformanceResetFlow() {
         setErrors((prev) => ({ ...prev, challenges: undefined }));
     };
 
-    const validate = () => {
+    const validateAll = () => {
         const nextErrors: FormErrors = {};
         if (!formData.firstName.trim()) nextErrors.firstName = "First name is required.";
         if (!formData.lastName.trim()) nextErrors.lastName = "Last name is required.";
@@ -303,6 +132,50 @@ export function PerformanceResetFlow() {
         return Object.keys(nextErrors).length === 0;
     };
 
+    const validateStep = (index: number) => {
+        const stepErrors: FormErrors = {};
+        switch (index) {
+            case 0:
+                if (!formData.firstName.trim()) stepErrors.firstName = "First name is required.";
+                if (!formData.lastName.trim()) stepErrors.lastName = "Last name is required.";
+                break;
+            case 1:
+                if (!formData.email.trim()) stepErrors.email = "Email is required.";
+                break;
+            case 2:
+                if (!formData.currentBodyfat) stepErrors.currentBodyfat = "Select your current range.";
+                break;
+            case 3:
+                if (!formData.goalBodyfat) stepErrors.goalBodyfat = "Select your goal range.";
+                break;
+            case 7:
+                if (formData.challenges.length === 0) stepErrors.challenges = "Select at least one challenge.";
+                if (formData.challenges.includes("Other") && !formData.otherChallenge.trim()) {
+                    stepErrors.otherChallenge = "Tell us what else is limiting you.";
+                }
+                break;
+            case 8:
+                if (!formData.workHours) stepErrors.workHours = "Select your work hours.";
+                break;
+            case 9:
+                if (!formData.role.trim()) stepErrors.role = "Role is required.";
+                break;
+            case 10:
+                if (!formData.success.trim()) stepErrors.success = "Please share your success vision.";
+                break;
+            case 11:
+                if (!formData.whyNow.trim()) stepErrors.whyNow = "Please share why now.";
+                break;
+            case 12:
+                if (!formData.consent) stepErrors.consent = "Consent is required.";
+                break;
+            default:
+                break;
+        }
+
+        setErrors((prev) => ({ ...prev, ...stepErrors }));
+        return Object.keys(stepErrors).length === 0;
+    };
 
     const applyFieldErrors = (fieldErrors: Record<string, string[] | undefined>) => {
         const nextErrors: FormErrors = {};
@@ -338,9 +211,8 @@ export function PerformanceResetFlow() {
         }
     };
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-        if (!validate()) {
+    const handleSubmit = async () => {
+        if (!validateAll()) {
             return;
         }
 
@@ -399,6 +271,7 @@ export function PerformanceResetFlow() {
                     const requestId = result?.requestId || result?.errorId;
                     if (requestId) {
                         setServerErrorId(String(requestId));
+                        console.error("Performance reset server error", requestId);
                     }
                     setServerError("Server error - please try again.");
                 } else {
@@ -416,30 +289,25 @@ export function PerformanceResetFlow() {
         }
     };
 
-    return (
-        <div className="space-y-10">
-            <div className="rounded-3xl border border-border/60 bg-background/80 p-6 md:p-10 shadow-[0_30px_80px_rgba(15,23,42,0.35)]">
-                <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+    const handleNext = () => {
+        if (!validateStep(activeIndex)) {
+            return;
+        }
+        setActiveIndex((prev) => Math.min(prev + 1, totalSteps - 1));
+    };
+
+    const handleBack = () => {
+        setActiveIndex((prev) => Math.max(prev - 1, 0));
+    };
+
+    const progress = ((activeIndex + 1) / totalSteps) * 100;
+
+    const renderStep = () => {
+        switch (activeIndex) {
+            case 0:
+                return (
                     <div className="space-y-4">
-                        <Badge variant="outline">Performance Reset</Badge>
-                        <h1 className="text-3xl md:text-5xl font-bold font-heading">
-                            Book a 15-Min Performance Reset
-                        </h1>
-                        <p className="text-sm md:text-base text-muted-foreground max-w-2xl">
-                            Complete the short application so we can review your constraints and personalise the reset. Once submitted, you can schedule instantly.
-                        </p>
-                    </div>
-                    <div className="rounded-2xl border border-primary/20 bg-primary/10 px-4 py-3 text-xs uppercase tracking-[0.3em] text-primary/80">
-                        Step {step === "form" ? "1" : "2"} of 2
-                    </div>
-                </div>
-            </div>
-
-            {step === "form" && (
-                <form onSubmit={handleSubmit} className="space-y-8">
-                    <div className="grid gap-6 rounded-3xl border border-border/60 bg-muted/10 p-6 md:p-10">
-                        <h2 className="text-xl font-semibold text-foreground">Application form</h2>
-
+                        <h2 className="text-2xl md:text-3xl font-semibold">What's your name?</h2>
                         <div className="grid gap-4 md:grid-cols-2">
                             <div className="space-y-2">
                                 <label className="text-sm font-semibold">First name</label>
@@ -460,7 +328,12 @@ export function PerformanceResetFlow() {
                                 {errors.lastName && <p className="text-xs text-red-400">{errors.lastName}</p>}
                             </div>
                         </div>
-
+                    </div>
+                );
+            case 1:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Where can we reach you?</h2>
                         <div className="grid gap-4 md:grid-cols-2">
                             <div className="space-y-2">
                                 <label className="text-sm font-semibold">Email</label>
@@ -481,161 +354,198 @@ export function PerformanceResetFlow() {
                                 />
                             </div>
                         </div>
-
-                        <div className="grid gap-4 md:grid-cols-2">
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold">CURRENT body fat %</label>
-                                <select
-                                    value={formData.currentBodyfat}
-                                    onChange={(event) => updateField("currentBodyfat", event.target.value)}
-                                    className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
-                                >
-                                    <option value="">Select range</option>
-                                    {bodyfatCurrentOptions.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}
-                                        </option>
-                                    ))}
-                                </select>
-                                <p className="text-xs text-muted-foreground">Pick the closest range.</p>
-                                {errors.currentBodyfat && <p className="text-xs text-red-400">{errors.currentBodyfat}</p>}
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold">GOAL body fat %</label>
-                                <select
-                                    value={formData.goalBodyfat}
-                                    onChange={(event) => updateField("goalBodyfat", event.target.value)}
-                                    className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
-                                >
-                                    <option value="">Select range</option>
-                                    {bodyfatGoalOptions.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}
-                                        </option>
-                                    ))}
-                                </select>
-                                {errors.goalBodyfat && <p className="text-xs text-red-400">{errors.goalBodyfat}</p>}
-                            </div>
+                    </div>
+                );
+            case 2:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">CURRENT body fat %</h2>
+                        <p className="text-sm text-muted-foreground">Pick the closest range.</p>
+                        <select
+                            value={formData.currentBodyfat}
+                            onChange={(event) => updateField("currentBodyfat", event.target.value)}
+                            className="h-12 w-full rounded-md border border-input bg-background px-3 text-sm"
+                        >
+                            <option value="">Select range</option>
+                            {bodyfatCurrentOptions.map((option) => (
+                                <option key={option} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.currentBodyfat && <p className="text-xs text-red-400">{errors.currentBodyfat}</p>}
+                    </div>
+                );
+            case 3:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">GOAL body fat %</h2>
+                        <select
+                            value={formData.goalBodyfat}
+                            onChange={(event) => updateField("goalBodyfat", event.target.value)}
+                            className="h-12 w-full rounded-md border border-input bg-background px-3 text-sm"
+                        >
+                            <option value="">Select range</option>
+                            {bodyfatGoalOptions.map((option) => (
+                                <option key={option} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.goalBodyfat && <p className="text-xs text-red-400">{errors.goalBodyfat}</p>}
+                    </div>
+                );
+            case 4:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Physique confidence</h2>
+                        <p className="text-sm text-muted-foreground">On a scale of 1-10 how confident are you with your current physique?</p>
+                        <div className="flex items-center gap-4">
+                            <input
+                                type="range"
+                                min={1}
+                                max={10}
+                                value={formData.physiqueConfidence}
+                                onChange={(event) => updateField("physiqueConfidence", Number(event.target.value))}
+                                className="w-full accent-primary"
+                            />
+                            <span className="text-lg font-semibold text-primary">{formData.physiqueConfidence}</span>
                         </div>
-
-                        <div className="grid gap-6 md:grid-cols-3">
-                            {[
-                                {
-                                    label: "On a scale of 1-10 how confident are you with your current physique?",
-                                    value: formData.physiqueConfidence,
-                                    key: "physiqueConfidence",
-                                },
-                                {
-                                    label: "On a scale of 1-10, how energized, mentally sharp, and focused do you feel by 6 PM?",
-                                    value: formData.energy6pm,
-                                    key: "energy6pm",
-                                },
-                                {
-                                    label: "On a scale of 1-10, how would you rate your average daily stress levels?",
-                                    value: formData.stress,
-                                    key: "stress",
-                                },
-                            ].map((item) => (
-                                <div key={item.key} className="space-y-3 rounded-2xl border border-border/60 bg-background/70 p-4">
-                                    <label className="text-sm font-semibold text-foreground">{item.label}</label>
-                                    <div className="flex items-center gap-3">
-                                        <input
-                                            type="range"
-                                            min={1}
-                                            max={10}
-                                            value={item.value}
-                                            onChange={(event) =>
-                                                updateField(item.key as keyof FormState, Number(event.target.value) as FormState[keyof FormState])
-                                            }
-                                            className="w-full accent-primary"
-                                        />
-                                        <span className="text-sm font-semibold text-primary">{item.value}</span>
-                                    </div>
-                                </div>
+                    </div>
+                );
+            case 5:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">6 PM energy</h2>
+                        <p className="text-sm text-muted-foreground">On a scale of 1-10, how energized, mentally sharp, and focused do you feel by 6 PM?</p>
+                        <div className="flex items-center gap-4">
+                            <input
+                                type="range"
+                                min={1}
+                                max={10}
+                                value={formData.energy6pm}
+                                onChange={(event) => updateField("energy6pm", Number(event.target.value))}
+                                className="w-full accent-primary"
+                            />
+                            <span className="text-lg font-semibold text-primary">{formData.energy6pm}</span>
+                        </div>
+                    </div>
+                );
+            case 6:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Daily stress</h2>
+                        <p className="text-sm text-muted-foreground">On a scale of 1-10, how would you rate your average daily stress levels?</p>
+                        <div className="flex items-center gap-4">
+                            <input
+                                type="range"
+                                min={1}
+                                max={10}
+                                value={formData.stress}
+                                onChange={(event) => updateField("stress", Number(event.target.value))}
+                                className="w-full accent-primary"
+                            />
+                            <span className="text-lg font-semibold text-primary">{formData.stress}</span>
+                        </div>
+                    </div>
+                );
+            case 7:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">What's limiting you right now?</h2>
+                        <div className="grid gap-3 md:grid-cols-2">
+                            {challengeOptions.map((option) => (
+                                <label key={option} className="flex items-center gap-3 rounded-xl border border-border/60 bg-background/70 p-3 text-sm">
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.challenges.includes(option)}
+                                        onChange={() => toggleChallenge(option)}
+                                        className="h-4 w-4 accent-primary"
+                                    />
+                                    {option}
+                                </label>
                             ))}
                         </div>
-
-                        <div className="space-y-3">
-                            <p className="text-sm font-semibold">Which of these challenges is currently limiting your performance or quality of life?</p>
-                            <div className="grid gap-3 md:grid-cols-2">
-                                {challengeOptions.map((option) => (
-                                    <label key={option} className="flex items-center gap-3 rounded-xl border border-border/60 bg-background/70 p-3 text-sm">
-                                        <input
-                                            type="checkbox"
-                                            checked={formData.challenges.includes(option)}
-                                            onChange={() => toggleChallenge(option)}
-                                            className="h-4 w-4 accent-primary"
-                                        />
-                                        {option}
-                                    </label>
-                                ))}
-                            </div>
-                            {formData.challenges.includes("Other") && (
-                                <div className="space-y-2">
-                                    <Input
-                                        value={formData.otherChallenge}
-                                        onChange={(event) => updateField("otherChallenge", event.target.value)}
-                                        placeholder="Tell us more..."
-                                    />
-                                    {errors.otherChallenge && <p className="text-xs text-red-400">{errors.otherChallenge}</p>}
-                                </div>
-                            )}
-                            {errors.challenges && <p className="text-xs text-red-400">{errors.challenges}</p>}
-                        </div>
-
-                        <div className="grid gap-4 md:grid-cols-2">
+                        {formData.challenges.includes("Other") && (
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold">How many hours do you work per week, on average?</label>
-                                <select
-                                    value={formData.workHours}
-                                    onChange={(event) => updateField("workHours", event.target.value)}
-                                    className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
-                                >
-                                    <option value="">Select range</option>
-                                    {workHoursOptions.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}
-                                        </option>
-                                    ))}
-                                </select>
-                                {errors.workHours && <p className="text-xs text-red-400">{errors.workHours}</p>}
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold">What's your current occupation/role?</label>
                                 <Input
-                                    value={formData.role}
-                                    onChange={(event) => updateField("role", event.target.value)}
-                                    placeholder="Founder, CEO, Director..."
+                                    value={formData.otherChallenge}
+                                    onChange={(event) => updateField("otherChallenge", event.target.value)}
+                                    placeholder="Tell us more..."
                                 />
-                                {errors.role && <p className="text-xs text-red-400">{errors.role}</p>}
+                                {errors.otherChallenge && <p className="text-xs text-red-400">{errors.otherChallenge}</p>}
                             </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold">If you were operating at your absolute best - physically, mentally, and professionally - what would success look like for you 6-12 months from now?</label>
-                            <textarea
-                                value={formData.success}
-                                onChange={(event) => updateField("success", event.target.value)}
-                                rows={4}
-                                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                placeholder="Describe the outcome you want."
-                            />
-                            {errors.success && <p className="text-xs text-red-400">{errors.success}</p>}
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold">Why is now the right time to take action? Why not leave it off for another year?</label>
-                            <textarea
-                                value={formData.whyNow}
-                                onChange={(event) => updateField("whyNow", event.target.value)}
-                                rows={4}
-                                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                placeholder="Share what's driving urgency."
-                            />
-                            {errors.whyNow && <p className="text-xs text-red-400">{errors.whyNow}</p>}
-                        </div>
-
-                        <label className="flex items-start gap-3 rounded-xl border border-border/60 bg-background/70 p-3 text-sm">
+                        )}
+                        {errors.challenges && <p className="text-xs text-red-400">{errors.challenges}</p>}
+                    </div>
+                );
+            case 8:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Weekly work hours</h2>
+                        <p className="text-sm text-muted-foreground">How many hours do you work per week, on average?</p>
+                        <select
+                            value={formData.workHours}
+                            onChange={(event) => updateField("workHours", event.target.value)}
+                            className="h-12 w-full rounded-md border border-input bg-background px-3 text-sm"
+                        >
+                            <option value="">Select range</option>
+                            {workHoursOptions.map((option) => (
+                                <option key={option} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.workHours && <p className="text-xs text-red-400">{errors.workHours}</p>}
+                    </div>
+                );
+            case 9:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Your current role</h2>
+                        <Input
+                            value={formData.role}
+                            onChange={(event) => updateField("role", event.target.value)}
+                            placeholder="Founder, CEO, Director..."
+                        />
+                        {errors.role && <p className="text-xs text-red-400">{errors.role}</p>}
+                    </div>
+                );
+            case 10:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Success in 6-12 months</h2>
+                        <p className="text-sm text-muted-foreground">If you were operating at your absolute best, what would success look like?</p>
+                        <textarea
+                            value={formData.success}
+                            onChange={(event) => updateField("success", event.target.value)}
+                            rows={5}
+                            className="w-full rounded-md border border-input bg-background px-3 py-3 text-sm"
+                            placeholder="Describe the outcome you want."
+                        />
+                        {errors.success && <p className="text-xs text-red-400">{errors.success}</p>}
+                    </div>
+                );
+            case 11:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Why now?</h2>
+                        <p className="text-sm text-muted-foreground">Why is now the right time to take action? Why not leave it off for another year?</p>
+                        <textarea
+                            value={formData.whyNow}
+                            onChange={(event) => updateField("whyNow", event.target.value)}
+                            rows={5}
+                            className="w-full rounded-md border border-input bg-background px-3 py-3 text-sm"
+                            placeholder="Share what's driving urgency."
+                        />
+                        {errors.whyNow && <p className="text-xs text-red-400">{errors.whyNow}</p>}
+                    </div>
+                );
+            case 12:
+                return (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Consent</h2>
+                        <label className="flex items-start gap-3 rounded-xl border border-border/60 bg-background/70 p-4 text-sm">
                             <input
                                 type="checkbox"
                                 checked={formData.consent}
@@ -648,39 +558,85 @@ export function PerformanceResetFlow() {
                             </span>
                         </label>
                         {errors.consent && <p className="text-xs text-red-400">{errors.consent}</p>}
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
 
-                        <input
-                            type="text"
-                            value={formData.company}
-                            onChange={(event) => updateField("company", event.target.value)}
-                            className="hidden"
-                            tabIndex={-1}
-                            autoComplete="off"
-                            aria-hidden="true"
-                        />
+    return (
+        <div className="space-y-8">
+            <div className="rounded-3xl border border-border/60 bg-background/80 p-6 md:p-10 shadow-[0_30px_80px_rgba(15,23,42,0.35)]">
+                <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                    <div className="space-y-4">
+                        <Badge variant="outline">Performance Reset</Badge>
+                        <h1 className="text-3xl md:text-5xl font-bold font-heading">
+                            Book a 15-Min Performance Reset
+                        </h1>
+                        <p className="text-sm md:text-base text-muted-foreground max-w-2xl">
+                            Typeform-style application. One question at a time, then you can schedule immediately.
+                        </p>
+                    </div>
+                    <div className="rounded-2xl border border-primary/20 bg-primary/10 px-4 py-3 text-xs uppercase tracking-[0.3em] text-primary/80">
+                        Step {step === "form" ? activeIndex + 1 : totalSteps} of {totalSteps}
+                    </div>
+                </div>
+                <div className="mt-6 h-2 w-full overflow-hidden rounded-full bg-muted/40">
+                    <div className="h-full bg-primary" style={{ width: `${progress}%` }} />
+                </div>
+            </div>
 
-                        {serverError && (
-                            <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">
-                                <p>{serverError}</p>
-                                {serverErrorId && (
-                                    <p className="mt-2 text-xs text-red-200/80">Error ID: {serverErrorId}</p>
-                                )}
-                            </div>
-                        )}
+            {step === "form" && (
+                <form
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        if (activeIndex < totalSteps - 1) {
+                            handleNext();
+                            return;
+                        }
+                        handleSubmit();
+                    }}
+                    className="rounded-3xl border border-border/60 bg-muted/10 p-6 md:p-10 space-y-6"
+                >
+                    {renderStep()}
 
-                        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                            <p className="text-xs text-muted-foreground">
-                                Step 1 required. Scheduling will unlock after submission.
-                            </p>
-                            <Button type="submit" className="h-12 px-6" disabled={status === "loading"}>
-                                {status === "loading" ? "Submitting..." : "Continue to Scheduling"}
-                                {status === "loading" ? (
-                                    <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-                                ) : (
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                )}
-                            </Button>
+                    <input
+                        type="text"
+                        value={formData.company}
+                        onChange={(event) => updateField("company", event.target.value)}
+                        className="hidden"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                    />
+
+                    {serverError && (
+                        <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">
+                            <p>{serverError}</p>
+                            {serverErrorId && (
+                                <p className="mt-2 text-xs text-red-200/80">Error ID: {serverErrorId}</p>
+                            )}
                         </div>
+                    )}
+
+                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            onClick={handleBack}
+                            disabled={activeIndex === 0 || status === "loading"}
+                        >
+                            <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                        </Button>
+                        <Button type="submit" className="h-12 px-6" disabled={status === "loading"}>
+                            {activeIndex < totalSteps - 1 ? "Next" : "Continue to Scheduling"}
+                            {status === "loading" ? (
+                                <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                            ) : (
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                            )}
+                        </Button>
                     </div>
                 </form>
             )}
@@ -691,7 +647,22 @@ export function PerformanceResetFlow() {
                         <CheckCircle2 className="h-5 w-5" />
                         Application received. Now pick a time.
                     </div>
-                    <CalendarSchedulingEmbed active={step === "schedule"} />
+                    <div className="rounded-3xl border border-border/60 bg-background/80 p-6 md:p-10">
+                        <h2 className="text-2xl md:text-3xl font-semibold">Book 15-Min Performance Reset</h2>
+                        <p className="mt-2 text-sm text-muted-foreground">
+                            Choose a slot below. The booking stays on this page.
+                        </p>
+                        <div className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-muted/10">
+                            <iframe
+                                src={SCHEDULING_URL}
+                                style={{ border: 0 }}
+                                width="100%"
+                                height="600"
+                                frameBorder={0}
+                                title="Book 15-Min Performance Reset"
+                            />
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
