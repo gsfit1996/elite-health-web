@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 
 export default function PerformanceResetPage() {
     return (
-        <Section className="pt-28 md:pt-36">
+        <Section className="pt-28 md:pt-36" background="accent" spacing="lg">
             <Container className="max-w-5xl">
                 <Suspense
                     fallback={
-                        <div className="rounded-3xl border border-border/60 bg-background/80 p-6 md:p-10 text-sm text-muted-foreground">
+                        <div className="rounded-3xl border border-border/60 bg-[linear-gradient(150deg,var(--surface-2),var(--surface-1))] p-6 text-sm text-muted-foreground md:p-10">
                             Loading application...
                         </div>
                     }

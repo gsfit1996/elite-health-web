@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { MotionReveal } from "@/components/ui/motion-safe";
 
 const INSIGHTS = [
     {
@@ -32,15 +33,15 @@ const INSIGHTS = [
 export default function InsightsPage() {
     return (
         <div className="pt-24">
-            <Section>
+            <Section background="accent" spacing="lg">
                 <Container>
-                    <div className="max-w-3xl mb-12">
+                    <MotionReveal className="max-w-3xl mb-12">
                         <Badge variant="outline" className="mb-4">Insights</Badge>
                         <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4">Founder Health Insights</h1>
                         <p className="text-lg text-muted-foreground">
                             Practical articles for busy leaders who want clear, founder-grade guidance without the noise.
                         </p>
-                    </div>
+                    </MotionReveal>
 
                     <div className="grid gap-6 md:grid-cols-3">
                         {INSIGHTS.map((insight) => (

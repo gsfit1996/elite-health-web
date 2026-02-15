@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { MotionReveal } from "@/components/ui/motion-safe";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import clientResultsData from "../../src/content/clientResultsData";
 
@@ -179,11 +180,11 @@ export default function ClientResultsPage() {
 
     return (
         <div className="pt-24">
-            <Section fullWidth className="relative overflow-hidden">
+            <Section fullWidth className="relative overflow-hidden" background="accent" spacing="lg">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
                 <Container className="relative z-10">
-                    <div className="max-w-3xl space-y-6">
-                        <Badge variant="outline">Client Results</Badge>
+                    <MotionReveal className="max-w-3xl space-y-6">
+                        <Badge variant="glass">Client Results</Badge>
                         <h1 className="text-4xl md:text-6xl font-bold font-heading">
                             Client Results: Proof the Elite Health OS Works In Real Life
                         </h1>
@@ -217,7 +218,7 @@ export default function ClientResultsPage() {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </MotionReveal>
                 </Container>
             </Section>
 
@@ -308,7 +309,7 @@ export default function ClientResultsPage() {
                 </Container>
             </Section>
 
-            <Section fullWidth className="bg-muted/10">
+            <Section fullWidth background="muted" spacing="lg">
                 <Container>
                     <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
                         <div className="space-y-3 max-w-2xl">
@@ -396,7 +397,7 @@ export default function ClientResultsPage() {
 
             
 
-            <Section fullWidth className="bg-muted/10">
+            <Section fullWidth background="muted" spacing="lg">
                 <Container>
                     <h2 className="text-3xl md:text-4xl font-bold font-heading mb-8">FAQ</h2>
                     <div className="grid md:grid-cols-2 gap-6">
@@ -414,7 +415,7 @@ export default function ClientResultsPage() {
                 <Container className="max-w-3xl text-center">
                     <div className="rounded-3xl border border-primary/20 bg-primary/5 p-10 space-y-5 shadow-[0_20px_50px_rgba(2,6,23,0.35)]">
                         <h2 className="text-3xl md:text-4xl font-bold font-heading">
-                            Want results like this-without sacrificing your business or family life?
+                            Want results like this without sacrificing your business or family life?
                         </h2>
                         <p className="text-muted-foreground">
                             Book a 15-minute Performance Audit. You'll leave with your first bottleneck to fix and a clear path forward.

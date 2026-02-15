@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -34,7 +34,7 @@ const flightRules = [
 export default function SleepBetterOnTheRoadPage() {
     return (
         <div className="pt-24">
-            <Section className="bg-muted/10">
+            <Section background="muted">
                 <Container className="max-w-4xl">
                     <div className="flex flex-wrap items-center gap-4 mb-6">
                         <Badge variant="outline">Insights</Badge>
@@ -113,3 +113,4 @@ export default function SleepBetterOnTheRoadPage() {
         </div>
     );
 }
+

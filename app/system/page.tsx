@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -18,21 +18,21 @@ export default function SystemPage() {
                         <span className="text-primary">how high performers stop falling off.</span>
                     </h1>
                     <p className="text-xl text-muted-foreground mb-8">
-                        This is not another plan. It’s the mechanisms that make execution inevitable.
+                        This is not another plan. Itâ€™s the mechanisms that make execution inevitable.
                     </p>
                 </Container>
             </Section>
 
             {/* Execution Equation */}
-            <Section className="bg-muted/10">
+            <Section background="muted">
                 <Container>
                     <h2 className="text-2xl font-bold mb-8 text-center">The Execution Equation</h2>
                     <Card className="max-w-3xl mx-auto p-12 text-center border-primary/20 bg-muted/40 backdrop-blur-sm">
                         <p className="text-3xl md:text-4xl font-heading font-medium text-foreground">
-                            Results = (Standards) × (Defaults) × (Feedback Loops)
+                            Results = (Standards) Ã— (Defaults) Ã— (Feedback Loops)
                         </p>
                         <p className="mt-6 text-muted-foreground">
-                            Motivation is not part of the equation. It’s unreliable.
+                            Motivation is not part of the equation. Itâ€™s unreliable.
                         </p>
                     </Card>
                 </Container>
@@ -61,9 +61,9 @@ export default function SystemPage() {
             </Section>
 
             {/* Why most fail */}
-            <Section className="bg-muted/10">
+            <Section background="muted">
                 <Container className="max-w-3xl text-center">
-                    <h2 className="text-3xl font-bold font-heading mb-6">Why most “elite coaching” fails</h2>
+                    <h2 className="text-3xl font-bold font-heading mb-6">Why most â€œelite coachingâ€ fails</h2>
                     <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                         <p>Most plans are designed for ideal weeks.</p>
                         <p className="text-foreground font-medium">Your life is not ideal.</p>
@@ -86,4 +86,5 @@ export default function SystemPage() {
         </div>
     );
 }
+
 

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { fadeUp, transitionNormal } from "@/lib/motion";
 
 export function Hero() {
     return (
@@ -15,11 +16,12 @@ export function Hero() {
             <Container className="relative z-10">
                 <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        variants={fadeUp}
+                        initial="hidden"
+                        animate="visible"
+                        transition={transitionNormal}
                     >
-                        <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm">
+                        <Badge variant="glass" className="mb-6 px-4 py-1.5 text-sm">
                             New: The 90-Day Founder Reset
                         </Badge>
                     </motion.div>
@@ -28,7 +30,7 @@ export function Hero() {
                         className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1]"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
+                        transition={{ ...transitionNormal, delay: 0.08 }}
                     >
                         Build an Elite Body and Unstoppable Energy
                         <br />
@@ -39,7 +41,7 @@ export function Hero() {
                         className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
+                        transition={{ ...transitionNormal, delay: 0.14 }}
                     >
                         Elite Health OS is a personalised operating system that helps founders and executives lose excess fat, gain strength, and sustain 6 p.m. sharpness -
                         even when travel, meetings, and chaos try to derail you.
@@ -49,7 +51,7 @@ export function Hero() {
                         className="flex flex-col sm:flex-row items-center gap-4 pt-4"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
+                        transition={{ ...transitionNormal, delay: 0.2 }}
                     >
                         <Button size="lg" className="h-14 px-8 text-lg" asChild>
                             <Link href="/performance-reset?ref=hero">
@@ -67,7 +69,7 @@ export function Hero() {
                         className="text-sm text-muted-foreground pt-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
+                        transition={{ ...transitionNormal, delay: 0.24 }}
                     >
                         Built for founders and executives who need momentum without perfect weeks.
                     </motion.p>
@@ -77,7 +79,7 @@ export function Hero() {
                     className="mt-24 pt-8 border-t border-border/50 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
+                    transition={{ ...transitionNormal, delay: 0.28 }}
                 >
                     {[
                         "Visibly leaner waist",

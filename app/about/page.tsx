@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -132,7 +132,7 @@ export default function AboutPage() {
                 </Container>
             </Section>
 
-            <Section className="bg-muted/10">
+            <Section background="muted">
                 <Container>
                     <div className="grid gap-10 lg:grid-cols-2 items-start">
                         <div className="space-y-4">
@@ -189,3 +189,4 @@ export default function AboutPage() {
         </div>
     );
 }
+

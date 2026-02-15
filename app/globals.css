@@ -1,45 +1,62 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
 
   --color-border: var(--border);
-  
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  /* Elite Health Palette */
-  --background: #050507; /* Near-black */
-  --foreground: #F3F4F6; /* Off-white */
+  --background: #05060a;
+  --foreground: #f4f7ff;
 
-  --primary: #2E5CFF; /* Electric Blue */
-  --primary-foreground: #FFFFFF;
+  --primary: #3a64ff;
+  --primary-foreground: #ffffff;
 
-  --secondary: #1F2937; /* Dark Gray for secondary actions */
-  --secondary-foreground: #F3F4F6;
+  --secondary: #151a24;
+  --secondary-foreground: #f4f7ff;
 
-  --muted: #0F1115; /* Slightly lighter bg for cards */
-  --muted-foreground: #9CA3AF; /* Cool Gray */
+  --muted: #0f141f;
+  --muted-foreground: #9ca8bf;
 
-  --accent: #2E5CFF;
-  --accent-foreground: #FFFFFF;
+  --accent: #41b9ff;
+  --accent-foreground: #ffffff;
 
-  --border: #1F2937; /* Dark border */
+  --border: #222b3d;
+
+  --surface-1: rgba(12, 18, 30, 0.88);
+  --surface-2: rgba(17, 24, 39, 0.9);
+  --surface-3: rgba(24, 35, 58, 0.84);
+
+  --shadow-premium-sm: 0 12px 32px rgba(5, 10, 22, 0.28);
+  --shadow-premium-md: 0 20px 56px rgba(4, 9, 22, 0.36);
+  --shadow-premium-lg: 0 30px 90px rgba(3, 8, 20, 0.48);
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 220ms;
+  --motion-normal: 420ms;
+  --motion-slow: 620ms;
+}
+
+* {
+  border-color: var(--border);
 }
 
 body {
@@ -50,9 +67,48 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+.premium-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 120px 120px;
+}
+
+.premium-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+}
+
+.premium-surface {
+  background: linear-gradient(150deg, var(--surface-2) 0%, var(--surface-1) 100%);
+  border: 1px solid rgba(126, 154, 220, 0.24);
+  box-shadow: var(--shadow-premium-md);
+}
+
+.premium-glass {
+  background: linear-gradient(140deg, rgba(14, 23, 38, 0.72), rgba(12, 18, 29, 0.38));
+  border: 1px solid rgba(145, 176, 255, 0.2);
+  backdrop-filter: blur(16px);
+}
+
+.glow-text {
+  text-shadow: 0 0 36px rgba(67, 120, 255, 0.45);
 }
 
 .resultsCardImage {
@@ -69,4 +125,15 @@ h1, h2, h3, h4, h5, h6 {
   object-fit: contain;
   object-position: center top;
   display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
 }

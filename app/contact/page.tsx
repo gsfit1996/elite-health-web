@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -108,7 +108,7 @@ export default function ContactPage() {
                 </Container>
             </Section>
 
-            <Section className="bg-muted/5">
+            <Section background="muted">
                 <Container>
                     <div className="max-w-3xl mx-auto space-y-6 text-center">
                         <h2 className="text-3xl font-bold font-heading">What happens next</h2>
@@ -131,4 +131,5 @@ export default function ContactPage() {
         </div>
     );
 }
+
 

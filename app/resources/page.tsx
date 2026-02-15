@@ -138,14 +138,14 @@ export default function ResourcesPage() {
 
     return (
         <div className="pt-24">
-            <Section className="relative overflow-hidden">
+            <Section className="relative overflow-hidden" background="accent" spacing="lg">
                 <div className="absolute left-1/2 top-0 h-[520px] w-[960px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px] opacity-70" />
                 <div className="absolute right-0 top-1/3 h-[320px] w-[320px] rounded-full bg-cyan-500/10 blur-[120px]" />
                 <Container className="relative z-10">
                     <div className="grid items-center gap-12 lg:grid-cols-[1.1fr,0.9fr]">
                         <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6">
                             <motion.div variants={fadeUp}>
-                                <Badge variant="outline" className="mb-4">Protocols</Badge>
+                                <Badge variant="glass" className="mb-4">Protocols</Badge>
                                 <h1 className="text-4xl md:text-6xl font-bold font-heading mb-4">
                                     Protocols Hub
                                 </h1>
@@ -221,7 +221,7 @@ export default function ResourcesPage() {
                 </Container>
             </Section>
 
-            <Section id="protocols" className="relative">
+            <Section id="protocols" className="relative" background="default" spacing="lg">
                 <Container>
                     <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
                         <div className="space-y-2">
@@ -310,7 +310,7 @@ export default function ResourcesPage() {
                 </Container>
             </Section>
 
-            <Section className="bg-muted/20">
+            <Section background="muted" spacing="lg">
                 <Container>
                     <div className="mx-auto max-w-3xl text-center space-y-6">
                         <h2 className="text-3xl md:text-4xl font-bold font-heading">Ready to go beyond the protocols?</h2>
